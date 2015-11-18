@@ -3,6 +3,7 @@
     angular.module('App.Controllers', []);
     angular.module('test87App', [
       'angularGrid',
+      'infinite-scroll',
         'appverse.rest',
         'appverse.detection',
         'ngAnimate',

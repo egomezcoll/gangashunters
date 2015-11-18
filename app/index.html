@@ -32,41 +32,6 @@
     <link rel="stylesheet" href="styles/css/grid.css">
     <link rel="stylesheet" href="styles/css/main.css">
     <!-- endbuild -->
-    <style>
-    .dynamic-grid{
-          position: relative;
-          display: none;
-      }
-
-      .dynamic-grid.angular-grid{
-          display: block;
-      }
-
-      .grid {
-          border: 1px solid #cccccc;
-          position: absolute;
-          list-style: none;
-          background: #ffffff;
-          box-sizing: border-box;
-          -moz-box-sizing : border-box;
-          -webkit-transition: all 0.6s ease-out;
-          transition: all 0.6s ease-out;
-      }
-      .grid-img {
-          width: 100%;
-          vertical-align: middle;
-          -webkit-transition: opacity 0.6s ease-out;
-          transition: opacity 0.6s ease-out;
-          background-color: #fff;
-          opacity: 0;
-          visibility: hidden;
-      }
-
-      .grid-img.img-loaded{
-          visibility: visible;
-          opacity: 1;
-      }
-    </style>
 </head>
 
 <!--Include the module with the app scope-->
@@ -111,15 +76,6 @@
                 <li data-ng-class="{ active: $state.includes(&apos;home&apos;) }">
                     <a angular-ripple="" ui-sref="home"><i class="glyphicon glyphicon-home"></i> Home</a>
                 </li>
-                <li data-ng-class="{ active: $state.includes(&apos;theme&apos;) }">
-                    <a angular-ripple="" ui-sref="theme"><i class="glyphicon glyphicon-pencil"></i> Theme</a>
-                </li>
-                <li data-ng-class="{ active: $state.includes(&apos;components&apos;) }">
-                    <a angular-ripple="" ui-sref="components"><i class="glyphicon glyphicon-book"></i> Components</a>
-                </li>
-                <li data-ng-class="{ active: $state.includes(&apos;charts&apos;) }">
-                    <a angular-ripple="" ui-sref="charts"><i class="glyphicon glyphicon-stats"></i> Charts</a>
-                </li>
             </ul>
         </div>
     </nav>
@@ -153,6 +109,8 @@
     <script src="bower_components/Chart.js/Chart.min.js"></script>
     <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
 <script src="bower_components/angulargrid/angulargrid.js"></script>
+<script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
+
     <script src="app.js"></script>
     <script src="components/home/home-controller.js"></script>
     <script src="components/components/components-controller.js"></script>

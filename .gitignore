@@ -2,7 +2,6 @@
 /dist
 /.sass-cache
 /report
-/app/bower_components
 /nbproject
 /.idea/
 /.sonar

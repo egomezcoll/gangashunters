@@ -47,30 +47,8 @@ angular.module('test87App')
                     .state('home', {
                     // Use a url of '/' to set a states as the 'index'.
                     url: '/home',
-                    templateUrl: 'components/home/home.html'
+                    templateUrl: 'components/home/home.html',
+                    controller: 'homeController'
 
-                })
-
-                .state('theme', {
-                    // Use a url of '/' to set a states as the 'index'.
-                    url: '/theme',
-                    templateUrl: 'components/theme/theme.html'
-
-                })
-
-                   .state('components', {
-                    // Use a url of '/' to set a states as the 'index'.
-                    url: '/components',
-                    templateUrl: 'components/components/components.html',
-                    controller: 'ComponentsController'
-                })
-
-                  .state('charts', {
-                    // Use a url of '/' to set a states as the 'index'.
-                    url: '/charts',
-                    templateUrl: 'components/charts/charts.html',
-                    controller: 'ChartsController'
-                })
-
-                ;
+                });
             }]);
