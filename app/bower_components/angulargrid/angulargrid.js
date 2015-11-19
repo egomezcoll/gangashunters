@@ -288,7 +288,7 @@
                                     //element.addClass('angular-grid-initilized');
                                 });
                             });
-                        },250);
+                        },200);
                     }, true);
 
                     //listen window resize event and reflow grids after a timeout
