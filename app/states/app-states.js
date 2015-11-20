@@ -44,11 +44,24 @@ angular.module('test87App')
                 // Home //
                 //////////
 
-                    .state('home', {
+                  .state('home', {
                     // Use a url of '/' to set a states as the 'index'.
                     url: '/home',
                     templateUrl: 'components/home/home.html',
                     controller: 'homeController'
 
-                });
+                })
+                .state('nuevo', {
+                  // Use a url of '/' to set a states as the 'index'.
+                  url: '/nuevo',
+                  templateUrl: 'components/nuevo/nuevo.html',
+                  controller: 'nuevoController'
+
+              })  .state('busco', {
+                  // Use a url of '/' to set a states as the 'index'.
+                  url: '/busco',
+                  templateUrl: 'components/busco/busco.html',
+                  controller: 'buscoController'
+
+              });
             }]);

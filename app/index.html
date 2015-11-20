@@ -19,11 +19,9 @@
 
     <!-- build:css styles/css/vendor.css -->
     <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css">
-    <link rel="stylesheet" type="text/css" href="bower_components/ng-grid/ng-grid.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/angular-ui-select/dist/select.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/angularjs-slider/dist/rzslider.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/selectize/dist/css/selectize.css">
-    <link rel="stylesheet" type="text/css" href="bower_components/angular-chart.js/dist/angular-chart.css">
     <!-- endbuild -->
 
     <!-- build:css styles/css/styles.css -->
@@ -73,8 +71,20 @@
                 <!-- Here you can see ui-sref in action again. Also notice the use of $state.includes, which
                  will set the links to 'active' if, for example on the first link, 'contacts' or any of
                  its descendant states are activated. -->
-                <li data-ng-class="{ active: $state.includes(&apos;home&apos;) }">
+                <li data-ng-class="{ active: $state.includes('home') }">
                     <a angular-ripple="" ui-sref="home"><i class="glyphicon glyphicon-home"></i> Home</a>
+                </li>
+                <li data-ng-class="{ active: $state.includes('nuevo') }">
+                    <a angular-ripple="" ui-sref="home"><i class="glyphicon glyphicon-camera"></i> Nuevo</a>
+                </li>
+                <li data-ng-class="{ active: $state.includes('busco') }">
+                    <a angular-ripple="" ui-sref="home"><i class="glyphicon glyphicon-shopping-cart"></i> Busco</a>
+                </li>
+                <li data-ng-class="{ active: $state.includes('daily') }">
+                    <a angular-ripple="" ui-sref="home"><i class="glyphicon glyphicon-time"></i> Daily</a>
+                </li>
+                <li data-ng-class="{ active: $state.includes('inbox') }">
+                    <a angular-ripple="" ui-sref="home"><i class="glyphicon glyphicon-envelope"></i> Inbox</a>
                 </li>
             </ul>
         </div>
@@ -106,8 +116,6 @@
     <script src="bower_components/angularjs-slider/dist/rzslider.min.js"></script>
     <script src="bower_components/angular-resize/dist/angular-resize.min.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-    <script src="bower_components/Chart.js/Chart.min.js"></script>
-    <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
 <script src="bower_components/angulargrid/angulargrid.js"></script>
 <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
 
