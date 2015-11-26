@@ -4,6 +4,7 @@
     angular.module('test87App', [
       'angularGrid',
       'infinite-scroll',
+      'mdr.file', 
         'appverse.rest',
         'appverse.detection',
         'ngAnimate',

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<div class="modal-header">
+    <div class="row">
+      <div class="col-md-9">
+        <h3 class="modal-title">{{item.title}}</h3>
+      </div>
+      <div class="col-md-3 text-right">
+        XL
+      </div>
+    </div>
+
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-offset-1 col-md-4">
+      <img src="{{item.media.m}}">
+    </div>
+    <div class="col-md-4">
+      {{item.description}}
+    </div>
+  </div>
+  <div class="row mt20">
+    <div class="col-md-1">
+      300
+    </div>
+    <div class="col-md-3">
+      5 hunters lo quieren
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+      <button class="btn btn-primary" type="button" ng-click="ok()">Es perfecto para tí!</button>
+</div>
