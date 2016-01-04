@@ -14,3 +14,11 @@ body {
 .modal-dialog .modal-content .modal-body {
     background-color: white;
 }
+
+.radio{
+  &.customradio{
+    font-weight: normal;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}

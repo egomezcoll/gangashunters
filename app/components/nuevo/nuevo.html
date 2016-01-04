@@ -3,40 +3,80 @@
     <section id="portfolio" class="section bg-grey arrow-bottom">
   		<div class="container">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-5">
             <label for="name">Nombre del producto</label>
-            <input type="text" class="form-control" id="name" placeholder="Nombre del producto">
+            <input ng-model="product.name" type="text" class="form-control" id="name" placeholder="Nombre del producto">
           </div>
-          <div class="col-md-6">
+          <div class="col-md-3">
             <label for="marca">Marca</label>
-            <input type="text" class="form-control" id="marca" placeholder="Marca">
+            <ui-select ng-model="marcas.selected" theme="selectize">
+                <ui-select-match placeholder="Marca">{{$select.selected.nombre}}</ui-select-match>
+                <ui-select-choices repeat="marca in marcas | filter: $select.search">
+                    <span ng-bind-html="marca.nombre | highlight: $select.search"></span>
+                </ui-select-choices>
+            </ui-select>
+          </div>
+          <div class="col-md-4">
+            <label for="marca">Prenda</label>
+            <ui-select ng-model="prendas.selected" theme="selectize">
+                <ui-select-match placeholder="Prenda">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="prenda in prendas | filter: $select.search">
+                    <span ng-bind-html="prenda.name | highlight: $select.search"></span>
+                </ui-select-choices>
+            </ui-select>
           </div>
         </div>
         <div class="row mt20">
           <div class="col-md-3">
             <label for="talla">Talla</label>
-            <input type="text" class="form-control" id="talla" placeholder="Talla">
+            <ui-select ng-model="tallas.selected" theme="selectize">
+                <ui-select-match placeholder="Talla">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="talla in tallas | filter: $select.search">
+                    <span ng-bind-html="talla.name | highlight: $select.search"></span>
+                </ui-select-choices>
+            </ui-select>
           </div>
           <div class="col-md-3">
             <label for="precio">Precio</label>
-            <input type="text" class="form-control" id="precio" placeholder="Precio">
+            <input ng-model="product.amount" type="text" class="form-control" id="precio" placeholder="Precio">
           </div>
           <div class="col-md-3">
             <label for="color">Color</label>
-            <input type="text" class="form-control" id="color" placeholder="Color">
+            <ui-select ng-model="colors.selected" theme="selectize">
+                <ui-select-match placeholder="Color">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="color in colors | filter: $select.search">
+                    <span ng-bind-html="color.name | highlight: $select.search"></span>
+                </ui-select-choices>
+            </ui-select>
           </div>
           <div class="col-md-3">
             <label for="estado">Es ganga</label>
-            <input type="text" class="form-control" id="estado" placeholder="Estado">
+            <label class="radio customradio">
+              <input type="radio" name="isGangaOption" id="isGangaOption1" ng-click="productisGanga=true" ng-checked="product.isGanga"> Si, imposible encontrarlo más barato
+            </label>
+            <label class="radio customradio">
+              <input type="radio" name="isGangaOption" id="isGangaOption2" ng-click="product.isGanga=false" ng-checked="!product.isGanga"> No
+            </label>
+          </div>
+        </div>
+        <div class="row mt20">
+          <div class="col-md-12">
+            <label for="description">Descripción</label>
+            <textarea ng-model="product.description" maxlength="300" id="description" class="form-control" placeholder="Descripción" rows="3"></textarea>
           </div>
         </div>
   			<div class="row mt20">
   				<div class="col-md-12 text-center">
   					<div class="headline">
-              <mdr-file url="examples/php/upload.php" model="file" size="5" formats="'jpg,png,svg,gif'" limit="10"></mdr-file>
+              <mdr-file url="http://www.eduardgomez.me/gangashunter_backend/uploadImg.php" model="file" size="5" formats="'jpg,png,svg,gif'"  text="Arrastra o haz clic aquí" limit="10"></mdr-file>
   					</div>
   				</div>
   			</div>
   		</div>
   	</section>
+<br><br>
+    {{product}}
+    <br><br>
+    file: {{file}}
+    <img src="{{file.tmp_name}}">
   	<!-- End Portfolio -->

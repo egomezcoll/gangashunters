@@ -54,9 +54,8 @@ angular.module('test87App')
                 .state('nuevo', {
                   // Use a url of '/' to set a states as the 'index'.
                   url: '/nuevo',
-                  templateUrl: 'components/nuevo/nuevo.html'
-                  //,
-                  //controller: 'nuevoController'
+                  templateUrl: 'components/nuevo/nuevo.html',
+                  controller: 'nuevoController'
 
               })  .state('busco', {
                   // Use a url of '/' to set a states as the 'index'.
