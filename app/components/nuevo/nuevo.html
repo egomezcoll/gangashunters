@@ -9,7 +9,7 @@
           </div>
           <div class="col-md-3">
             <label for="marca">Marca</label>
-            <ui-select ng-model="marcas.selected" theme="selectize">
+            <ui-select ng-model="product.marca" theme="selectize">
                 <ui-select-match placeholder="Marca">{{$select.selected.nombre}}</ui-select-match>
                 <ui-select-choices repeat="marca in marcas | filter: $select.search">
                     <span ng-bind-html="marca.nombre | highlight: $select.search"></span>
@@ -18,7 +18,7 @@
           </div>
           <div class="col-md-4">
             <label for="marca">Prenda</label>
-            <ui-select ng-model="prendas.selected" theme="selectize">
+            <ui-select ng-model="product.prenda" theme="selectize">
                 <ui-select-match placeholder="Prenda">{{$select.selected.name}}</ui-select-match>
                 <ui-select-choices repeat="prenda in prendas | filter: $select.search">
                     <span ng-bind-html="prenda.name | highlight: $select.search"></span>
@@ -29,7 +29,7 @@
         <div class="row mt20">
           <div class="col-md-3">
             <label for="talla">Talla</label>
-            <ui-select ng-model="tallas.selected" theme="selectize">
+            <ui-select ng-model="product.talla" theme="selectize">
                 <ui-select-match placeholder="Talla">{{$select.selected.name}}</ui-select-match>
                 <ui-select-choices repeat="talla in tallas | filter: $select.search">
                     <span ng-bind-html="talla.name | highlight: $select.search"></span>
@@ -42,7 +42,7 @@
           </div>
           <div class="col-md-3">
             <label for="color">Color</label>
-            <ui-select ng-model="colors.selected" theme="selectize">
+            <ui-select ng-model="product.color" theme="selectize">
                 <ui-select-match placeholder="Color">{{$select.selected.name}}</ui-select-match>
                 <ui-select-choices repeat="color in colors | filter: $select.search">
                     <span ng-bind-html="color.name | highlight: $select.search"></span>
@@ -52,7 +52,7 @@
           <div class="col-md-3">
             <label for="estado">Es ganga</label>
             <label class="radio customradio">
-              <input type="radio" name="isGangaOption" id="isGangaOption1" ng-click="productisGanga=true" ng-checked="product.isGanga"> Si, imposible encontrarlo más barato
+              <input type="radio" name="isGangaOption" id="isGangaOption1" ng-click="product.isGanga=true" ng-checked="product.isGanga"> Si, imposible encontrarlo más barato
             </label>
             <label class="radio customradio">
               <input type="radio" name="isGangaOption" id="isGangaOption2" ng-click="product.isGanga=false" ng-checked="!product.isGanga"> No
@@ -68,15 +68,21 @@
   			<div class="row mt20">
   				<div class="col-md-12 text-center">
   					<div class="headline">
-              <mdr-file url="http://www.eduardgomez.me/gangashunter_backend/uploadImg.php" model="file" size="5" formats="'jpg,png,svg,gif'"  text="Arrastra o haz clic aquí" limit="10"></mdr-file>
+              <mdr-file url="http://www.eduardgomez.me/gangashunter_backend/uploadImg.php" model="file" size="5" formats="'jpg,png,svg,gif'" multiple="true"  text="Arrastra o haz clic aquí" limit="10"></mdr-file>
   					</div>
   				</div>
   			</div>
+        <div class="row mt20">
+          <div class="col-md-12 text-center">
+            <button class="btn btn-primary" ng-disabled="checkProductAttr()" style="text-transform:none" type="submit">Subir producto</button>
+          </div>
+        </div>
   		</div>
   	</section>
 <br><br>
     {{product}}
     <br><br>
     file: {{file}}
-    <img src="{{file.tmp_name}}">
+    <br>
+    images: {{images}}
   	<!-- End Portfolio -->
