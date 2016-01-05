@@ -162,6 +162,8 @@
           $scope.model = xhr.response;
         });
         $('#fileId_'+ $scope.$id +' .mdr-file-dad-content .preview-'+ k).fadeOut('slow', function() { $(this).remove(); });
+        $('#fileId-'+im).css("visibility","visible");
+          im++;
       }
       function transferFailed (e) {
         console.log("An error occurred while transferring the file.");
@@ -170,7 +172,7 @@
         console.log("The transfer has been canceled by the user.");
       }
     }
-
+var im = 0;
 
     // SE CREA EL PREVIEW
     function createPreview(v,k,url,icon,messages)
@@ -199,6 +201,7 @@
       '</div>';
 
       $("#fileId_"+ $scope.$id +' .mdr-file-dad-content').append($(preview).fadeIn('slow'));
+      $("#complete").append("<img id='fileId-"+im+"' src='"+url+"' width='75px' style='display:inline-block; margin-left:10px; margin-right:10px; visibility:hidden'>");
 
       if (messages !== undefined) {
         messages.forEach(function(msg){

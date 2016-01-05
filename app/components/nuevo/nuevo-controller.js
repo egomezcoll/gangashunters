@@ -24,7 +24,7 @@ angular.module('App.Controllers')
                     count = count + 1;
                 }
             }
-            if (count < 9) {
+            if (count < 8) {
                 return true;
             } else {
                 if ($scope.product.name.length > 0 && $scope.product.description.length > 0 && $scope.product.amount > 0) {
@@ -34,6 +34,23 @@ angular.module('App.Controllers')
                 }
 
             }
+        };
+
+        $scope.addProduct = function () {
+          console.log($scope.product);
+            $http({
+                    method: 'POST',
+                    url: 'http://www.eduardgomez.me/gangashunter_backend/insertNewProduct.php',
+                    data: $scope.product,
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods' : 'GET,POST,PUT,DELETE,OPTIONS',
+                        'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Allow-Methods'
+                    }
+                })
+                .then(function (response) {
+                    console.log(response);
+                });
         };
 
         $scope.$watch('file', function (newValue, oldValue) {

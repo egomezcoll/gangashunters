@@ -15,10 +15,10 @@
 <div class="header low">
     <h1>Code coverage report for <span class="entity">./app/components/nuevo/nuevo-controller.js</span></h1>
     <h2>
-        Statements: <span class="metric">4% <small>(1 / 25)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">3.45% <small>(1 / 29)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Branches: <span class="metric">0% <small>(0 / 11)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Functions: <span class="metric">0% <small>(0 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">4% <small>(1 / 25)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">3.45% <small>(1 / 29)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/components/nuevo/</a> &#187; nuevo-controller.js</div>
@@ -76,7 +76,24 @@
 49
 50
 51
-52</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -111,6 +128,23 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -153,7 +187,7 @@ angular.module('App.Controllers')
 <span class="cstat-no" title="statement not covered" >                    count = count + 1;</span>
                 }
             }
-<span class="cstat-no" title="statement not covered" >            if (count &lt; 9) {</span>
+<span class="cstat-no" title="statement not covered" >            if (count &lt; 8) {</span>
 <span class="cstat-no" title="statement not covered" >                return true;</span>
             } else {
 <span class="cstat-no" title="statement not covered" >                if ($scope.product.name.length &gt; 0 &amp;&amp; $scope.product.description.length &gt; 0 &amp;&amp; $scope.product.amount &gt; 0) {</span>
@@ -163,6 +197,23 @@ angular.module('App.Controllers')
                 }
 &nbsp;
             }
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.addProduct = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >          console.log($scope.product);</span>
+<span class="cstat-no" title="statement not covered" >            $http({</span>
+                    method: 'POST',
+                    url: 'http://www.eduardgomez.me/gangashunter_backend/insertNewProduct.php',
+                    data: $scope.product,
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods' : 'GET,POST,PUT,DELETE,OPTIONS',
+                        'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Allow-Methods'
+                    }
+                })
+                .then(<span class="fstat-no" title="function not covered" >function (response) {</span>
+<span class="cstat-no" title="statement not covered" >                    console.log(response);</span>
+                });
         };
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        $scope.$watch('file', <span class="fstat-no" title="function not covered" >function (newValue, oldValue) {</span></span>
@@ -183,7 +234,7 @@ angular.module('App.Controllers')
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jan 04 2016 17:45:57 GMT+0100 (Romance Standard Time)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 05 2016 12:31:18 GMT+0100 (Romance Standard Time)</div>
 </div>
 <script src="../../../prettify.js"></script>
 <script>

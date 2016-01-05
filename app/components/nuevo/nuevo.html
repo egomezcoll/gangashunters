@@ -9,7 +9,7 @@
           </div>
           <div class="col-md-3">
             <label for="marca">Marca</label>
-            <ui-select ng-model="product.marca" theme="selectize">
+            <ui-select id="marca" ng-model="product.marca" theme="selectize">
                 <ui-select-match placeholder="Marca">{{$select.selected.nombre}}</ui-select-match>
                 <ui-select-choices repeat="marca in marcas | filter: $select.search">
                     <span ng-bind-html="marca.nombre | highlight: $select.search"></span>
@@ -65,6 +65,12 @@
             <textarea ng-model="product.description" maxlength="300" id="description" class="form-control" placeholder="Descripción" rows="3"></textarea>
           </div>
         </div>
+        <div class="row mt20">
+  				<div id="complete" class="col-md-12">
+          </div>
+        </div>
+
+
   			<div class="row mt20">
   				<div class="col-md-12 text-center">
   					<div class="headline">
@@ -74,7 +80,7 @@
   			</div>
         <div class="row mt20">
           <div class="col-md-12 text-center">
-            <button class="btn btn-primary" ng-disabled="checkProductAttr()" style="text-transform:none" type="submit">Subir producto</button>
+            <button class="btn btn-primary" ng-disabled="checkProductAttr()" ng-click="addProduct()" style="text-transform:none" type="submit">Subir producto</button>
           </div>
         </div>
   		</div>
@@ -85,4 +91,6 @@
     file: {{file}}
     <br>
     images: {{images}}
+    <br><br>
+
   	<!-- End Portfolio -->
