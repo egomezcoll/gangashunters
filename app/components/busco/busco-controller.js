@@ -40,6 +40,7 @@ angular.module('App.Controllers')
                     obj.description = obj.description.split("photo:")[0] + "photo:</p>";
                     obj.price = Math.floor((Math.random() * 100) + 5);
                 });
+                console.log(data.data.items);
                 $scope.pics = data.data.items;
                 $scope.picsOriginal = data.data.items;
 
