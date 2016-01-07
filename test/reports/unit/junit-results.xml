@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <testsuites>
-  <testsuite name="PhantomJS 1.9.7 (Windows 7 0.0.0)" package="" timestamp="2016-01-05T11:31:17" id="0" hostname="PCBCN1154">
+  <testsuite name="PhantomJS 1.9.7 (Windows 7 0.0.0)" package="" timestamp="2016-01-07T14:58:49" id="0" hostname="PCBCN1154">
     <properties>
       <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.7 Safari/534.34"/>
     </properties>
   </testsuite>
-  <testsuite name="PhantomJS 1.9.7 (Windows 7 0.0.0)" package="" timestamp="2016-01-05T11:31:18" id="0" hostname="PCBCN1154" tests="1" errors="1" failures="1" time="0.01">
+  <testsuite name="PhantomJS 1.9.7 (Windows 7 0.0.0)" package="" timestamp="2016-01-07T14:58:49" id="0" hostname="PCBCN1154" tests="1" errors="1" failures="1" time="0.009">
     <properties>
       <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.7 Safari/534.34"/>
     </properties>
-    <testcase name="should have a properly working homeController controller" time="0.01" classname="PhantomJS 1.9.7 (Windows 7 0.0.0).Unit: Testing Controllers">
+    <testcase name="should have a properly working homeController controller" time="0.009" classname="PhantomJS 1.9.7 (Windows 7 0.0.0).Unit: Testing Controllers">
       <failure type="">Error: [$injector:unpr] http://errors.angularjs.org/1.3.20/$injector/unpr?p0=angularGridInstanceProvider%20%3C-%20angularGridInstance%20%3C-%20homeController
     at C:/development/repositories/generator/gh/gangashunters/app/bower_components/angular/angular.min.js:38
     at d (C:/development/repositories/generator/gh/gangashunters/app/bower_components/angular/angular.min.js:36)

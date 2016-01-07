@@ -5,6 +5,7 @@
             'angularGrid',
             'infinite-scroll',
             'mdr.file',
+            'geolocation',
             'appverse.rest',
             'appverse.detection',
             'ngAnimate',

@@ -9,9 +9,12 @@
           </div>
           <div class="col-md-3">
             <label for="marca">Marca</label>
-            <ui-select id="marca" ng-model="product.marca" theme="selectize">
-                <ui-select-match placeholder="Marca">{{$select.selected.nombre}}</ui-select-match>
-                <ui-select-choices repeat="marca in marcas | filter: $select.search">
+            <ui-select id="marca" ng-model="product.marca" reset-search-input="false"  ng-maxlength="25" theme="selectize">
+                <ui-select-match placeholder="Marca">
+                  <span>{{$select.selected.nombre || $select.search}}</span>
+                  <a class="btn btn-xs btn-link pull-right" ng-click="clear($event, $select)"><i class="glyphicon glyphicon-remove"></i></a>
+                </ui-select-match>
+                <ui-select-choices repeat="marca in (marcas | filter: $select.search | limitTo: 100) track by marca.id"  refresh="refreshResults($select)" refresh-delay="0">
                     <span ng-bind-html="marca.nombre | highlight: $select.search"></span>
                 </ui-select-choices>
             </ui-select>
@@ -85,12 +88,4 @@
         </div>
   		</div>
   	</section>
-<br><br>
-    {{product}}
-    <br><br>
-    file: {{file}}
-    <br>
-    images: {{images}}
-    <br><br>
-
   	<!-- End Portfolio -->
