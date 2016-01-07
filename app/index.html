@@ -98,7 +98,7 @@
     <div ui-view="" class="fade-in" autoscroll="false"></div>
 
 
-    <!-- build:js scripts/scripts.js -->
+    <!-- build:js scripts/vendor.js -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-touch/angular-touch.min.js"></script>
@@ -123,15 +123,20 @@
 <script src="bower_components/angular-file/dist/angular-file.js"></script>
 <script src="bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
 <script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
+<script src="bower_components/appverse-web-html5-core/dist/appverse-detection/appverse-detection.min.js"></script>
+<script src="bower_components/lodash/lodash.min.js"></script>
+<script src="bower_components/restangular/dist/restangular.min.js"></script>
+<script src="bower_components/appverse-web-html5-core/dist/appverse-rest/appverse-rest.min.js"></script>
     <script src="app.js"></script>
+    <script src="states/app-states.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js scripts/scripts.js -->
+    <script src="components/busco/busco-controller.js"></script>
     <script src="components/home/home-controller.js"></script>
     <script src="components/nuevo/nuevo-controller.js"></script>
-    <script src="components/busco/busco-controller.js"></script>
-    <script src="states/app-states.js"></script>
- <script src="bower_components/appverse-web-html5-core/dist/appverse-detection/appverse-detection.min.js"></script>
- <script src="bower_components/lodash/lodash.min.js"></script>
- <script src="bower_components/restangular/dist/restangular.min.js"></script>
- <script src="bower_components/appverse-web-html5-core/dist/appverse-rest/appverse-rest.min.js"></script>
-    <!-- endbuild -->
+<!-- endbuild -->
+
+
 </body>
 </html>

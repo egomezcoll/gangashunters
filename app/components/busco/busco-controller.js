@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('App.Controllers')
-    .service('imageService', function ($q, $http) {
+    .service('bimageService', function ($q, $http) {
         this.loadImages = function () {
             return $http.jsonp("https://api.flickr.com/services/feeds/photos_public.gne?tags=purse&format=json&jsoncallback=JSON_CALLBACK");
         };
     })
 
-.controller('buscoController', function ($scope, imageService, angularGridInstance, $timeout, $sce, $modal) {
+.controller('buscoController', function ($scope, bimageService, angularGridInstance, $timeout, $sce, $modal) {
         $scope.searchTxt = '';
 
         //apply search and sort method
@@ -28,7 +28,7 @@ angular.module('App.Controllers')
         $scope.deliberatelyTrustDangerousSnippet = function (text) {
             return $sce.trustAsHtml(text);
         };
-        imageService.loadImages()
+        bimageService.loadImages()
             .then(function (data) {
                 data.data.items.forEach(function (obj) {
                     var desc = obj.description,

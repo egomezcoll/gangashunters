@@ -115,8 +115,3 @@ angular.module('App.Controllers')
             return;
         });
     });
-
-// $http.get('http://www.eduardgomez.me/gangashunter_backend/getColors.php')
-//     .then(function (response) {
-//         $scope.colors = response.data;
-//     });
