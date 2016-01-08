@@ -11,6 +11,12 @@ body {
   margin-top: 20px;
 }
 
+.mt10{
+  margin-top: 5px;
+}
+.txtNegrita{
+  font-weight: bold;
+}
 .modal-dialog .modal-content .modal-body {
     background-color: white;
 }
@@ -22,4 +28,14 @@ body {
     margin-bottom: 0px;
     margin-left:20px;
   }
+}
+
+.menu-column{
+  background-color:white;
+  border-radius:6px;
+  margin-left:15px;
+  width:250px;
+  min-width:250px;
+  max-width:250px;
+  min-height:600px;
 }

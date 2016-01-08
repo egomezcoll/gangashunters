@@ -1,12 +1,126 @@
 <!DOCTYPE html>
 <div class="container" infinite-scroll="myPagingFunction()">
       <div class="row">
-            <div class="col-md-12 mb20">
-                  <input type="search" ng-model="searchTxt" class="form-control" placeholder="Search...">
+            <div class="col-md-12">
+                  <input type="search" ng-model="searchTxt" class="form-control" placeholder="Buscar...">
             </div>
       </div>
       <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-3">
+              <div class="row mt20">
+                <div class="col-md-12 menu-column">
+                    <div class="row mt20" ng-if="searchText.length > 3">
+                        <div class="col-md-12">
+                          <span class="txtNegrita">Filtrado por:</span>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="searchTxt.length > 3">
+                        <div class="col-md-offset-1 col-md-11">
+                          <span>texto</span>
+                        </div>
+                    </div>
+
+                    <!-- PRENDA FILTER -->
+                    <div class="row mt20">
+                        <div class="col-md-12">
+                          <span class="txtNegrita">Prendas</span>
+                        </div>
+                    </div>
+                    <div class="row mt10">
+                        <div class="col-md-12">
+                          <ui-select multiple ng-model="filters.selectedPrendas" theme="select2" style="width: 800px;">
+                            <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
+                            <ui-select-choices repeat="prenda in prendas | filter: {name: $select.search}">
+                              <div ng-bind-html="prenda.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                          </ui-select>
+                        </div>
+                    </div>
+
+                    <!-- BRAND FILTER -->
+                    <div class="row mt20">
+                        <div class="col-md-12">
+                          <span class="txtNegrita">Marcas</span>
+                        </div>
+                    </div>
+                    <div class="row mt10">
+                        <div class="col-md-12">
+                          <ui-select multiple ng-model="filters.selectedMarcas" theme="select2" style="width: 800px;">
+                            <ui-select-match placeholder="Seleccionar...">{{$item.nombre}}</ui-select-match>
+                            <ui-select-choices repeat="marca in marcas | filter: {nombre: $select.search} | limitTo:100">
+                              <div ng-bind-html="marca.nombre | highlight: $select.search"></div>
+                            </ui-select-choices>
+                          </ui-select>
+                        </div>
+                    </div>
+
+                    <!-- SIZE FILTER -->
+                    <div class="row mt20">
+                        <div class="col-md-12">
+                          <span class="txtNegrita">Tallas</span>
+                        </div>
+                    </div>
+                    <div class="row mt10">
+                        <div class="col-md-12">
+                          <ui-select multiple ng-model="filters.selectedTallas" theme="select2" style="width: 800px;">
+                            <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
+                            <ui-select-choices repeat="talla in tallas | filter: {name: $select.search}">
+                              <div ng-bind-html="talla.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                          </ui-select>
+                        </div>
+                    </div>
+
+                    <!-- COLOR FILTER -->
+                    <div class="row mt20">
+                        <div class="col-md-12">
+                          <span class="txtNegrita">Colores</span>
+                        </div>
+                    </div>
+                    <div class="row mt10">
+                        <div class="col-md-12">
+                          <ui-select multiple ng-model="filters.selectedColors" theme="select2" style="width: 800px;">
+                            <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
+                            <ui-select-choices repeat="color in colors | filter: {name: $select.search}">
+                              <div ng-bind-html="color.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                          </ui-select>
+                        </div>
+                    </div>
+
+                    <!-- IS GANGA -->
+                    <div class="row mt20">
+                        <div class="col-md-12">
+                          <span class="txtNegrita">Gangas</span>
+                        </div>
+                    </div>
+                    <div class="row mt10">
+                        <div class="col-md-12">
+                          <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="filters.isGanga"><span class="checkbox-material"><span class="check"></span></span> <span translate>Solamente gangas</span>
+                            </label>
+                          </div>
+                        </div>
+                    </div>
+
+                    <!-- RANGO DE PRECIOS -->
+                    <div class="row mt20">
+                        <div class="col-md-12">
+                          <span class="txtNegrita">Precio</span>
+                        </div>
+                    </div>
+                    <div class="row mt10">
+                        <div class="col-md-12">
+
+                        </div>
+                    </div>
+
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-9">
                   <ul class="dynamic-grid" angular-grid="pics" grid-width="200" gutter-size="10" angular-grid-id="gallery" refresh-on-img-load="true">
                         <li data-ng-repeat="pic in pics | filter:search.text" ng-click="moreInformation(pic)" class="grid">
                               <img src="{{getImage(pic)}}" class="grid-img" data-actual-width="{{pic.actualWidth}}" data-actual-height="{{pic.actualHeight}}" />
@@ -14,7 +128,7 @@
                                     <div class="title" ng-bind-html="deliberatelyTrustDangerousSnippet(pic.description)">
                                     </div>
                                     <div class="uploaded-date">
-                                          Uploaded on : Thu Oct 01 2015
+                                          Uploaded on : {{pic.uploadDate}}
                                     </div>
                                     <div class="likes-watch-wrap">
                                           <div class="row">
@@ -22,7 +136,7 @@
                                                       {{pic.price}} €
                                                 </div>
                                                 <div class="col-xs-4 text-right">
-                                                      XL
+                                                      {{pic.tallaName}}
                                                 </div>
                                           </div>
                                     </div>
