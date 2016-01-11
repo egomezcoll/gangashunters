@@ -98,7 +98,7 @@
                         <div class="col-md-12">
                           <div class="checkbox">
                             <label>
-                                <input type="checkbox" ng-model="filters.isGanga"><span class="checkbox-material"><span class="check"></span></span> <span translate>Solamente gangas</span>
+                                <input type="checkbox" ng-model="filters.isGanga" ng-click="filterProducts(searchTxt)"><span class="checkbox-material"><span class="check"></span></span> <span translate>Solamente gangas</span>
                             </label>
                           </div>
                         </div>
@@ -110,25 +110,26 @@
                           <span class="txtNegrita">Precio</span>
                         </div>
                     </div>
-                    <div class="row mt10">
+                    <div class="row mt20">
                         <div class="col-md-12">
-
+                          <rzslider rz-slider-floor="0" rz-slider-translate="translate" rz-slider-ceil="2000" rz-slider-model="filters.low" rz-slider-high="filters.high" ng-init="rangeSlider={low:0}"></rzslider>
                         </div>
-                    </div>
 
+                    </div>
+                    {{filters}}
 
                 </div>
               </div>
             </div>
             <div class="col-md-9">
                   <ul class="dynamic-grid" angular-grid="pics" grid-width="200" gutter-size="10" angular-grid-id="gallery" refresh-on-img-load="true">
-                        <li data-ng-repeat="pic in pics | filter:search.text" ng-click="moreInformation(pic)" class="grid">
+                        <li data-ng-repeat="pic in pics" ng-click="moreInformation(pic)" class="grid">
                               <img src="{{getImage(pic)}}" class="grid-img" data-actual-width="{{pic.actualWidth}}" data-actual-height="{{pic.actualHeight}}" />
                               <div class="img-desc-wrap">
-                                    <div class="title" ng-bind-html="deliberatelyTrustDangerousSnippet(pic.description)">
-                                    </div>
+                                <div class="title" ng-bind-html="deliberatelyTrustDangerousSnippet(pic.name)"></div>
+                                    <div class="description" ng-bind-html="deliberatelyTrustDangerousSnippet(pic.description)"></div>
                                     <div class="uploaded-date">
-                                          Uploaded on : {{pic.uploadDate}}
+                                          {{pic.uploadDate | timeAgo}}
                                     </div>
                                     <div class="likes-watch-wrap">
                                           <div class="row">

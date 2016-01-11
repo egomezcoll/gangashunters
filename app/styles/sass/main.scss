@@ -39,3 +39,23 @@ body {
   max-width:250px;
   min-height:600px;
 }
+
+rzslider span.rz-bar{
+      background-color: #CCC;
+}
+rzslider span.rz-pointer{
+  top:-12px;
+  box-shadow: -0.776px 0.898px 5px 0px rgba(0, 1, 1, 0.35), inset 1px 1.732px 0px 1px rgba(255, 255, 255, 0.2);
+}
+
+rzslider span.rz-bubble:not(.rz-limit){
+    background-color: white;
+    color: gray;
+    margin-top: -20px;
+}
+rzslider span.rz-bubble:not(.rz-limit):after {
+  border-top-color: white;
+}
+rzslider span.rz-bubble.rz-limit {
+  display: none;
+}
