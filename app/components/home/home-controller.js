@@ -10,12 +10,12 @@ angular.module('App.Controllers')
             return RESTFactory.readParallelMultipleBatch(['getColors', 'getTallas', 'getMarcas', 'getPrendas']);
         };
     })
-    .controller('homeController', function ($scope, RESTFactory, productsService, angularGridInstance, $timeout, $sce, $modal) {
+    .controller('homeController', function ($scope, RESTFactory, productsService, angularGridInstance, $timeout, $filter, $sce, $modal) {
         $scope.searchTxt = '';
         $scope.filters = {
             low: 0,
             high: 2000,
-            isGanga:false
+            isGanga: false
         };
         $scope.colors = $scope.tallas = $scope.marcas = $scope.prendas = $scope.pics = $scope.picsOriginal = [];
         $scope.translate = function (value) {
@@ -376,9 +376,18 @@ angular.module('App.Controllers')
                     $scope.picsOriginal = angular.copy($scope.pics);
                 };
 
-                $scope.filterProducts = function(val){
+                $scope.filterProducts = function (val) {
                     var validProduct = [];
                     val = val.toLowerCase();
+
+                    //remove empty filters
+                    for (var key in $scope.filters) {
+                        if(typeof($scope.filters[key]) === 'object' && $scope.filters[key].length === 0) {
+                          delete $scope.filters[key];
+                        }
+                    }
+
+                    //filter by text
                     $scope.pics = $scope.picsOriginal.filter(function (obj) {
                         if (obj.description.toLowerCase()
                             .indexOf(val) !== -1 || obj.name.toLowerCase()
@@ -386,11 +395,77 @@ angular.module('App.Controllers')
                             return true;
                         }
                     });
-                    angular.forEach($scope.pics, function(item){
-                      if(item.isGanga == $scope.filters.isGanga){
-                        validProduct.push(item);
-                      }
+
+                    //filter by filters
+                    angular.forEach($scope.pics, function (item) {
+                        //check if is Ganga
+                        if (item.isGanga == $scope.filters.isGanga) {
+                            var filtersPassed = 1;
+                            var notValid = false;
+
+                            //check amount
+                            if (item.price >= $scope.filters.low && item.price <= $scope.filters.high) {
+                                filtersPassed = filtersPassed + 1;
+                            } else {
+                                notValid = true;
+                            }
+
+                            //check if prenda
+                            if ($scope.filters.selectedPrendas && !notValid) {
+                                if ($filter('filter')($scope.filters.selectedPrendas, {
+                                        id: item.prenda
+                                    })
+                                    .length > 0) {
+                                    filtersPassed = filtersPassed + 1;
+                                } else {
+                                    notValid = true;
+                                }
+                            }
+
+                            //check if marca
+                            if ($scope.filters.selectedMarcas && !notValid) {
+                                if ($filter('filter')($scope.filters.selectedMarcas, {
+                                        id: item.marca
+                                    })
+                                    .length > 0) {
+                                    filtersPassed = filtersPassed + 1;
+                                } else {
+                                    notValid = true;
+                                }
+                            }
+
+                            //check if talla
+                            if ($scope.filters.selectedTallas && !notValid) {
+                                if ($filter('filter')($scope.filters.selectedTallas, {
+                                        id: item.talla
+                                    })
+                                    .length > 0) {
+                                    filtersPassed = filtersPassed + 1;
+                                } else {
+                                    notValid = true;
+                                }
+                            }
+
+                            //check if color
+                            if ($scope.filters.selectedColors && !notValid) {
+                                if ($filter('filter')($scope.filters.selectedColors, {
+                                        id: item.color
+                                    })
+                                    .length > 0) {
+                                    filtersPassed = filtersPassed + 1;
+                                } else {
+                                    notValid = true;
+                                }
+                            }
+
+                            if (!notValid) {
+                                validProduct.push(item);
+                            }
+
+                        }
                     });
+
+                    //result of filtering
                     $scope.pics = validProduct;
                 };
 

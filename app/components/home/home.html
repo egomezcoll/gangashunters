@@ -28,7 +28,7 @@
                     </div>
                     <div class="row mt10">
                         <div class="col-md-12">
-                          <ui-select multiple ng-model="filters.selectedPrendas" theme="select2" style="width: 800px;">
+                          <ui-select multiple ng-model="filters.selectedPrendas" on-select="filterProducts(searchTxt)" on-remove="filterProducts(searchTxt)" theme="select2" style="width: 800px;">
                             <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
                             <ui-select-choices repeat="prenda in prendas | filter: {name: $select.search}">
                               <div ng-bind-html="prenda.name | highlight: $select.search"></div>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="row mt10">
                         <div class="col-md-12">
-                          <ui-select multiple ng-model="filters.selectedMarcas" theme="select2" style="width: 800px;">
+                          <ui-select multiple ng-model="filters.selectedMarcas" on-select="filterProducts(searchTxt)" on-remove="filterProducts(searchTxt)" theme="select2" style="width: 800px;">
                             <ui-select-match placeholder="Seleccionar...">{{$item.nombre}}</ui-select-match>
                             <ui-select-choices repeat="marca in marcas | filter: {nombre: $select.search} | limitTo:100">
                               <div ng-bind-html="marca.nombre | highlight: $select.search"></div>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="row mt10">
                         <div class="col-md-12">
-                          <ui-select multiple ng-model="filters.selectedTallas" theme="select2" style="width: 800px;">
+                          <ui-select multiple ng-model="filters.selectedTallas" on-select="filterProducts(searchTxt)" on-remove="filterProducts(searchTxt)" theme="select2" style="width: 800px;">
                             <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
                             <ui-select-choices repeat="talla in tallas | filter: {name: $select.search}">
                               <div ng-bind-html="talla.name | highlight: $select.search"></div>
@@ -79,7 +79,7 @@
                     </div>
                     <div class="row mt10">
                         <div class="col-md-12">
-                          <ui-select multiple ng-model="filters.selectedColors" theme="select2" style="width: 800px;">
+                          <ui-select multiple ng-model="filters.selectedColors" on-select="filterProducts(searchTxt)" on-remove="filterProducts(searchTxt)" theme="select2" style="width: 800px;">
                             <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
                             <ui-select-choices repeat="color in colors | filter: {name: $select.search}">
                               <div ng-bind-html="color.name | highlight: $select.search"></div>
@@ -112,7 +112,7 @@
                     </div>
                     <div class="row mt20">
                         <div class="col-md-12">
-                          <rzslider rz-slider-floor="0" rz-slider-translate="translate" rz-slider-ceil="2000" rz-slider-model="filters.low" rz-slider-high="filters.high" ng-init="rangeSlider={low:0}"></rzslider>
+                          <rzslider rz-slider-on-end="filterProducts(searchTxt)" rz-slider-floor="0" rz-slider-translate="translate" rz-slider-ceil="2000" rz-slider-model="filters.low" rz-slider-high="filters.high" ng-init="rangeSlider={low:0}"></rzslider>
                         </div>
 
                     </div>
@@ -130,6 +130,9 @@
                                     <div class="description" ng-bind-html="deliberatelyTrustDangerousSnippet(pic.description)"></div>
                                     <div class="uploaded-date">
                                           {{pic.uploadDate | timeAgo}}
+                                          {{pic.prendaName}}
+                                          {{pic.marcaName}}
+                                          {{pic.colorName}}
                                     </div>
                                     <div class="likes-watch-wrap">
                                           <div class="row">
