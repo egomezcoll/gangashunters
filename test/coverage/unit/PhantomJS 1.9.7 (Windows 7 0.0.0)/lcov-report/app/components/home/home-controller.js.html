@@ -15,10 +15,10 @@
 <div class="header low">
     <h1>Code coverage report for <span class="entity">./app/components/home/home-controller.js</span></h1>
     <h2>
-        Statements: <span class="metric">1.3% <small>(1 / 77)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">1.19% <small>(1 / 84)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Branches: <span class="metric">0% <small>(0 / 44)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Functions: <span class="metric">0% <small>(0 / 21)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">1.3% <small>(1 / 77)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">1.19% <small>(1 / 84)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/components/home/</a> &#187; home-controller.js</div>
@@ -537,7 +537,25 @@
 510
 511
 512
-513</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -580,6 +598,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1054,15 +1090,15 @@
 angular.module('App.Controllers')
     .service('productsService', <span class="fstat-no" title="function not covered" >function ($q, $http, RESTFactory) {</span>
 <span class="cstat-no" title="statement not covered" >        this.loadProducts = <span class="fstat-no" title="function not covered" >function () {</span></span>
-<span class="cstat-no" title="statement not covered" >            return $http.get('http://www.eduardgomez.me/gangashunter_backend/getProducts.php');</span>
+<span class="cstat-no" title="statement not covered" >            return $http.get('http://www.eduardgomez.me/gangashunter_backend/getProducts.php?lat=3&amp;long=6');</span>
         };
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        this.loadFilters = <span class="fstat-no" title="function not covered" >function () {</span></span>
 <span class="cstat-no" title="statement not covered" >            return RESTFactory.readParallelMultipleBatch(['getColors', 'getTallas', 'getMarcas', 'getPrendas']);</span>
         };
     })
-    .controller('homeController', <span class="fstat-no" title="function not covered" >function ($scope, RESTFactory, productsService, angularGridInstance, $timeout, $filter, $sce, $modal) {</span>
-<span class="cstat-no" title="statement not covered" >        $scope.searchTxt = '';</span>
+    .controller('homeController', <span class="fstat-no" title="function not covered" >function ($scope, RESTFactory, productsService, angularGridInstance, $timeout, $filter, $sce, $modal, ngGeodist) {</span>
+<span class="cstat-no" title="statement not covered" >        $scope.search = { text:''};</span>
 <span class="cstat-no" title="statement not covered" >        $scope.filters = {</span>
             low: 0,
             high: 2000,
@@ -1074,7 +1110,7 @@ angular.module('App.Controllers')
         };
 &nbsp;
         //apply search and sort method
-<span class="cstat-no" title="statement not covered" >        $scope.$watch('searchTxt', <span class="fstat-no" title="function not covered" >function (val, oldValue) {</span></span>
+<span class="cstat-no" title="statement not covered" >        $scope.$watch('search.text', <span class="fstat-no" title="function not covered" >function (val, oldValue) {</span></span>
 <span class="cstat-no" title="statement not covered" >            if (val === oldValue) {</span>
 <span class="cstat-no" title="statement not covered" >                return;</span>
             }
@@ -1093,6 +1129,24 @@ angular.module('App.Controllers')
 <span class="cstat-no" title="statement not covered" >                return '../../styles/sass/theme/images/default.jpg';</span>
             }
         };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.getDistance = <span class="fstat-no" title="function not covered" >function(latitude,longitude) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var start = {</span>
+              lat:41.509381,
+              lng:2.0774459
+            }
+<span class="cstat-no" title="statement not covered" >            var end = {</span>
+              lat:latitude,
+              lng:longitude
+            }
+<span class="cstat-no" title="statement not covered" >            return ngGeodist.getDistance(start, end, {exact: true, unit: 'km'});</span>
+        };
+<span class="cstat-no" title="statement not covered" >        $(window)</span>
+            .scroll(<span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.height = $(window)</span>
+                    .scrollTop();
+<span class="cstat-no" title="statement not covered" >                $scope.$evalAsync($scope.height);</span>
+            });
 <span class="cstat-no" title="statement not covered" >        productsService.loadProducts()</span>
             .then(<span class="fstat-no" title="function not covered" >function (data) {</span>
 <span class="cstat-no" title="statement not covered" >                $scope.pics = data.data;</span>
@@ -1433,8 +1487,8 @@ angular.module('App.Controllers')
 &nbsp;
                     //remove empty filters
 <span class="cstat-no" title="statement not covered" >                    for (var key in $scope.filters) {</span>
-<span class="cstat-no" title="statement not covered" >                        if(typeof($scope.filters[key]) === 'object' &amp;&amp; $scope.filters[key].length === 0) {</span>
-<span class="cstat-no" title="statement not covered" >                          delete $scope.filters[key];</span>
+<span class="cstat-no" title="statement not covered" >                        if (typeof ($scope.filters[key]) === 'object' &amp;&amp; $scope.filters[key].length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >                            delete $scope.filters[key];</span>
                         }
                     }
 &nbsp;
@@ -1566,7 +1620,7 @@ angular.module('App.Controllers')
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 12 2016 13:03:57 GMT+0100 (Romance Standard Time)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jan 13 2016 16:58:40 GMT+0100 (Romance Standard Time)</div>
 </div>
 <script src="../../../prettify.js"></script>
 <script>

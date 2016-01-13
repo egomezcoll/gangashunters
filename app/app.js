@@ -6,6 +6,7 @@
             'infinite-scroll',
             'mdr.file',
             'geolocation',
+            'ngGeodist',
             'yaru22.angular-timeago',
             'appverse.rest',
             'appverse.detection',

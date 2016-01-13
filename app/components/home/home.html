@@ -2,24 +2,18 @@
 <div class="container" infinite-scroll="myPagingFunction()">
       <div class="row">
             <div class="col-md-12">
-                  <input type="search" ng-model="searchTxt" class="form-control" placeholder="Buscar...">
+                  <input type="search" ng-model="search.text" class="form-control" placeholder="Buscar...">
             </div>
       </div>
       <div class="row">
             <div class="col-md-3">
+              <div class="row" ng-if="height>=100">
+                <div class="col-md-12">
+                  <input type="search" ng-model="search.text" class="form-control inputAux" placeholder="Buscar...">
+                </div>
+              </div>
               <div class="row mt20">
                 <div class="col-md-12 menu-column">
-                    <div class="row mt20" ng-if="searchText.length > 3">
-                        <div class="col-md-12">
-                          <span class="txtNegrita">Filtrado por:</span>
-                        </div>
-                    </div>
-                    <div class="row" ng-if="searchTxt.length > 3">
-                        <div class="col-md-offset-1 col-md-11">
-                          <span>texto</span>
-                        </div>
-                    </div>
-
                     <!-- PRENDA FILTER -->
                     <div class="row mt20">
                         <div class="col-md-12">
@@ -28,7 +22,7 @@
                     </div>
                     <div class="row mt10">
                         <div class="col-md-12">
-                          <ui-select multiple ng-model="filters.selectedPrendas" on-select="filterProducts(searchTxt)" on-remove="filterProducts(searchTxt)" theme="select2" style="width: 800px;">
+                          <ui-select multiple ng-model="filters.selectedPrendas" on-select="filterProducts(search.text)" on-remove="filterProducts(search.text)" theme="select2" style="width: 800px;">
                             <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
                             <ui-select-choices repeat="prenda in prendas | filter: {name: $select.search}">
                               <div ng-bind-html="prenda.name | highlight: $select.search"></div>
@@ -45,7 +39,7 @@
                     </div>
                     <div class="row mt10">
                         <div class="col-md-12">
-                          <ui-select multiple ng-model="filters.selectedMarcas" on-select="filterProducts(searchTxt)" on-remove="filterProducts(searchTxt)" theme="select2" style="width: 800px;">
+                          <ui-select multiple ng-model="filters.selectedMarcas" on-select="filterProducts(search.text)" on-remove="filterProducts(search.text)" theme="select2" style="width: 800px;">
                             <ui-select-match placeholder="Seleccionar...">{{$item.nombre}}</ui-select-match>
                             <ui-select-choices repeat="marca in marcas | filter: {nombre: $select.search} | limitTo:100">
                               <div ng-bind-html="marca.nombre | highlight: $select.search"></div>
@@ -62,7 +56,7 @@
                     </div>
                     <div class="row mt10">
                         <div class="col-md-12">
-                          <ui-select multiple ng-model="filters.selectedTallas" on-select="filterProducts(searchTxt)" on-remove="filterProducts(searchTxt)" theme="select2" style="width: 800px;">
+                          <ui-select multiple ng-model="filters.selectedTallas" on-select="filterProducts(search.text)" on-remove="filterProducts(search.text)" theme="select2" style="width: 800px;">
                             <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
                             <ui-select-choices repeat="talla in tallas | filter: {name: $select.search}">
                               <div ng-bind-html="talla.name | highlight: $select.search"></div>
@@ -79,7 +73,7 @@
                     </div>
                     <div class="row mt10">
                         <div class="col-md-12">
-                          <ui-select multiple ng-model="filters.selectedColors" on-select="filterProducts(searchTxt)" on-remove="filterProducts(searchTxt)" theme="select2" style="width: 800px;">
+                          <ui-select multiple ng-model="filters.selectedColors" on-select="filterProducts(search.text)" on-remove="filterProducts(search.text)" theme="select2" style="width: 800px;">
                             <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
                             <ui-select-choices repeat="color in colors | filter: {name: $select.search}">
                               <div ng-bind-html="color.name | highlight: $select.search"></div>
@@ -98,7 +92,7 @@
                         <div class="col-md-12">
                           <div class="checkbox">
                             <label>
-                                <input type="checkbox" ng-model="filters.isGanga" ng-click="filterProducts(searchTxt)"><span class="checkbox-material"><span class="check"></span></span> <span translate>Solamente gangas</span>
+                                <input type="checkbox" ng-model="filters.isGanga" ng-click="filterProducts(search.text)"><span class="checkbox-material"><span class="check"></span></span> <span translate>Solamente gangas</span>
                             </label>
                           </div>
                         </div>
@@ -112,11 +106,10 @@
                     </div>
                     <div class="row mt20">
                         <div class="col-md-12">
-                          <rzslider rz-slider-on-end="filterProducts(searchTxt)" rz-slider-floor="0" rz-slider-translate="translate" rz-slider-ceil="2000" rz-slider-model="filters.low" rz-slider-high="filters.high" ng-init="rangeSlider={low:0}"></rzslider>
+                          <rzslider rz-slider-on-end="filterProducts(search.text)" rz-slider-floor="0" rz-slider-translate="translate" rz-slider-ceil="2000" rz-slider-model="filters.low" rz-slider-high="filters.high" ng-init="rangeSlider={low:0}"></rzslider>
                         </div>
 
                     </div>
-                    {{filters}}
 
                 </div>
               </div>
@@ -133,6 +126,7 @@
                                           {{pic.prendaName}}
                                           {{pic.marcaName}}
                                           {{pic.colorName}}
+                                          Distance: {{getDistance(pic.latitude,pic.longitude)}}
                                     </div>
                                     <div class="likes-watch-wrap">
                                           <div class="row">

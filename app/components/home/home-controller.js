@@ -1,17 +1,23 @@
 'use strict';
 
 angular.module('App.Controllers')
-    .service('productsService', function ($q, $http, RESTFactory) {
+    .service('productsService', function ($q, $http, RESTFactory, geolocation) {
         this.loadProducts = function () {
-            return $http.get('http://www.eduardgomez.me/gangashunter_backend/getProducts.php');
+            return geolocation.getLocation()
+                .then(function (data) {
+                    return $http.get('http://www.eduardgomez.me/gangashunter_backend/getProducts.php?lat=' + data.coords.latitude + '&long=' + data.coords.longitude);
+                });
+
         };
 
         this.loadFilters = function () {
             return RESTFactory.readParallelMultipleBatch(['getColors', 'getTallas', 'getMarcas', 'getPrendas']);
         };
     })
-    .controller('homeController', function ($scope, RESTFactory, productsService, angularGridInstance, $timeout, $filter, $sce, $modal) {
-        $scope.searchTxt = '';
+    .controller('homeController', function ($scope, RESTFactory, productsService, angularGridInstance, $timeout, $filter, $sce, $modal, ngGeodist) {
+        $scope.search = {
+            text: ''
+        };
         $scope.filters = {
             low: 0,
             high: 2000,
@@ -23,7 +29,7 @@ angular.module('App.Controllers')
         };
 
         //apply search and sort method
-        $scope.$watch('searchTxt', function (val, oldValue) {
+        $scope.$watch('search.text', function (val, oldValue) {
             if (val === oldValue) {
                 return;
             }
@@ -42,6 +48,32 @@ angular.module('App.Controllers')
                 return '../../styles/sass/theme/images/default.jpg';
             }
         };
+
+        $scope.getDistance = function (latitude, longitude) {
+            var start = {
+                lat: 41.509381,
+                lng: 2.0774459
+            };
+            var end = {
+                lat: latitude,
+                lng: longitude
+            };
+            var distance = ngGeodist.getDistance(start, end, {
+                exact: false,
+                unit: 'km'
+            });
+            if (distance < 1) {
+                return 'menos de 1 km';
+            } else {
+                return distance + ' km';
+            }
+        };
+        $(window)
+            .scroll(function () {
+                $scope.height = $(window)
+                    .scrollTop();
+                $scope.$evalAsync($scope.height);
+            });
         productsService.loadProducts()
             .then(function (data) {
                 $scope.pics = data.data;
@@ -382,8 +414,8 @@ angular.module('App.Controllers')
 
                     //remove empty filters
                     for (var key in $scope.filters) {
-                        if(typeof($scope.filters[key]) === 'object' && $scope.filters[key].length === 0) {
-                          delete $scope.filters[key];
+                        if (typeof ($scope.filters[key]) === 'object' && $scope.filters[key].length === 0) {
+                            delete $scope.filters[key];
                         }
                     }
 

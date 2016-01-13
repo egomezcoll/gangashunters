@@ -14,6 +14,9 @@ body {
 .mt10{
   margin-top: 5px;
 }
+.mt50{
+  margin-top: 50px;
+}
 .txtNegrita{
   font-weight: bold;
 }
@@ -31,6 +34,7 @@ body {
 }
 
 .menu-column{
+  position: fixed;
   background-color:white;
   border-radius:6px;
   margin-left:15px;
@@ -38,6 +42,12 @@ body {
   min-width:250px;
   max-width:250px;
   min-height:600px;
+}
+
+.inputAux{
+  position: fixed;
+  max-width: 251px;
+  margin-top: -30px;
 }
 
 rzslider span.rz-bar{
