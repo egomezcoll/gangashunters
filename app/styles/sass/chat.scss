@@ -1,0 +1,57 @@
+.bubble {
+    position: relative;
+    width: 450px;
+    height: 100px;
+    padding: 5px;
+    background: #94c2ed;
+    -webkit-border-radius: 17px;
+    -moz-border-radius: 17px;
+    border-radius: 17px;
+}
+.bubble:after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 0 20px 12px;
+    border-color: #94c2ed transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+    top: -12px;
+    left: 30px;
+}
+.bubble-me {
+    position: relative;
+    width: 450px;
+    height: 100px;
+    padding: 5px;
+    background: #86bb71;
+    -webkit-border-radius: 17px;
+    -moz-border-radius: 17px;
+    border-radius: 17px;
+}
+.bubble-me:after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 0 20px 12px;
+    border-color: #86bb71 transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+    top: -12px;
+    left: 381px;
+}
+
+
+.menu{
+  background-color: #444753;
+}
+
+.conversation{
+  background-color: #F2F5F8;
+}
+
+.chat{
+  background-color: #C5DDEB;
+}

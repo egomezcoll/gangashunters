@@ -8,6 +8,7 @@
             'geolocation',
             'ngGeodist',
             'yaru22.angular-timeago',
+            'angular-loading-bar',
             'appverse.rest',
             'appverse.detection',
             'ngAnimate',
