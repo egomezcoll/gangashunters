@@ -2,10 +2,10 @@
 <div class="modal-header">
     <div class="row">
       <div class="col-md-9">
-        <h3 class="modal-title">{{item.title}}</h3>
+        <h4>{{item.name}}</h4>
       </div>
       <div class="col-md-3 text-right">
-        XL
+        <h4>{{item.price}} €</h4>
       </div>
     </div>
 
@@ -13,21 +13,22 @@
 <div class="modal-body">
   <div class="row">
     <div class="col-md-offset-1 col-md-4">
-      <img src="{{item.media.m}}">
+      <img src="{{image}}" class="grid-img" data-actual-width="250" data-actual-height="250" />
     </div>
     <div class="col-md-4">
       {{item.description}}
+      <ng-map center="{{item.geolocation}}" style="margin-top:20px; height: 200px; width: 350px;" zoom="14"></ng-map>
     </div>
   </div>
-  <div class="row mt20">
+  <div class="row mt10 mb10">
     <div class="col-md-1">
-      300
+      {{item.tallaName}}
     </div>
     <div class="col-md-3">
       5 hunters lo quieren
     </div>
-  </div>
-</div>
-<div class="modal-footer">
+    <div class="col-md-8 text-right">
       <button class="btn btn-primary" type="button" ng-click="ok()">Es perfecto para mí!</button>
+    </div>
+  </div>
 </div>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('App.Controllers')
-    .service('productsService', function ($q, $http, RESTFactory, geolocation) {
+    .service('productsService', function ($http, RESTFactory, geolocation) {
         this.loadProducts = function (pag) {
             return geolocation.getLocation()
                 .then(function (data) {
@@ -14,10 +14,11 @@ angular.module('App.Controllers')
             return RESTFactory.readParallelMultipleBatch(['getColors', 'getTallas', 'getMarcas', 'getPrendas']);
         };
     })
-    .controller('homeController', function ($scope, RESTFactory, productsService, angularGridInstance, $timeout, $filter, $sce, $modal, ngGeodist, cfpLoadingBar) {
+    .controller('homeController', function ($scope, RESTFactory, productsService, angularGridInstance, $timeout, $filter, $sce, $modal, ngGeodist, cfpLoadingBar, geolocation) {
         $scope.search = {
             text: ''
         };
+
         $scope.filters = {
             low: 0,
             high: 2000,
@@ -203,9 +204,9 @@ angular.module('App.Controllers')
 
                 $scope.moreInformation = function (pic) {
                     var modalInstance = $modal.open({
-                        animation: $scope.animationsEnabled,
-                        templateUrl: 'components/busco/detail/buscoProductDetail.html',
-                        controller: 'buscoProductDetailCtrl',
+                        animation: false,
+                        templateUrl: 'components/home/detail/productDetail.html',
+                        controller: 'productDetailCtrl',
                         size: 'lg',
                         resolve: {
                             item: function () {
@@ -217,7 +218,7 @@ angular.module('App.Controllers')
                     modalInstance.result.then(function (selectedItem) {
                         $scope.selected = selectedItem;
                     }, function () {
-                        //$log.info('Modal dismissed at: ' + new Date());
+                        
                     });
                 };
             });
@@ -228,17 +229,5 @@ angular.module('App.Controllers')
                 $scope.tallas = responseArray[1];
                 $scope.marcas = responseArray[2];
                 $scope.prendas = responseArray[3];
-            })
-    })
-    .controller('productDetailCtrl', function ($scope, $modalInstance, item) {
-
-        $scope.item = item;
-
-        $scope.ok = function () {
-            $modalInstance.close($scope.selected.item);
-        };
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
+            });
     });
