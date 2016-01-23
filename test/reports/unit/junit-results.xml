@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <testsuites>
-  <testsuite name="PhantomJS 1.9.7 (Mac OS X 0.0.0)" package="" timestamp="2016-01-22T20:34:50" id="0" hostname="MacBook-Pro-de-Eduard.local">
+  <testsuite name="PhantomJS 1.9.7 (Mac OS X 0.0.0)" package="" timestamp="2016-01-23T17:21:04" id="0" hostname="MacBook-Pro-de-Eduard.local">
     <properties>
       <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.7 Safari/534.34"/>
     </properties>
   </testsuite>
-  <testsuite name="PhantomJS 1.9.7 (Mac OS X 0.0.0)" package="" timestamp="2016-01-22T20:34:51" id="0" hostname="MacBook-Pro-de-Eduard.local" tests="1" errors="1" failures="1" time="0.007">
+  <testsuite name="PhantomJS 1.9.7 (Mac OS X 0.0.0)" package="" timestamp="2016-01-23T17:21:04" id="0" hostname="MacBook-Pro-de-Eduard.local" tests="1" errors="1" failures="1" time="0.008">
     <properties>
       <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.7 Safari/534.34"/>
     </properties>
-    <testcase name="should have a properly working homeController controller" time="0.007" classname="PhantomJS 1.9.7 (Mac OS X 0.0.0).Unit: Testing Controllers">
+    <testcase name="should have a properly working homeController controller" time="0.008" classname="PhantomJS 1.9.7 (Mac OS X 0.0.0).Unit: Testing Controllers">
       <failure type="">Error: [$injector:unpr] http://errors.angularjs.org/1.3.20/$injector/unpr?p0=RESTFactoryProvider%20%3C-%20RESTFactory%20%3C-%20homeController
     at /Users/eduardgomezcoll/GitHub/gangashunters/app/bower_components/angular/angular.min.js:38
     at d (/Users/eduardgomezcoll/GitHub/gangashunters/app/bower_components/angular/angular.min.js:36)

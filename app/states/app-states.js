@@ -63,5 +63,11 @@ angular.module('test87App')
                   templateUrl: 'components/busco/busco.html',
                   controller: 'buscoController'
 
+              }) .state('inbox', {
+                  // Use a url of '/' to set a states as the 'index'.
+                  url: '/inbox',
+                  templateUrl: 'components/inbox/inbox.html',
+                  controller: 'inboxController'
+
               });
             }]);

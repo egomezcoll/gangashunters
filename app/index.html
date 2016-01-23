@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="bower_components/angular-ui-select/dist/select.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/angularjs-slider/dist/rzslider.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/selectize/dist/css/selectize.css">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+    <link rel="stylesheet" href="styles/css/select2.css">
 
     <link rel="stylesheet" type="text/css" href="bower_components/angular-file/dist/angular-file.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/sweetalert/dist/sweetalert.css">
@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="styles/css/animations.css">
     <link rel="stylesheet" href="styles/css/grid.css">
     <link rel="stylesheet" href="styles/css/main.css">
+    <link rel="stylesheet" href="styles/css/chat.css">
     <!-- endbuild -->
 </head>
 
@@ -89,7 +90,7 @@
                     <a angular-ripple="" ui-sref="home"><i class="glyphicon glyphicon-time"></i> Daily</a>
                 </li>
                 <li data-ng-class="{ active: $state.includes('inbox') }">
-                    <a angular-ripple="" ui-sref="home"><i class="glyphicon glyphicon-envelope"></i> Inbox</a>
+                    <a angular-ripple="" ui-sref="inbox"><i class="glyphicon glyphicon-envelope"></i> Inbox</a>
                 </li>
             </ul>
         </div>
@@ -144,6 +145,7 @@
     <script src="components/home/home-controller.js"></script>
     <script src="components/home/detail/productDetail-controller.js"></script>
     <script src="components/nuevo/nuevo-controller.js"></script>
+    <script src="components/inbox/inbox-controller.js"></script>
 <!-- endbuild -->
 
 
