@@ -12,12 +12,12 @@
 </div>
 <div class="modal-body">
   <div class="row">
-    <div class="col-md-offset-1 col-md-4">
-      <img src="{{getImage(item)}}" class="grid-img" />
-    </div>
     <div class="col-md-4">
+      <img src="{{getImage(item)}}" data-actual-width="{{item.actualWidth}}" data-actual-height="{{item.actualHeight}}"/>
+    </div>
+    <div class="col-md-offset-1 col-md-4">
       {{item.description}}
-      <ng-map center="{{item.geolocation}}" style="margin-top:20px; height: 200px; width: 350px;" zoom="14"></ng-map>
+      <ng-map style="margin-top:20px; height: 200px; width: 350px;" zoom="14"></ng-map>
     </div>
   </div>
   <div class="row mt10 mb10">
