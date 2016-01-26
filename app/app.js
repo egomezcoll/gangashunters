@@ -28,7 +28,7 @@
             $log.debug('testAlphaApp run');
             editableOptions.theme = 'bs3';
             Restangular.configuration.baseUrl = 'http://www.eduardgomez.me/gangashunter_backend';
-            Restangular.configuration.suffix = '.php';
+            Restangular.configuration.suffix = '.php';          
         });
 
     AppInit.setConfig({

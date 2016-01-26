@@ -12,13 +12,13 @@
     </style>
 </head>
 <body>
-<div class="header medium">
+<div class="header low">
     <h1>Code coverage report for <span class="entity">./app/components/inbox/inbox-controller.js</span></h1>
     <h2>
-        Statements: <span class="metric">50% <small>(1 / 2)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Functions: <span class="metric">0% <small>(0 / 1)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">50% <small>(1 / 2)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">7.14% <small>(1 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 2)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">7.14% <small>(1 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/components/inbox/</a> &#187; inbox-controller.js</div>
@@ -45,20 +45,40 @@
 18
 19
 20
-21</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -68,29 +88,39 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
 &nbsp;
 angular.module('App.Controllers')
-    .controller('inboxController', <span class="fstat-no" title="function not covered" >function ($scope) {</span>
-<span class="cstat-no" title="statement not covered" >        $scope.messages = [</span>
-          {
-              "id":1,
-              "idUser":1,
-              "text":"Hola, que tal?"
-          },{
-              "id":2,
-              "idUser":2,
-              "text":"bien, bien"
-          },{
-              "id":3,
-              "idUser":2,
-              "text":"y tu?"
-          }
-        ];
+    .controller('inboxController', <span class="fstat-no" title="function not covered" >function ($scope, $http, $interval, $rootScope) {</span>
+<span class="cstat-no" title="statement not covered" >        $scope.messages = [];</span>
+<span class="cstat-no" title="statement not covered" >        $scope.lastId = 0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $http.get('http://www.eduardgomez.me/gangashunter_backend/getMessages.php?id=14&amp;message=' + $scope.lastId)</span>
+            .then(<span class="fstat-no" title="function not covered" >function (response) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.messages = response.data;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.lastId = $scope.messages[response.data.length - 1].id;</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $rootScope.$on('$stateChangeStart', <span class="fstat-no" title="function not covered" >function (e, toState, toParams, fromState, fromParams) {</span></span>
+<span class="cstat-no" title="statement not covered" >            $interval.cancel(interval);</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var interval = $interval(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $http.get('http://www.eduardgomez.me/gangashunter_backend/getMessages.php?id=14&amp;message=' + $scope.lastId)</span>
+                .then(<span class="fstat-no" title="function not covered" >function (response) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (response.data.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                      response.data.forEach(<span class="fstat-no" title="function not covered" >function (item) {</span></span>
+<span class="cstat-no" title="statement not covered" >                          $scope.messages.push(item);</span>
+<span class="cstat-no" title="statement not covered" >                          $scope.lastId = item.id;</span>
+                      });
+                    }
+                });
+        }, 5000);
+&nbsp;
     });
 &nbsp;</pre></td></tr>
 </table></pre>
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jan 25 2016 12:34:09 GMT+0100 (Romance Standard Time)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 26 2016 13:32:50 GMT+0100 (Romance Standard Time)</div>
 </div>
 <script src="../../../prettify.js"></script>
 <script>
