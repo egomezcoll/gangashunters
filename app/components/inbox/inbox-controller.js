@@ -16,13 +16,15 @@ angular.module('App.Controllers')
         });
 
         var interval = $interval(function () {
-            $http.get('http://www.eduardgomez.me/gangashunter_backend/getMessages.php?id=14&message=' + $scope.lastId)
+            $http.get('http://www.eduardgomez.me/gangashunter_backend/getMessages.php?id=14&message=' + $scope.lastId, {
+                    ignoreLoadingBar: true
+                })
                 .then(function (response) {
                     if (response.data.length > 0) {
-                      response.data.forEach(function (item) {
-                          $scope.messages.push(item);
-                          $scope.lastId = item.id;
-                      });
+                        response.data.forEach(function (item) {
+                            $scope.messages.push(item);
+                            $scope.lastId = item.id;
+                        });
                     }
                 });
         }, 5000);

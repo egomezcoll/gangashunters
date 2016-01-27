@@ -1,12 +1,13 @@
 .bubble {
     position: relative;
-    width: 450px;
+    width: 350px;
     height: 100px;
-    padding: 5px;
+    padding: 15px;
     background: #94c2ed;
-    -webkit-border-radius: 17px;
-    -moz-border-radius: 17px;
-    border-radius: 17px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    color: white;
 }
 .bubble:after {
     content: "";
@@ -17,18 +18,22 @@
     display: block;
     width: 0;
     z-index: 1;
-    top: -12px;
+    top: -10px;
     left: 30px;
 }
 .bubble-me {
     position: relative;
-    width: 450px;
+    width: 350px;
     height: 100px;
-    padding: 5px;
+    padding: 15px;
     background: #86bb71;
-    -webkit-border-radius: 17px;
-    -moz-border-radius: 17px;
-    border-radius: 17px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    float: right;
+    clear: both;
+    color: white;
+    margin-right: 10px;
 }
 .bubble-me:after {
     content: "";
@@ -39,19 +44,34 @@
     display: block;
     width: 0;
     z-index: 1;
-    top: -12px;
-    left: 381px;
+    top: -10px;
+    left: 290px;
 }
 
 
 .menu{
   background-color: #444753;
+  height: 100%;
+  min-width: 250px;
+  position: fixed;
+  .searchInput{
+    background-color:#6A6C75;
+    border: none;
+    color: white;
+  }
 }
 
 .conversation{
   background-color: #F2F5F8;
+  height: 100%;
+
 }
 
 .chat{
   background-color: #C5DDEB;
+  height: 100%;
+}
+
+.getHeight{
+  height: 90vh;
 }
