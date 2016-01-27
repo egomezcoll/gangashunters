@@ -42,7 +42,7 @@ angular.module('App.Controllers')
                   console.log(response);
                     if (response.status === 200) {
                         $modalInstance.close();
-                        $state.go('inbox');
+                        $state.go('inbox',{'id':response.data[0].id});
                     }
                 });
         };
