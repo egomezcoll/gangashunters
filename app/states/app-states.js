@@ -65,7 +65,7 @@ angular.module('test87App')
 
               }) .state('inbox', {
                   // Use a url of '/' to set a states as the 'index'.
-                  url: '/inbox',
+                  url: '/inbox/:id',
                   templateUrl: 'components/inbox/inbox.html',
                   controller: 'inboxController'
 
