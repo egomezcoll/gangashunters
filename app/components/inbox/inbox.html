@@ -5,6 +5,12 @@
       <div class="form-group" style="padding:15px">
        <input type="text"class="form-control mt10 searchInput" placeholder="Search...">
      </div>
+     <div class="row" ng-repeat="cnv in conversations" style="color: white;">
+       <div class="cnvListItem">
+         {{cnv.nameOwner}}
+       </div>
+       <!--<div class="col-xs-1"></div><div class="col-xs-8" style="margin-top: 15px;border-bottom: 1px solid #CCC;"></div><div class="col-xs-3"></div>
+     --></div>
     </div>
   </div>
   <div class="col-xs-9">

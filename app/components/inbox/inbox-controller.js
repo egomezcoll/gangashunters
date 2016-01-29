@@ -2,12 +2,17 @@
 
 angular.module('App.Controllers')
     .controller('inboxController', function ($scope, $http, $interval, $rootScope, $state) {
-        $scope.messages = [];
+        $scope.messages = $scope.conversations = [];
         $scope.lastId = 0;
         $scope.myMessage = {
             'text': ''
         };
         $scope.conversation = {};
+
+        $http.get('http://www.eduardgomez.me/gangashunter_backend/getConversations.php?idUser=1')
+            .then(function (response) {
+                $scope.conversations = response.data;
+            });
 
         $http.get('http://www.eduardgomez.me/gangashunter_backend/getConversation.php?id=' + $state.params.id)
             .then(function (response) {
@@ -37,6 +42,7 @@ angular.module('App.Controllers')
                             }
                         });
                 }, 5000);
+                $interval.cancel(interval);
             });
 
         $scope.sendMessage = function () {
