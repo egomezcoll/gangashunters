@@ -18,7 +18,8 @@
     "angular-timeago": "~0.2.4",
     "ngGeodist": "~0.0.2",
     "angular-loading-bar": "~0.8.0",
-    "ngmap": "~1.16.7"
+    "ngmap": "~1.16.7",
+    "angularjs-social-login": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.3.15",

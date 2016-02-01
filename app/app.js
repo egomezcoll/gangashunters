@@ -10,6 +10,7 @@
             'yaru22.angular-timeago',
             'ngMap',
             'angular-loading-bar',
+            'socialLogin',
             'appverse.rest',
             'appverse.detection',
             'ngAnimate',
@@ -24,11 +25,25 @@
             'App.Controllers',
             'appverse'
         ])
-        .run(function ($log, editableOptions, Restangular) {
+        .config(function (socialProvider) {
+            socialProvider.setGoogleKey('494974595380-r5tbv7l4e840c9esjmio5mq745b2noga.apps.googleusercontent.com');
+            // socialProvider.setLinkedInKey("YOUR LINKEDIN CLIENT ID");
+             socialProvider.setFbKey({
+                 appId: '295198694017705',
+                 apiVersion: 'v2.5'
+             });
+        })
+        .run(function ($log, editableOptions, Restangular, $rootScope) {
             $log.debug('testAlphaApp run');
             editableOptions.theme = 'bs3';
             Restangular.configuration.baseUrl = 'http://www.eduardgomez.me/gangashunter_backend';
-            Restangular.configuration.suffix = '.php';          
+            Restangular.configuration.suffix = '.php';
+
+            $rootScope.$on('event:social-sign-in-success', function (event, userDetails) {
+                console.log('LOGGED IN USING GOOGLE');
+                console.log(userDetails);
+            });
+
         });
 
     AppInit.setConfig({

@@ -15,10 +15,10 @@
 <div class="header low">
     <h1>Code coverage report for <span class="entity">./app/app.js</span></h1>
     <h2>
-        Statements: <span class="metric">45.45% <small>(5 / 11)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">31.25% <small>(5 / 16)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Functions: <span class="metric">25% <small>(1 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">45.45% <small>(5 / 11)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">16.67% <small>(1 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">31.25% <small>(5 / 16)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">./app/</a> &#187; app.js</div>
@@ -82,7 +82,22 @@
 55
 56
 57
-58</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
@@ -109,10 +124,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
@@ -151,6 +181,7 @@
             'yaru22.angular-timeago',
             'ngMap',
             'angular-loading-bar',
+            'socialLogin',
             'appverse.rest',
             'appverse.detection',
             'ngAnimate',
@@ -165,11 +196,25 @@
             'App.Controllers',
             'appverse'
         ])
-        .run(<span class="fstat-no" title="function not covered" >function ($log, editableOptions, Restangular) {</span>
+        .config(<span class="fstat-no" title="function not covered" >function (socialProvider) {</span>
+<span class="cstat-no" title="statement not covered" >            socialProvider.setGoogleKey('494974595380-r5tbv7l4e840c9esjmio5mq745b2noga.apps.googleusercontent.com');</span>
+            // socialProvider.setLinkedInKey("YOUR LINKEDIN CLIENT ID");
+<span class="cstat-no" title="statement not covered" >             socialProvider.setFbKey({</span>
+                 appId: '295198694017705',
+                 apiVersion: 'v2.5'
+             });
+        })
+        .run(<span class="fstat-no" title="function not covered" >function ($log, editableOptions, Restangular, $rootScope) {</span>
 <span class="cstat-no" title="statement not covered" >            $log.debug('testAlphaApp run');</span>
 <span class="cstat-no" title="statement not covered" >            editableOptions.theme = 'bs3';</span>
 <span class="cstat-no" title="statement not covered" >            Restangular.configuration.baseUrl = 'http://www.eduardgomez.me/gangashunter_backend';</span>
-<span class="cstat-no" title="statement not covered" >            Restangular.configuration.suffix = '.php';          </span>
+<span class="cstat-no" title="statement not covered" >            Restangular.configuration.suffix = '.php';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $rootScope.$on('event:social-sign-in-success', <span class="fstat-no" title="function not covered" >function (event, userDetails) {</span></span>
+<span class="cstat-no" title="statement not covered" >                console.log('LOGGED IN USING GOOGLE');</span>
+<span class="cstat-no" title="statement not covered" >                console.log(userDetails);</span>
+            });
+&nbsp;
         });
 &nbsp;
     AppInit.setConfig({
@@ -201,7 +246,7 @@
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jan 29 2016 08:22:56 GMT+0100 (Romance Standard Time)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Feb 01 2016 16:37:17 GMT+0100 (Romance Standard Time)</div>
 </div>
 <script src="../prettify.js"></script>
 <script>
