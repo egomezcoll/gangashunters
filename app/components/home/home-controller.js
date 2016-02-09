@@ -5,7 +5,16 @@ angular.module('App.Controllers')
         this.loadProducts = function (pag, filters) {
             return geolocation.getLocation()
                 .then(function (data) {
-                    return $http.get('http://www.eduardgomez.me/gangashunter_backend/getProducts.php?lat=' + data.coords.latitude + '&long=' + data.coords.longitude + '&pag=' + pag + '&filters=' + filters);
+                    return $http({
+                        method: 'POST',
+                        url: 'http://www.eduardgomez.me/gangashunter_backend/getProducts.php?lat=' + data.coords.latitude + '&long=' + data.coords.longitude + '&pag=' + pag,
+                        data: filters,
+                        headers: {
+                            'Access-Control-Allow-Origin': '*',
+                            'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+                            'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Allow-Methods'
+                        }
+                    });
                 });
 
         };
@@ -28,7 +37,7 @@ angular.module('App.Controllers')
         };
         var timeoutIsTyping;
 
-        $scope.pag = $scope.incrementPag = 50;
+        $scope.pag = $scope.incrementPag = 5;
         $scope.colors = $scope.tallas = $scope.marcas = $scope.prendas = $scope.pics = $scope.picsOriginal = [];
         $scope.translate = function (value) {
             return value + '€';
@@ -212,7 +221,7 @@ angular.module('App.Controllers')
 
                     //result of filtering
                     $scope.pics = validProduct;
-                    if (numberOfProducts - validProduct.length > 5) {
+                    if (numberOfProducts - validProduct.length > 1) {
                         console.log(validProduct.length + '_' + numberOfProducts);
                         console.log(validProduct.length - numberOfProducts);
                         console.log($scope.filters);
