@@ -2,10 +2,10 @@
 
 angular.module('App.Controllers')
     .service('productsService', function ($http, RESTFactory, geolocation) {
-        this.loadProducts = function (pag) {
+        this.loadProducts = function (pag, filters) {
             return geolocation.getLocation()
                 .then(function (data) {
-                    return $http.get('http://www.eduardgomez.me/gangashunter_backend/getProducts.php?lat=' + data.coords.latitude + '&long=' + data.coords.longitude + '&pag=' + pag);
+                    return $http.get('http://www.eduardgomez.me/gangashunter_backend/getProducts.php?lat=' + data.coords.latitude + '&long=' + data.coords.longitude + '&pag=' + pag + '&filters=' + filters);
                 });
 
         };
@@ -19,11 +19,15 @@ angular.module('App.Controllers')
             text: ''
         };
 
+        $scope.isTyping = $scope.noMoreResultsShowed = false;
+
         $scope.filters = {
             low: 0,
             high: 2000,
             isGanga: false
         };
+        var timeoutIsTyping;
+
         $scope.pag = $scope.incrementPag = 50;
         $scope.colors = $scope.tallas = $scope.marcas = $scope.prendas = $scope.pics = $scope.picsOriginal = [];
         $scope.translate = function (value) {
@@ -35,7 +39,12 @@ angular.module('App.Controllers')
             if (val === oldValue) {
                 return;
             }
-            $scope.filterProducts(val);
+            $timeout.cancel(timeoutIsTyping);
+            $scope.isTyping = true;
+            timeoutIsTyping = $timeout(function () {
+                $scope.isTyping = false;
+                $scope.filterProducts(val);
+            }, 500);
         });
 
         $scope.deliberatelyTrustDangerousSnippet = function (text) {
@@ -82,11 +91,10 @@ angular.module('App.Controllers')
             .then(function (data) {
                 $scope.pics = data.data;
                 $scope.picsOriginal = data.data;
-                console.log(data);
                 cfpLoadingBar.complete();
                 $scope.myPagingFunction = function () {
                     cfpLoadingBar.start();
-                    productsService.loadProducts($scope.pag)
+                    productsService.loadProducts($scope.pag, $scope.filters)
                         .then(function (data) {
                             if (data.data.length > 0) {
                                 angular.forEach(data.data, function (item) {
@@ -95,13 +103,16 @@ angular.module('App.Controllers')
                                 $scope.pag = $scope.pag + $scope.incrementPag;
                                 $scope.picsOriginal = angular.copy($scope.pics);
                             } else {
-                                //no new results
-                                swal({
-                                    title: 'Ops!',
-                                    text: 'Lo sentimos, ¡no hemos encontrado más resultados!',
-                                    timer: 2500,
-                                    showConfirmButton: false
-                                });
+                                if (!$scope.noMoreResultsShowed) {
+                                    $scope.noMoreResultsShowed = true;
+                                    //no new results
+                                    swal({
+                                        title: 'Ops!',
+                                        text: 'Lo sentimos, ¡no hemos encontrado más resultados!',
+                                        timer: 2000,
+                                        showConfirmButton: false
+                                    });
+                                }
                             }
 
                             cfpLoadingBar.complete();
@@ -111,6 +122,7 @@ angular.module('App.Controllers')
 
                 $scope.filterProducts = function (val) {
                     var validProduct = [];
+                    var numberOfProducts = $scope.picsOriginal.length;
                     val = val.toLowerCase();
 
                     //remove empty filters
@@ -200,6 +212,30 @@ angular.module('App.Controllers')
 
                     //result of filtering
                     $scope.pics = validProduct;
+                    if (numberOfProducts - validProduct.length > 5) {
+                        console.log(validProduct.length + '_' + numberOfProducts);
+                        console.log(validProduct.length - numberOfProducts);
+                        console.log($scope.filters);
+
+                        if (val.length > 0) {
+                            $scope.filters.textInput = $scope.search.text;
+                        }
+                        cfpLoadingBar.start();
+                        productsService.loadProducts($scope.pag, $scope.filters)
+                            .then(function (data) {
+                                if (data.data.length > 0) {
+                                    angular.forEach(data.data, function (item) {
+                                        $scope.pics.push(item);
+                                    });
+                                    $scope.pag = $scope.pag + $scope.incrementPag;
+                                    $scope.picsOriginal = angular.copy($scope.pics);
+                                    $scope.noMoreResultsShowed = false;
+                                }
+
+                                cfpLoadingBar.complete();
+
+                            });
+                    }
                 };
 
                 $scope.moreInformation = function (pic) {
@@ -218,7 +254,7 @@ angular.module('App.Controllers')
                     modalInstance.result.then(function (selectedItem) {
                         $scope.selected = selectedItem;
                     }, function () {
-                        
+
                     });
                 };
             });
