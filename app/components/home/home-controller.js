@@ -152,70 +152,74 @@ angular.module('App.Controllers')
 
                     //filter by filters
                     angular.forEach($scope.pics, function (item) {
+                        var filtersPassed = 0;
+                        var notValid = false;
                         //check if is Ganga
-                        if (item.isGanga == $scope.filters.isGanga) {
-                            var filtersPassed = 1;
-                            var notValid = false;
+                        if ($scope.filters.isGanga == true && item.isGanga == true) {
+                            filtersPassed = filtersPassed + 1;
+                        } else if ($scope.filters.isGanga == false) {
+                            filtersPassed = filtersPassed + 1;
+                        } else {
+                            notValid = true;
+                        }
 
-                            //check amount
-                            if (item.price >= $scope.filters.low && item.price <= $scope.filters.high) {
+                        //check amount
+                        if (item.price >= $scope.filters.low && item.price <= $scope.filters.high) {
+                            filtersPassed = filtersPassed + 1;
+                        } else {
+                            notValid = true;
+                        }
+
+                        //check if prenda
+                        if ($scope.filters.selectedPrendas && !notValid) {
+                            if ($filter('filter')($scope.filters.selectedPrendas, {
+                                    id: item.prenda
+                                })
+                                .length > 0) {
                                 filtersPassed = filtersPassed + 1;
                             } else {
                                 notValid = true;
                             }
+                        }
 
-                            //check if prenda
-                            if ($scope.filters.selectedPrendas && !notValid) {
-                                if ($filter('filter')($scope.filters.selectedPrendas, {
-                                        id: item.prenda
-                                    })
-                                    .length > 0) {
-                                    filtersPassed = filtersPassed + 1;
-                                } else {
-                                    notValid = true;
-                                }
+                        //check if marca
+                        if ($scope.filters.selectedMarcas && !notValid) {
+                            if ($filter('filter')($scope.filters.selectedMarcas, {
+                                    id: item.marca
+                                })
+                                .length > 0) {
+                                filtersPassed = filtersPassed + 1;
+                            } else {
+                                notValid = true;
                             }
+                        }
 
-                            //check if marca
-                            if ($scope.filters.selectedMarcas && !notValid) {
-                                if ($filter('filter')($scope.filters.selectedMarcas, {
-                                        id: item.marca
-                                    })
-                                    .length > 0) {
-                                    filtersPassed = filtersPassed + 1;
-                                } else {
-                                    notValid = true;
-                                }
+                        //check if talla
+                        if ($scope.filters.selectedTallas && !notValid) {
+                            if ($filter('filter')($scope.filters.selectedTallas, {
+                                    id: item.talla
+                                })
+                                .length > 0) {
+                                filtersPassed = filtersPassed + 1;
+                            } else {
+                                notValid = true;
                             }
+                        }
 
-                            //check if talla
-                            if ($scope.filters.selectedTallas && !notValid) {
-                                if ($filter('filter')($scope.filters.selectedTallas, {
-                                        id: item.talla
-                                    })
-                                    .length > 0) {
-                                    filtersPassed = filtersPassed + 1;
-                                } else {
-                                    notValid = true;
-                                }
+                        //check if color
+                        if ($scope.filters.selectedColors && !notValid) {
+                            if ($filter('filter')($scope.filters.selectedColors, {
+                                    id: item.color
+                                })
+                                .length > 0) {
+                                filtersPassed = filtersPassed + 1;
+                            } else {
+                                notValid = true;
                             }
+                        }
 
-                            //check if color
-                            if ($scope.filters.selectedColors && !notValid) {
-                                if ($filter('filter')($scope.filters.selectedColors, {
-                                        id: item.color
-                                    })
-                                    .length > 0) {
-                                    filtersPassed = filtersPassed + 1;
-                                } else {
-                                    notValid = true;
-                                }
-                            }
-
-                            if (!notValid) {
-                                validProduct.push(item);
-                            }
-
+                        if (!notValid) {
+                            validProduct.push(item);
                         }
                     });
 
