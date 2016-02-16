@@ -37,7 +37,7 @@ angular.module('App.Controllers')
         };
         var timeoutIsTyping;
 
-        $scope.pag = $scope.incrementPag = 5;
+        $scope.pag = $scope.incrementPag = 10;
         $scope.colors = $scope.tallas = $scope.marcas = $scope.prendas = $scope.pics = $scope.picsOriginal = [];
         $scope.translate = function (value) {
             return value + '€';

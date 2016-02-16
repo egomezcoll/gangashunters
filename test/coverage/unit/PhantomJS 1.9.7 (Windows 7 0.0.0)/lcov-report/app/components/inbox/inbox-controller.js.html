@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/components/inbox/inbox-controller.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./app/components/inbox/inbox-controller.js</span></h1>
+    <h2>
+        Statements: <span class="metric">2.78% <small>(1 / 36)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">2.78% <small>(1 / 36)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/components/inbox/</a> &#187; inbox-controller.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+angular.module('App.Controllers')
+    .controller('inboxController', <span class="fstat-no" title="function not covered" >function ($scope, $http, $interval, $rootScope, $state) {</span>
+<span class="cstat-no" title="statement not covered" >        $scope.messages = $scope.conversations = [];</span>
+<span class="cstat-no" title="statement not covered" >        $scope.lastId = 0;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.myMessage = {</span>
+            'text': ''
+        };
+<span class="cstat-no" title="statement not covered" >        $scope.conversation = {};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $http.get('http://www.eduardgomez.me/gangashunter_backend/getConversations.php?idUser=1')</span>
+            .then(<span class="fstat-no" title="function not covered" >function (response) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.conversations = response.data;</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $http.get('http://www.eduardgomez.me/gangashunter_backend/getConversation.php?id=' + $state.params.id)</span>
+            .then(<span class="fstat-no" title="function not covered" >function (response) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.conversation = response.data[0];</span>
+<span class="cstat-no" title="statement not covered" >                console.log(response.data[0]);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $http.get('http://www.eduardgomez.me/gangashunter_backend/getMessages.php?id=' + $state.params.id + '&amp;message=' + $scope.lastId)</span>
+                    .then(<span class="fstat-no" title="function not covered" >function (response) {</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.messages = response.data;</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.lastId = $scope.messages[response.data.length - 1].id;</span>
+                    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $rootScope.$on('$stateChangeStart', <span class="fstat-no" title="function not covered" >function (e, toState, toParams, fromState, fromParams) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    $interval.cancel(interval);</span>
+                });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var interval = $interval(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                    $http.get('http://www.eduardgomez.me/gangashunter_backend/getMessages.php?id=' + $state.params.id + '&amp;message=' + $scope.lastId, {</span>
+                            ignoreLoadingBar: true
+                        })
+                        .then(<span class="fstat-no" title="function not covered" >function (response) {</span>
+<span class="cstat-no" title="statement not covered" >                            if (response.data.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                                response.data.forEach(<span class="fstat-no" title="function not covered" >function (item) {</span></span>
+<span class="cstat-no" title="statement not covered" >                                    $scope.messages.push(item);</span>
+<span class="cstat-no" title="statement not covered" >                                    $scope.lastId = item.id;</span>
+                                });
+                            }
+                        });
+                }, 5000);
+<span class="cstat-no" title="statement not covered" >                $interval.cancel(interval);</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.sendMessage = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if ($scope.myMessage.text.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                var data = {</span>
+                    "idConversation": $scope.conversation.id,
+                    "idUser": 1,
+                    "text": $scope.myMessage.text
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                console.log(data);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $http({</span>
+                        method: 'POST',
+                        url: 'http://www.eduardgomez.me/gangashunter_backend/insertNewMessage.php',
+                        data: data,
+                        headers: {
+                            'Access-Control-Allow-Origin': '*',
+                            'Access-Control-Allow-Methods': 'POST',
+                            'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Allow-Methods'
+                        }
+                    })
+                    .then(<span class="fstat-no" title="function not covered" >function (response) {</span>
+<span class="cstat-no" title="statement not covered" >                        console.log(response);</span>
+<span class="cstat-no" title="statement not covered" >                        if (response.status === 200) {</span>
+<span class="cstat-no" title="statement not covered" >                            $scope.myMessage.text = '';</span>
+                        }
+                    });
+            }
+&nbsp;
+        };
+    })
+&nbsp;
+.directive('myEnter', <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >    return <span class="fstat-no" title="function not covered" >function (scope, element, attrs) {</span></span>
+<span class="cstat-no" title="statement not covered" >        element.bind('keydown keypress', <span class="fstat-no" title="function not covered" >function (event) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (event.which === 13) {</span>
+<span class="cstat-no" title="statement not covered" >                scope.$apply(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                    scope.$eval(attrs.myEnter);</span>
+                });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                event.preventDefault();</span>
+            }
+        });
+    };
+});
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 10 2016 16:35:05 GMT+0100 (Romance Standard Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>
