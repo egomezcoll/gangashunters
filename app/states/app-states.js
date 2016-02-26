@@ -51,6 +51,13 @@ angular.module('test87App')
                     controller: 'homeController'
 
                 })
+                .state('login', {
+                  // Use a url of '/' to set a states as the 'index'.
+                  url: '/login',
+                  templateUrl: 'components/login/login.html',
+                  controller: 'loginController'
+
+              })
                 .state('nuevo', {
                   // Use a url of '/' to set a states as the 'index'.
                   url: '/nuevo',

@@ -6,8 +6,13 @@
        <input type="text"class="form-control mt10 searchInput" placeholder="Search...">
      </div>
      <div class="row" ng-repeat="cnv in conversations" style="color: white;">
-       <div class="cnvListItem">
-         {{cnv.nameOwner}}
+       <div class="cnvListItem col-xs-12" ui-sref="inbox({id:cnv.id})" ng-class="{'hover':cnv.id==conversation.id}">
+         <div class="item col-xs-9">
+           {{cnv.nameOwner}}
+        </div>
+        <div class="item txtMin txtItalic col-xs-8">
+          {{cnv.productName}} a {{cnv.price}} €
+       </div>
        </div>
        <!--<div class="col-xs-1"></div><div class="col-xs-8" style="margin-top: 15px;border-bottom: 1px solid #CCC;"></div><div class="col-xs-3"></div>
      --></div>
@@ -28,6 +33,7 @@
               </div>
           </div>
         </div>
+        <div class="separator"></div>
       </div>
     </div>
     <div class="row" style="position:fixed; left:250px; width:100%; bottom:0">

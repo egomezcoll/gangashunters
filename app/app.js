@@ -33,7 +33,7 @@
                  apiVersion: 'v2.5'
              });
         })
-        .run(function ($log, editableOptions, Restangular, $rootScope) {
+        .run(function ($log, editableOptions, Restangular, $rootScope, $http) {
             $log.debug('testAlphaApp run');
             editableOptions.theme = 'bs3';
             Restangular.configuration.baseUrl = 'http://www.eduardgomez.me/gangashunter_backend';
@@ -42,6 +42,20 @@
             $rootScope.$on('event:social-sign-in-success', function (event, userDetails) {
                 console.log('LOGGED IN USING GOOGLE');
                 console.log(userDetails);
+                $http({
+                    method: 'POST',
+                    url: 'http://www.eduardgomez.me/gangashunter_backend/login.php',
+                    data: userDetails,
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'POST',
+                        'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Allow-Methods'
+                    }
+                }).then(function(response){
+                  localStorage.setItem('user', JSON.stringify(response));
+                  $rootScope.user = response;
+                });
+
             });
 
         });

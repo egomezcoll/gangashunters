@@ -115,12 +115,12 @@ angular.module('App.Controllers')
                                 if (!$scope.noMoreResultsShowed) {
                                     $scope.noMoreResultsShowed = true;
                                     //no new results
-                                    swal({
-                                        title: 'Ops!',
-                                        text: 'Lo sentimos, ¡no hemos encontrado más resultados!',
-                                        timer: 2000,
-                                        showConfirmButton: false
-                                    });
+                                    // swal({
+                                    //     title: 'Ops!',
+                                    //     text: 'Lo sentimos, ¡no hemos encontrado más resultados!',
+                                    //     timer: 2000,
+                                    //     showConfirmButton: false
+                                    // });
                                 }
                             }
 
