@@ -16,7 +16,7 @@ socialLogin.run(function($window, $rootScope){
 		lIN = d.createElement('script');
 		lIN.async = false;
 		lIN.src = "//platform.linkedin.com/in.js?async=false";
-		
+
 		lIN.onload = function() {
 			$rootScope.$broadcast('event:social-login-linkedIn-loaded', true);
 		};
@@ -26,8 +26,8 @@ socialLogin.run(function($window, $rootScope){
 
 	$rootScope.addFbScript = function(){
 		var d = document, fbJs, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-		fbJs = d.createElement('script'); 
-		fbJs.id = id; 
+		fbJs = d.createElement('script');
+		fbJs.id = id;
 		fbJs.async = true;
 		fbJs.src = "//connect.facebook.net/en_US/sdk.js";
 
@@ -131,7 +131,7 @@ socialLogin.factory("fbService", function($q){
 		},
 		getUserDetails: function(){
 			var deferred = $q.defer();
-			FB.api('/me?fields=name,email', function(res){
+			FB.api('/me?fields=name,email,picture', function(res){
 				if(!res || res.error){
 					deferred.reject('Error occured while fetching user details.');
 				}else{
@@ -196,7 +196,7 @@ socialLogin.directive("gLogin", function($rootScope, social, socialLoginService)
 					      }
 					    }
 					    socialLoginService.setProviderCookie("google");
-					    var userDetails = {name: res.displayName, email: primaryEmail, uid: res.id, provider: "google"}
+					    var userDetails = {name: res.displayName, email: primaryEmail, picture: res.image, uid: res.id, provider: "google"}
 					    $rootScope.$broadcast('event:social-sign-in-success', userDetails);
 					});
 				});
@@ -213,10 +213,10 @@ socialLogin.directive("fbLogin", function($rootScope, fbService, social, socialL
 		link: function(scope, ele, attr){
 			$rootScope.addFbScript();
 			$rootScope.$on('event:social-login-fb-loaded', function(event, status){
-				FB.init({ 
+				FB.init({
 					appId: social.fbKey,
-					status: true, 
-					cookie: true, 
+					status: true,
+					cookie: true,
 					xfbml: true,
 					version: social.fbApiV
 				});
@@ -226,7 +226,7 @@ socialLogin.directive("fbLogin", function($rootScope, fbService, social, socialL
 						if(res.status == "connected"){
 							fbService.getUserDetails().then(function(user){
 								socialLoginService.setProviderCookie("facebook");
-								var userDetails = {name: user.name, email: user.email, uid: user.id, provider: "facebook"}
+								var userDetails = {name: user.name, email: user.email, picture:user.picture.data, uid: user.id, provider: "facebook"}
 								$rootScope.$broadcast('event:social-sign-in-success', userDetails);
 							}, function(err){
 								console.log(err);
@@ -237,7 +237,7 @@ socialLogin.directive("fbLogin", function($rootScope, fbService, social, socialL
 					});
 				});
 			});
-			
+
 		}
 	}
 })
