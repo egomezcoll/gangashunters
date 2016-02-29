@@ -6,7 +6,7 @@
     "name": "Sudhanshu Yadav",
     "email": "sudhanshuyadav2@gmail.com"
   },
-  "version": "0.4.0",
+  "version": "0.3.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/s-yadav/angulargrid"
@@ -32,14 +32,13 @@
   "demo": "http://ignitersworld.com/lab/angulargrid/",
   "docs": "http://ignitersworld.com/lab/angulargrid/",
   "homepage": "http://ignitersworld.com/lab/angulargrid/",
-  "_release": "0.4.0",
+  "_release": "0.3.3",
   "_resolution": {
     "type": "version",
-    "tag": "0.4.0",
-    "commit": "eba593a7043f9e9b7d25a19f20ae4ae7e995d73d"
+    "tag": "0.3.3",
+    "commit": "b2bd5e87a635e6e479e2ef6be6b780ce3a8960e4"
   },
   "_source": "git://github.com/s-yadav/angulargrid.git",
-  "_target": "0.4.0",
-  "_originalSource": "angulargrid",
-  "_direct": true
+  "_target": "~0.3.3",
+  "_originalSource": "angulargrid"
 }

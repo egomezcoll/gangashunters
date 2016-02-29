@@ -29,6 +29,58 @@ body {
 .txtMin{
   font-size: 11px;
 }
+
+//login
+
+.btn-social>:first-child {
+    font-size: 1.2em;
+}
+.btn-social{
+  padding-left: 36px !important;
+  font-size: .9em !important;
+}
+
+.login{
+  margin-top:-70px;
+  .loginContainer{
+    width:100vw;
+    height:100vh;
+    background-repeat: no-repeat;
+    background-size:cover;
+  }
+}
+
+.frozenContainer{
+  position:absolute;
+  left:76%;
+  top:10%;
+  width:250px;
+  height:350px;
+  opacity:.4;
+  border-radius:8px;
+  filter:blur(4px);
+  -o-filter:blur(4px);
+  -ms-filter:blur(4px);
+  -moz-filter:blur(4px);
+  -webkit-filter:blur(4px);
+  background-color:white;
+}
+.loginOptions{
+  position:absolute;
+  left:76%;
+  top:10%;
+  margin-top:20px;
+  margin-left:15px;
+  width:220px;
+  height:350px;
+}
+
+.dp{
+  display: none;
+}
+.dpnon{
+  display: block;
+}
 .modal-dialog .modal-content .modal-body {
     background-color: white;
 }
