@@ -30,6 +30,8 @@
     <link rel="stylesheet" type="text/css" href="bower_components/slick-carousel/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap-social/bootstrap-social.css">
     <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/tooltipster/css/tooltipster.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/tooltipster/css/themes/tooltipster-shadow.css">
     <!-- endbuild -->
 
     <!-- build:css styles/css/styles.css -->
@@ -97,8 +99,7 @@
                 </li>
             </ul>
         </div>
-
-        <ul class="nav navbar-nav navbar-right mr15">
+        <ul class="nav navbar-nav navbar-right mr50" id="userPanel">
           <li><img src="{{user.foto}}" style="width:40px; border-radius:50px; margin-top:10px;"></li>
           <li><a href="#">{{user.name}}</a></li>
         </ul>
@@ -148,6 +149,9 @@
 <script src="bower_components/angularjs-social-login/angularjs-social-login.js"></script>
 <script src="http://maps.google.com/maps/api/js"></script>
 <script src="bower_components/slick-carousel/slick/slick.min.js"></script>
+<script src="bower_components/tooltipster/js/jquery.tooltipster.min.js"></script>
+
+
 
     <script src="app.js"></script>
     <script src="states/app-states.js"></script>

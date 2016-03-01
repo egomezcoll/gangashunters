@@ -43,13 +43,8 @@
                 $rootScope.user = JSON.parse(localStorage.getItem('user'));
             }
 
-            $rootScope.finishSession = function () {
-                localStorage.removeItem('user');
-                $rootScope.user = null;
-                $state.go('login');
-            };
-
             $rootScope.$on('$stateChangeStart', function (event, toState) {
+                initTooltipster();
                 if (toState.name === 'login') {
                     if (!localStorage.getItem('user')) {
                         return;
@@ -84,6 +79,34 @@
 
             });
 
+            var initTooltipster = function () {
+                setTimeout(function () {
+                    var offeringTooltip = "<div class='menuUser'><div class='row'><div class='col-sm-6 userOption'><span class='glyphicon glyphicon-briefcase' aria-hidden='true'></span><span class='glyphicon-class'>Mis Productos</span></div><div class='col-sm-6 userOption'><span class='glyphicon glyphicon-star' aria-hidden='true'></span><span class='glyphicon-class'>Favoritos</span></div></div><div class='row'><div class='col-sm-6 userOption'><span class='glyphicon glyphicon-cog' aria-hidden='true'></span><span class='glyphicon-class'>Configuración</span></div><div class='col-sm-6 userOption' id='cerrarSession'><span class='glyphicon glyphicon-off' aria-hidden='true'></span><span class='glyphicon-class'>Cerrar Sessión</span></div></div></div>";
+                    //instantiate this tooltip with the HTML generated before
+                    $('#userPanel')
+                        .tooltipster({
+                            theme: 'tooltipster-shadow',
+                            position: 'bottom',
+                            interactive: 'true',
+                            trigger: 'hover',
+                            contentAsHTML: true,
+                            functionReady: function () {
+                                $('#cerrarSession')
+                                    .click(function () {
+                                        localStorage.removeItem('user');
+                                        $rootScope.user = null;
+                                        $('#userPanel')
+                                            .tooltipster('hide');
+                                        $state.go('login');
+                                    });
+
+                            }
+                        });
+
+                    $('#userPanel')
+                        .tooltipster('update', offeringTooltip);
+                }, 1500);
+            };
         });
 
     AppInit.setConfig({

@@ -23,6 +23,9 @@ body {
 .mr15{
   margin-right: 15px;
 }
+.mr50{
+  margin-right: 50px;
+}
 .txtNegrita{
   font-weight: bold;
 }
@@ -103,6 +106,50 @@ body {
 .dpnon{
   display: block;
 }
+
+.menuUser{
+  width:300px;
+  white-space:nowrap;
+  padding-left: 10px;
+  padding-right: 10px;
+  .userOption{
+    text-align: center;
+    cursor: pointer;
+    margin-bottom:10px;
+    border-radius: 6px;
+
+    .glyphicon-star{
+      color: #FDCE38;
+    }
+    .glyphicon-off{
+      color: #7f0000;
+    }
+    .glyphicon-cog{
+      color: #999999;
+    }
+    .glyphicon-briefcase{
+      color: #6f5006;
+    }
+
+    .glyphicon{
+      text-align: center;
+      font-size: 2em !important;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .glyphicon-class {
+        display: block;
+        text-align: center;
+        word-wrap: break-word;
+        margin-bottom: 7px;
+        font-size: .9em;
+    }
+  }
+  .userOption:hover{
+    background-color: #eeeeee;
+  }
+}
+
 .modal-dialog .modal-content .modal-body {
     background-color: white;
 }
