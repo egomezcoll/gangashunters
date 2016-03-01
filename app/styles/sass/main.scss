@@ -20,6 +20,9 @@ body {
 .mt50{
   margin-top: 50px;
 }
+.mr15{
+  margin-right: 15px;
+}
 .txtNegrita{
   font-weight: bold;
 }
@@ -55,7 +58,7 @@ body {
   left:76%;
   top:10%;
   width:250px;
-  height:320px;
+  height:275px;
   opacity:.5;
   border-radius:8px;
   filter:blur(4px);
@@ -70,14 +73,26 @@ body {
   position:absolute;
   left:76%;
   top:10%;
-  margin-top:20px;
+  margin-top:25px;
   margin-left:15px;
   width:220px;
-  height:320px;
+  height:275px;
   .title{
     font-family: "Lucida Grande", Geneva, Arial, Verdana, sans-serif;
     color: #333;
-    font-size: 1.6em;
+    font-size: 1.9em;
+    margin-left: 3px;
+  }
+  .subtitle{
+    font-family: "Lucida Grande", Geneva, Arial, Verdana, sans-serif;
+    color: #333;
+    font-size: 1.2em;
+    margin-left: 15px;
+  }
+  .extrainfo{
+    font-family: "Lucida Grande", Geneva, Arial, Verdana, sans-serif;
+    color: #333;
+    font-size: .8em;
     margin-left: 15px;
   }
 }

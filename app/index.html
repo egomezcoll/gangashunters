@@ -72,7 +72,7 @@
                  to the 'home' state. Behind the scenes the directive also adds the correct href attr
                  and url. -->
             <a class="navbar-brand" ui-sref="home">
-                test87
+                Gangas Hunter
             </a>
         </div>
         <div class="collapse navbar-collapse" id="main-navbar-collapse">
@@ -97,6 +97,11 @@
                 </li>
             </ul>
         </div>
+
+        <ul class="nav navbar-nav navbar-right mr15">
+          <li><img src="{{user.foto}}" style="width:40px; border-radius:50px; margin-top:10px;"></li>
+          <li><a href="#">{{user.name}}</a></li>
+        </ul>
     </nav>
     <!-- MAIN INSERTION POINT
          Here is the main ui-view (it is unnamed) as the main content insertion point.

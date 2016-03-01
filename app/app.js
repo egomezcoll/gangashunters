@@ -40,12 +40,24 @@
             Restangular.configuration.suffix = '.php';
 
             if (localStorage.getItem('user')) {
-                $rootScope.user =  JSON.parse(localStorage.getItem('user'));
+                $rootScope.user = JSON.parse(localStorage.getItem('user'));
             }
+
+            $rootScope.finishSession = function () {
+                localStorage.removeItem('user');
+                $rootScope.user = null;
+                $state.go('login');
+            };
 
             $rootScope.$on('$stateChangeStart', function (event, toState) {
                 if (toState.name === 'login') {
-                    return;
+                    if (!localStorage.getItem('user')) {
+                        return;
+                    } else {
+                        //event.preventDefault();
+                        //  $state.go('home');
+                        return;
+                    }
                 }
                 if (!localStorage.getItem('user')) {
                     event.preventDefault();
@@ -65,8 +77,8 @@
                         }
                     })
                     .then(function (response) {
-                        localStorage.setItem('user', JSON.stringify(response));
-                        $rootScope.user = response;
+                        localStorage.setItem('user', JSON.stringify(response.data[0]));
+                        $rootScope.user = response.data[0];
                         $state.go('home');
                     });
 
