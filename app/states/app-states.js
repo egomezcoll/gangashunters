@@ -49,32 +49,27 @@ angular.module('test87App')
                     url: '/home',
                     templateUrl: 'components/home/home.html',
                     controller: 'homeController'
-
                 })
                 .state('login', {
-                  // Use a url of '/' to set a states as the 'index'.
                   url: '/login',
                   templateUrl: 'components/login/login.html',
                   controller: 'loginController'
-
               })
                 .state('nuevo', {
-                  // Use a url of '/' to set a states as the 'index'.
                   url: '/nuevo',
                   templateUrl: 'components/nuevo/nuevo.html',
                   controller: 'nuevoController'
-
               })  .state('busco', {
-                  // Use a url of '/' to set a states as the 'index'.
                   url: '/busco',
                   templateUrl: 'components/busco/busco.html',
                   controller: 'buscoController'
-
-              }) .state('inbox', {
-                  // Use a url of '/' to set a states as the 'index'.
+              }) .state('inbox', { 
                   url: '/inbox/:id',
                   templateUrl: 'components/inbox/inbox.html',
                   controller: 'inboxController'
-
+              }) .state('favoritos', {
+                  url: '/favoritos',
+                  templateUrl: 'components/favoritos/favoritos.html',
+                  controller: 'favoritosController'
               });
             }]);

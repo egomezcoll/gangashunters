@@ -39,6 +39,16 @@ angular.module('App.Controllers')
 
         $scope.pag = $scope.incrementPag = 10;
         $scope.colors = $scope.tallas = $scope.marcas = $scope.prendas = $scope.pics = $scope.picsOriginal = [];
+        $scope.generos = [{
+            'id': 0,
+            'name': 'Mujer'
+        }, {
+            'id': 1,
+            'name': 'Hombre'
+        }, {
+            'id': 2,
+            'name': 'Unisex'
+        }];
         $scope.translate = function (value) {
             return value + '€';
         };
@@ -218,6 +228,18 @@ angular.module('App.Controllers')
                             }
                         }
 
+                        //check if color
+                        if ($scope.filters.selectedGeneros && !notValid) {
+                            if ($filter('filter')($scope.filters.selectedGeneros, {
+                                    id: item.genero
+                                })
+                                .length > 0) {
+                                filtersPassed = filtersPassed + 1;
+                            } else {
+                                notValid = true;
+                            }
+                        }
+
                         if (!notValid) {
                             validProduct.push(item);
                         }
@@ -239,9 +261,10 @@ angular.module('App.Controllers')
                                 if (data.data.length > 0) {
                                     angular.forEach(data.data, function (item) {
                                         $scope.pics.push(item);
+                                        $scope.picsOriginal.push(item);
                                     });
                                     $scope.pag = $scope.pag + $scope.incrementPag;
-                                    $scope.picsOriginal = angular.copy($scope.pics);
+                                    //$scope.picsOriginal = angular.copy($scope.pics);
                                     $scope.noMoreResultsShowed = false;
                                 }
 

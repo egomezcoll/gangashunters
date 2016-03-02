@@ -7,6 +7,7 @@ angular.module('App.Controllers')
         $scope.myMessage = {
             'text': ''
         };
+        $scope.paramsId = $state.params.id;
         $scope.conversation = {};
 
         $http.get('http://www.eduardgomez.me/gangashunter_backend/getConversations.php?idUser=1')

@@ -3,6 +3,16 @@
 angular.module('App.Controllers')
     .controller('nuevoController', function ($scope, RESTFactory, $http, geolocation, $state) {
         $scope.colors = $scope.tallas = $scope.marcas = $scope.prendas = $scope.images = [];
+        $scope.generos = [{
+            'id': 0,
+            'name': 'Mujer'
+        }, {
+            'id': 1,
+            'name': 'Hombre'
+        }, {
+            'id': 2,
+            'name': 'Unisex'
+        }];
         $scope.product = {
             isGanga: false
         };
@@ -64,7 +74,7 @@ angular.module('App.Controllers')
                     count = count + 1;
                 }
             }
-            if (count < 9) {
+            if (count < 10) {
                 return true;
             } else {
                 if ($scope.product.name.length > 0 && $scope.product.description.length > 0 && $scope.product.amount > 0) {

@@ -3,7 +3,7 @@
     <section id="portfolio" class="section bg-grey arrow-bottom">
   		<div class="container">
         <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-4">
             <label for="name">Nombre del producto</label>
             <input ng-model="product.name" type="text" class="form-control" id="name" placeholder="Nombre del producto">
           </div>
@@ -19,12 +19,21 @@
                 </ui-select-choices>
             </ui-select>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="marca">Prenda</label>
             <ui-select ng-model="product.prenda" theme="selectize">
                 <ui-select-match placeholder="Prenda">{{$select.selected.name}}</ui-select-match>
                 <ui-select-choices repeat="prenda in prendas | filter: $select.search">
                     <span ng-bind-html="prenda.name | highlight: $select.search"></span>
+                </ui-select-choices>
+            </ui-select>
+          </div>
+          <div class="col-md-2">
+            <label for="marca">Género</label>
+            <ui-select ng-model="product.genero" theme="selectize">
+                <ui-select-match placeholder="Género">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="genero in generos | filter: $select.search">
+                    <span ng-bind-html="genero.name | highlight: $select.search"></span>
                 </ui-select-choices>
             </ui-select>
           </div>

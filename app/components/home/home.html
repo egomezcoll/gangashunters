@@ -82,6 +82,23 @@
                         </div>
                     </div>
 
+                    <!-- GENERO FILTER -->
+                    <div class="row mt20">
+                        <div class="col-md-12">
+                          <span class="txtNegrita">Género</span>
+                        </div>
+                    </div>
+                    <div class="row mt10">
+                        <div class="col-md-12">
+                          <ui-select multiple ng-model="filters.selectedGeneros" on-select="filterProducts(search.text)" on-remove="filterProducts(search.text)" theme="select2" style="width: 800px;">
+                            <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
+                            <ui-select-choices repeat="genero in generos | filter: {name: $select.search}">
+                              <div ng-bind-html="genero.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                          </ui-select>
+                        </div>
+                    </div>
+
                     <!-- IS GANGA -->
                     <div class="row mt20">
                         <div class="col-md-12">

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<div class="container">
+      <div class="row">
+            <div class="col-md-12">
+                  <ul class="dynamic-grid" angular-grid="pics" grid-width="200" gutter-size="10" angular-grid-id="gallery" refresh-on-img-load="true">
+                        <li data-ng-repeat="pic in pics" ng-click="moreInformation(pic)" class="grid">
+                              <img src="{{getImage(pic)}}" class="grid-img" data-actual-width="{{pic.actualWidth}}" data-actual-height="{{pic.actualHeight}}" />
+                              <div class="img-desc-wrap">
+                                <div class="title" ng-bind-html="deliberatelyTrustDangerousSnippet(pic.name)"></div>
+                                    <div class="description" ng-bind-html="deliberatelyTrustDangerousSnippet(pic.description)"></div>
+                                    <div class="uploaded-date">
+                                          {{pic.uploadDate | timeAgo}}
+                                          {{pic.prendaName}}
+                                          {{pic.marcaName}}
+                                          {{pic.colorName}}
+                                          Distance: {{getDistance(pic.latitude,pic.longitude)}}
+                                    </div>
+                                    <div class="likes-watch-wrap">
+                                          <div class="row">
+                                                <div class="col-xs-8">
+                                                      {{pic.price}} €
+                                                </div>
+                                                <div class="col-xs-4 text-right">
+                                                      {{pic.tallaName}}
+                                                </div>
+                                          </div>
+                                    </div>
+                              </div>
+                        </li>
+                  </ul>
+
+            </div>
+      </div>
+</div>
