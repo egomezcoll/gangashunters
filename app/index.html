@@ -83,7 +83,10 @@
                  will set the links to 'active' if, for example on the first link, 'contacts' or any of
                  its descendant states are activated. -->
                 <li data-ng-class="{ active: $state.includes('home') }">
-                    <a angular-ripple="" ui-sref="home"><i class="glyphicon glyphicon-home"></i> Home</a>
+                    <a angular-ripple="" ui-sref="home"><i class="glyphicon glyphicon-globe"></i> Home</a>
+                </li>
+                <li data-ng-class="{ active: $state.includes('red') }">
+                    <a angular-ripple="" ui-sref="home"><i class="glyphicon glyphicon-home"></i> Mi Red</a>
                 </li>
                 <li data-ng-class="{ active: $state.includes('nuevo') }">
                     <a angular-ripple="" ui-sref="nuevo"><i class="glyphicon glyphicon-camera"></i> Nuevo</a>

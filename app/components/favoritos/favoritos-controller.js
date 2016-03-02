@@ -2,19 +2,10 @@
 
 angular.module('App.Controllers')
     .service('favoritosService', function ($http, RESTFactory, geolocation) {
-        this.loadProducts = function (pag, filters) {
+        this.loadFavorites = function (pag, filters) {
             return geolocation.getLocation()
                 .then(function (data) {
-                    return $http({
-                        method: 'POST',
-                        url: 'http://www.eduardgomez.me/gangashunter_backend/getProducts.php?lat=' + data.coords.latitude + '&long=' + data.coords.longitude + '&pag=' + pag,
-                        data: filters,
-                        headers: {
-                            'Access-Control-Allow-Origin': '*',
-                            'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
-                            'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Allow-Methods'
-                        }
-                    });
+                    return $http.get('http://www.eduardgomez.me/gangashunter_backend/getFavoritos.php?id=1');
                 });
 
         };
@@ -32,7 +23,7 @@ angular.module('App.Controllers')
         $scope.getImage = function (product) {
             if (product.imgs.length >= 1) {
                 //return 'http://www.eduardgomez.me/gangashunter_backend/uploads/' + product.imgs.split(',')[0];
-                return '../../styles/sass/theme/images/default.jpg';
+                return '../../styles/sass/theme/images/default.jpg'
             } else {
                 return '../../styles/sass/theme/images/default.jpg';
             }
@@ -59,7 +50,7 @@ angular.module('App.Controllers')
         };
         cfpLoadingBar.start();
 
-        favoritosService.loadProducts(0)
+        favoritosService.loadFavorites(0)
             .then(function (data) {
                 $scope.pics = data.data;
                 cfpLoadingBar.complete();
