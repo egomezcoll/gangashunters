@@ -1,66 +1,97 @@
 <!DOCTYPE html>
 <!-- Portfolio -->
-    <section id="portfolio" class="section bg-grey arrow-bottom">
-  		<div class="container">
+<section class="section bg-grey arrow-bottom" id="portfolio">
+    <div class="container">
         <div class="row">
-          <div class="col-md-3">
-            <label for="marca">Prenda</label>
-            <ui-select ng-model="product.prenda" theme="selectize">
-                <ui-select-match placeholder="Prenda">{{$select.selected.name}}</ui-select-match>
-                <ui-select-choices repeat="prenda in prendas | filter: $select.search">
-                    <span ng-bind-html="prenda.name | highlight: $select.search"></span>
-                </ui-select-choices>
-            </ui-select>
-          </div>
-          <div class="col-md-2">
-            <label for="marca">Marca</label>
-            <ui-select id="marca" ng-model="product.marca" reset-search-input="false"  ng-maxlength="25" theme="selectize">
-                <ui-select-match placeholder="Marca">
-                  <span>{{$select.selected.nombre || $select.search}}</span>
-                  <a class="btn btn-xs btn-link pull-right" ng-click="clear($event, $select)"><i class="glyphicon glyphicon-remove"></i></a>
-                </ui-select-match>
-                <ui-select-choices repeat="marca in (marcas | filter: $select.search | limitTo: 100) track by marca.id"  refresh="refreshResults($select)" refresh-delay="0">
-                    <span ng-bind-html="marca.nombre | highlight: $select.search"></span>
-                </ui-select-choices>
-            </ui-select>
-          </div>
-          <div class="col-md-1">
-            <label for="precio">Precio</label>
-            <input ng-model="product.amount" type="text" class="form-control" id="precio" placeholder="Precio">
-          </div>
-          <div class="col-md-2">
-            <label for="marca">Género</label>
-            <ui-select ng-model="product.genero" theme="selectize">
-                <ui-select-match placeholder="Género">{{$select.selected.name}}</ui-select-match>
-                <ui-select-choices repeat="genero in generos | filter: $select.search">
-                    <span ng-bind-html="genero.name | highlight: $select.search"></span>
-                </ui-select-choices>
-            </ui-select>
-          </div>
-          <div class="col-md-2">
-            <label for="talla">Talla</label>
-            <ui-select ng-model="product.talla" theme="selectize">
-                <ui-select-match placeholder="Talla">{{$select.selected.name}}</ui-select-match>
-                <ui-select-choices repeat="talla in tallas | filter: $select.search">
-                    <span ng-bind-html="talla.name | highlight: $select.search"></span>
-                </ui-select-choices>
-            </ui-select>
-          </div>
-          <div class="col-md-2">
-            <label for="color">Color</label>
-            <ui-select ng-model="product.color" theme="selectize">
-                <ui-select-match placeholder="Color">{{$select.selected.name}}</ui-select-match>
-                <ui-select-choices repeat="color in colors | filter: $select.search">
-                    <span ng-bind-html="color.name | highlight: $select.search"></span>
-                </ui-select-choices>
-            </ui-select>
-          </div>
+            <div class="col-md-3">
+                <label for="marca">Prenda</label>
+                <ui-select ng-model="product.prenda" theme="selectize">
+                    <ui-select-match placeholder="Prenda">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="prenda in prendas | filter: $select.search">
+                        <span ng-bind-html="prenda.name | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-md-2">
+                <label for="marca">Marca</label>
+                <ui-select id="marca" ng-maxlength="25" ng-model="product.marca" reset-search-input="false" theme="selectize">
+                    <ui-select-match placeholder="Marca">
+                        <span>{{$select.selected.nombre || $select.search}}</span>
+                        <a class="btn btn-xs btn-link pull-right" ng-click="clear($event, $select)">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </a>
+                    </ui-select-match>
+                    <ui-select-choices refresh-delay="0" refresh="refreshResults($select)" repeat="marca in (marcas | filter: $select.search | limitTo: 100) track by marca.id">
+                        <span ng-bind-html="marca.nombre | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-md-1">
+                <label for="precio">Precio</label>
+                <input class="form-control" id="precio" ng-model="product.amount" placeholder="Precio" type="text">
+            </div>
+            <div class="col-md-2">
+                <label for="marca">Género</label>
+                <ui-select ng-model="product.genero" theme="selectize">
+                    <ui-select-match placeholder="Género">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="genero in generos | filter: $select.search">
+                        <span ng-bind-html="genero.name | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-md-2">
+                <label for="talla">Talla</label>
+                <ui-select ng-model="product.talla" theme="selectize">
+                    <ui-select-match placeholder="Talla">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="talla in tallas | filter: $select.search">
+                        <span ng-bind-html="talla.name | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="col-md-2">
+                <label for="color">Color</label>
+                <ui-select ng-model="product.color" theme="selectize">
+                    <ui-select-match placeholder="Color">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="color in colors | filter: $select.search">
+                        <span ng-bind-html="color.name | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
         </div>
         <div class="row mt20">
-          <div class="col-md-12 text-center">
-            <button class="btn btn-primary" ng-disabled="checkProductAttr()" ng-click="addProduct()" style="text-transform:none" type="submit">Búscalo por mi</button>
-          </div>
+            <div class="col-md-12 text-center">
+                <button class="btn btn-primary" ng-click="addProduct()" ng-disabled="checkProductAttr()" style="text-transform:none" type="submit">Búscalo por mi</button>
+            </div>
         </div>
-  		</div>
-  	</section>
-  	<!-- End Portfolio -->
+        <div class="row mt50">
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Prenda</th>
+                            <th>Marca</th>
+                            <th>Precio Max.</th>
+                            <th>Género</th>
+                            <th>Talla</th>
+                            <th>Color</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Portfolio -->
