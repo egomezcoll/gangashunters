@@ -1,224 +1,82 @@
 'use strict';
 
 angular.module('App.Controllers')
-    .service('bimageService', function ($q, $http) {
-        this.loadImages = function () {
-            return $http.jsonp("https://api.flickr.com/services/feeds/photos_public.gne?tags=purse&format=json&jsoncallback=JSON_CALLBACK");
+    .service('buscoService', function ($q, $http, RESTFactory) {
+        this.loadBusco = function () {
+            return $http.get('http://www.eduardgomez.me/gangashunter_backend/getBuscos.php?id=1');
         };
-    })
 
-.controller('buscoController', function ($scope, bimageService, angularGridInstance, $timeout, $sce, $modal) {
-        $scope.searchTxt = '';
-
-        //apply search and sort method
-        $scope.$watch('searchTxt', function (val, oldValue) {
-            if (val === oldValue) {
-                return;
-            }
-            val = val.toLowerCase();
-            $scope.pics = $scope.picsOriginal.filter(function (obj) {
-                if (obj.description.toLowerCase()
-                    .indexOf(val) !== -1 || obj.title.toLowerCase()
-                    .indexOf(val) !== -1) {
-                    return true;
+        this.addBusco = function (product) {
+            return $http({
+                method: 'POST',
+                url: 'http://www.eduardgomez.me/gangashunter_backend/insertNewBusco.php',
+                data: product,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Allow-Methods'
                 }
             });
+        };
+
+        this.loadOptions = function () {
+            return RESTFactory.readParallelMultipleBatch(['getColors', 'getTallas', 'getMarcas', 'getPrendas']);
+        };
+    })
+
+.controller('buscoController', function ($scope, buscoService, $timeout, $sce, $modal) {
+    $scope.product = {
+        'idUser': 1
+    };
+    $scope.colors = $scope.tallas = $scope.marcas = $scope.prendas = $scope.images = [];
+    $scope.generos = [{
+        'id': 0,
+        'name': 'Mujer'
+    }, {
+        'id': 1,
+        'name': 'Hombre'
+    }, {
+        'id': 2,
+        'name': 'Unisex'
+    }];
+
+    buscoService.loadOptions()
+        .then(function (responseArray) {
+            $scope.colors = responseArray[0];
+            $scope.tallas = responseArray[1];
+            $scope.marcas = responseArray[2];
+            $scope.prendas = responseArray[3];
         });
 
-        $scope.deliberatelyTrustDangerousSnippet = function (text) {
-            return $sce.trustAsHtml(text);
-        };
-        bimageService.loadImages()
-            .then(function (data) {
-                data.data.items.forEach(function (obj) {
-                    var desc = obj.description,
-                        width = desc.match(/width="(.*?)"/)[1],
-                        height = desc.match(/height="(.*?)"/)[1];
+    $scope.deliberatelyTrustDangerousSnippet = function (text) {
+        return $sce.trustAsHtml(text);
+    };
 
-                    obj.actualHeight = height;
-                    obj.actualWidth = width;
-                    obj.description = obj.description.split("photo:")[0] + "photo:</p>";
-                    obj.price = Math.floor((Math.random() * 100) + 5);
-                });
-                console.log(data.data.items);
-                $scope.pics = data.data.items;
-                $scope.picsOriginal = data.data.items;
-
-                $scope.myPagingFunction = function () {
-                    $scope.pics.push({
-                        actualHeight: '135',
-                        actualWidth: '240',
-                        author: 'nobody@flickr.com (fabulous_redhead)',
-                        author_id: '7842562@N07',
-                        date_taken: '2015-11-16T21:49:47-08:00',
-                        description: 'posteddd a photo',
-                        link: 'https://www.flickr.com/photos/fabulous_redhead/22486967574/',
-                        media: {
-                            m: 'http://placehold.it/300x600/E97452/fff'
-                        },
-                        published: '2015-11-18T07:24:24Z',
-                        tags: '',
-                        title: 'posteddd'
-                    }, {
-                        actualHeight: '135',
-                        actualWidth: '240',
-                        author: 'nobody@flickr.com (fabulous_redhead)',
-                        author_id: '7842562@N07',
-                        date_taken: '2015-11-16T21:49:47-08:00',
-                        description: 'posteddd a photo',
-                        link: 'https://www.flickr.com/photos/fabulous_redhead/22486967574/',
-                        media: {
-                            m: 'http://placehold.it/300x600/E97452/fff'
-                        },
-                        published: '2015-11-18T07:24:24Z',
-                        tags: '',
-                        title: 'posteddd'
-                    }, {
-                        actualHeight: '135',
-                        actualWidth: '240',
-                        author: 'nobody@flickr.com (fabulous_redhead)',
-                        author_id: '7842562@N07',
-                        date_taken: '2015-11-16T21:49:47-08:00',
-                        description: 'posteddd a photo',
-                        link: 'https://www.flickr.com/photos/fabulous_redhead/22486967574/',
-                        media: {
-                            m: 'http://placehold.it/300x600/E97452/fff'
-                        },
-                        published: '2015-11-18T07:24:24Z',
-                        tags: '',
-                        title: 'posteddd'
-                    }, {
-                        actualHeight: '135',
-                        actualWidth: '240',
-                        author: 'nobody@flickr.com (fabulous_redhead)',
-                        author_id: '7842562@N07',
-                        date_taken: '2015-11-16T21:49:47-08:00',
-                        description: 'posteddd a photo',
-                        link: 'https://www.flickr.com/photos/fabulous_redhead/22486967574/',
-                        media: {
-                            m: 'http://placehold.it/300x600/E97452/fff'
-                        },
-                        published: '2015-11-18T07:24:24Z',
-                        tags: '',
-                        title: 'posteddd'
-                    }, {
-                        actualHeight: '135',
-                        actualWidth: '240',
-                        author: 'nobody@flickr.com (fabulous_redhead)',
-                        author_id: '7842562@N07',
-                        date_taken: '2015-11-16T21:49:47-08:00',
-                        description: 'posteddd a photo',
-                        link: 'https://www.flickr.com/photos/fabulous_redhead/22486967574/',
-                        media: {
-                            m: 'http://placehold.it/300x600/E97452/fff'
-                        },
-                        published: '2015-11-18T07:24:24Z',
-                        tags: '',
-                        title: 'posteddd'
-                    }, {
-                        actualHeight: '135',
-                        actualWidth: '240',
-                        author: 'nobody@flickr.com (fabulous_redhead)',
-                        author_id: '7842562@N07',
-                        date_taken: '2015-11-16T21:49:47-08:00',
-                        description: 'posteddd a photo',
-                        link: 'https://www.flickr.com/photos/fabulous_redhead/22486967574/',
-                        media: {
-                            m: 'http://placehold.it/300x600/E97452/fff'
-                        },
-                        published: '2015-11-18T07:24:24Z',
-                        tags: '',
-                        title: 'posteddd'
-                    }, {
-                        actualHeight: '135',
-                        actualWidth: '240',
-                        author: 'nobody@flickr.com (fabulous_redhead)',
-                        author_id: '7842562@N07',
-                        date_taken: '2015-11-16T21:49:47-08:00',
-                        description: 'posteddd a photo',
-                        link: 'https://www.flickr.com/photos/fabulous_redhead/22486967574/',
-                        media: {
-                            m: 'http://placehold.it/300x600/E97452/fff'
-                        },
-                        published: '2015-11-18T07:24:24Z',
-                        tags: '',
-                        title: 'posteddd'
-                    }, {
-                        actualHeight: '135',
-                        actualWidth: '240',
-                        author: 'nobody@flickr.com (fabulous_redhead)',
-                        author_id: '7842562@N07',
-                        date_taken: '2015-11-16T21:49:47-08:00',
-                        description: 'posteddd a photo',
-                        link: 'https://www.flickr.com/photos/fabulous_redhead/22486967574/',
-                        media: {
-                            m: 'http://placehold.it/300x600/E97452/fff'
-                        },
-                        published: '2015-11-18T07:24:24Z',
-                        tags: '',
-                        title: 'posteddd'
-                    }, {
-                        actualHeight: '135',
-                        actualWidth: '240',
-                        author: 'nobody@flickr.com (fabulous_redhead)',
-                        author_id: '7842562@N07',
-                        date_taken: '2015-11-16T21:49:47-08:00',
-                        description: 'posteddd a photo',
-                        link: 'https://www.flickr.com/photos/fabulous_redhead/22486967574/',
-                        media: {
-                            m: 'http://placehold.it/300x600/E97452/fff'
-                        },
-                        published: '2015-11-18T07:24:24Z',
-                        tags: '',
-                        title: 'posteddd'
-                    }, {
-                        actualHeight: '135',
-                        actualWidth: '240',
-                        author: 'nobody@flickr.com (fabulous_redhead)',
-                        author_id: '7842562@N07',
-                        date_taken: '2015-11-16T21:49:47-08:00',
-                        description: 'posteddd a photo',
-                        link: 'https://www.flickr.com/photos/fabulous_redhead/22486967574/',
-                        media: {
-                            m: 'http://placehold.it/300x600/E97452/fff'
-                        },
-                        published: '2015-11-18T07:24:24Z',
-                        tags: '',
-                        title: 'posteddd'
-                    });
-                    $scope.picsOriginal = angular.copy($scope.pics);
-                };
-
-                $scope.moreInformation = function (pic) {
-                    var modalInstance = $modal.open({
-                        animation: $scope.animationsEnabled,
-                        templateUrl: 'components/busco/detail/buscoProductDetail.html',
-                        controller: 'buscoProductDetailCtrl',
-                        size: 'lg',
-                        resolve: {
-                            item: function () {
-                                return pic;
-                            }
-                        }
+    $scope.addBusco = function () {
+        buscoService.addBusco($scope.product)
+            .then(function (response) {
+                if (response.status === 200) {
+                    sweetAlert({
+                        title: 'Buen trabajo!',
+                        text: 'Buscaremos la prenda ' + $scope.product.prenda.name + ' de ' + $scope.product.marca.nombre + ' por ti',
+                        type: 'success',
+                        showCancelButton: false,
                     });
 
-                    modalInstance.result.then(function (selectedItem) {
-                        $scope.selected = selectedItem;
-                    }, function () {
-                        //$log.info('Modal dismissed at: ' + new Date());
-                    });
-                };
+                    $scope.product = {
+                        'idUser': 1
+                    };
+
+                    buscoService.loadBusco()
+                        .then(function (response) {
+                            $scope.buscos = response.data;
+                        });
+                }
             });
-    })
-    .controller('buscoProductDetailCtrl', function ($scope, $modalInstance, item) {
+    };
 
-        $scope.item = item;
-
-        $scope.ok = function () {
-            $modalInstance.close($scope.selected.item);
-        };
-
-        $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
-        };
-    });
+    buscoService.loadBusco()
+        .then(function (response) {
+            $scope.buscos = response.data;
+        });
+});
