@@ -4,12 +4,31 @@ angular.module('App.Controllers')
     .controller('productDetailCtrl', function ($scope, $modalInstance, $http, $state, NgMap, item) {
 
         $scope.item = item;
+        $scope.zoomWidth = 300;
+        $scope.zoomHeight = 400;
         console.log(item);
+        setTimeout(function(){
+          $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
+
+        },3000);
         NgMap.getMap()
             .then(function (map) {
                 map.setCenter(new google.maps.LatLng(item.latitude, item.longitude));
                 google.maps.event.trigger(map, 'resize');
+                var img = document.getElementById('img');
+
+                if(img.naturalWidth < $scope.zoomHeight){
+                  $scope.zoomHeight = img.naturalWidth;
+                }
+
+                if(img.naturalWidth < $scope.zoomWidth){
+                  $scope.zoomWidth = img.naturalWidth;
+                }
+                console.log(img.clientWidth);
+                console.log(img.clientHeight);
+
             });
+
         $scope.getImage = function (product) {
             if (product.imgs.length >= 1) {
                 //return 'http://www.eduardgomez.me/gangashunter_backend/uploads/' + product.imgs.split(',')[0];

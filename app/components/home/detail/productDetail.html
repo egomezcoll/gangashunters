@@ -13,7 +13,9 @@
 <div class="modal-body">
   <div class="row">
     <div class="col-md-4">
-      <img src="{{getImage(item)}}" data-actual-width="{{item.actualWidth}}" data-actual-height="{{item.actualHeight}}"/>
+       <a href="{{getImage(item)}}" class="cloud-zoom" rel="transparentImage: 'data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', useWrapper: false, showTitle: true, zoomWidth:'{{zoomWidth}}', zoomHeight:'{{zoomHeight}}', adjustY:-30, adjustX:25">
+          <img id="img" src="{{getImage(item)}}" style="width:200px; height:200px;"/>
+        </a>
     </div>
     <div class="col-md-offset-1 col-md-4">
       {{item.description}}
