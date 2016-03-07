@@ -1,36 +1,87 @@
 <!DOCTYPE html>
 <div class="modal-header">
     <div class="row">
-      <div class="col-md-9">
-        <h4>{{item.name}}</h4>
-      </div>
-      <div class="col-md-3 text-right">
-        <h4>{{item.price}} €</h4>
-      </div>
+        <div class="col-md-9">
+            <h4>{{item.name}}</h4>
+        </div>
+        <div class="col-md-3 text-right">
+            <span style="cursor:pointer"  ng-click="close()" aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+        </div>
     </div>
 
 </div>
 <div class="modal-body">
-  <div class="row">
-    <div class="col-md-4">
-       <a href="{{getImage(item)}}" class="cloud-zoom" rel="transparentImage: 'data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', useWrapper: false, showTitle: true, zoomWidth:'{{zoomWidth}}', zoomHeight:'{{zoomHeight}}', adjustY:-30, adjustX:25">
-          <img id="img" src="{{getImage(item)}}" style="width:200px; height:200px;"/>
-        </a>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="pointer">
+                  <img ng-src="{{user.foto}}" class="userFoto mr5"> <a class="pointer">{{user.name}}</a>
+                </div>
+              </div>
+            </div>
+            <div class="row mt10">
+              <div class="col-md-12">
+                <a class="cloud-zoom" href="{{getImage(item)}}" rel="transparentImage: 'data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', useWrapper: false, showTitle: true, zoomWidth:'{{zoomWidth}}', zoomHeight:'{{zoomHeight}}', adjustY:-15, adjustX:20">
+                  <img id="img" ng-src="{{getImage(item)}}" style="width:250px; height:250px;"/>
+                </a>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-offset-1 col-md-7">
+          <div class="row">
+            <div class="col-md-4">
+              <span class="customlabel txtNegrita">Prenda: </span>
+              {{item.prendaName}}
+            </div>
+            <div class="col-md-4">
+              <span class="customlabel txtNegrita">Marca: </span>
+              {{item.marcaName}}
+            </div>
+            <div class="col-md-4">
+              <span class="customlabel txtNegrita">Talla: </span>
+              {{item.tallaName}}
+            </div>
+          </div>
+          <div class="row mt10">
+            <div class="col-md-4">
+              <span class="customlabel txtNegrita">Color: </span>
+              {{item.colorName}}
+            </div>
+            <div class="col-md-4">
+              <span class="customlabel txtNegrita">Género: </span>
+              {{item.generoName}}
+            </div>
+            <div class="col-md-4">
+              <span class="customlabel txtNegrita">Precio: </span>
+              {{item.price}} €
+            </div>
+          </div>
+          <div class="row mt10">
+            <div class="col-md-12">
+              <span class="customlabel txtNegrita">Descripción:</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mt10">
+              <span>{{item.description}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <ng-map class="mt20" style="height: 200px; width: 425px;" zoom="14"></ng-map>
+            </div>
+          </div>
+
+        </div>
     </div>
-    <div class="col-md-offset-1 col-md-4">
-      {{item.description}}
-      <ng-map style="margin-top:20px; height: 200px; width: 350px;" zoom="14"></ng-map>
+    <div class="row mt20 mb10">
+        <div class="col-md-6">
+            5 hunters lo quieren
+        </div>
+        <div class="col-md-6 text-right">
+            <button class="btn btn-primary" ng-disabled="true" type="button">Bloquear</button>
+            <button class="btn btn-primary" ng-click="ok()" type="button">Es perfecto para mí!</button>
+        </div>
     </div>
-  </div>
-  <div class="row mt10 mb10">
-    <div class="col-md-1">
-      {{item.tallaName}}
-    </div>
-    <div class="col-md-3">
-      5 hunters lo quieren
-    </div>
-    <div class="col-md-8 text-right">
-      <button class="btn btn-primary" type="button" ng-click="ok()">Es perfecto para mí!</button>
-    </div>
-  </div>
 </div>

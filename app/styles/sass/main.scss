@@ -10,15 +10,17 @@ body {
 .mt20{
   margin-top: 20px;
 }
-
 .mt10{
-  margin-top: 5px;
+  margin-top: 10px;
 }
 .mb10{
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 .mt50{
   margin-top: 50px;
+}
+.mr5{
+    margin-right: 5px;
 }
 .mr15{
   margin-right: 15px;
@@ -34,6 +36,28 @@ body {
 }
 .txtMin{
   font-size: 11px;
+}
+.pointer{
+  cursor: pointer;
+  text-decoration: none;
+}
+.pointer:hover{
+  text-decoration: none;
+}
+
+.customlabel{
+  font-family: "Lucida Grande", Geneva, Arial, Verdana, sans-serif;
+  color: #333;
+  font-size: 1em;
+}
+
+.userFoto{
+  width:40px;
+  border-radius:50px;
+}
+
+.modal-header{
+      padding-bottom: 0px;
 }
 
 //login

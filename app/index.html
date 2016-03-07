@@ -100,9 +100,15 @@
                 </li>
             </ul>
         </div>
-        <ul class="nav navbar-nav navbar-right mr50" id="userPanel">
-          <li><img src="{{user.foto}}" style="width:40px; border-radius:50px; margin-top:10px;"></li>
-          <li><a href="#">{{user.name}}</a></li>
+        <ul class="nav navbar-nav navbar-right mr50 pointer" id="userPanel">
+          <li>
+            <img ng-src="{{user.foto}}" class="userFoto mt10">
+          </li>
+          <li>
+            <a>
+              {{user.name}}
+            </a>
+          </li>
         </ul>
     </nav>
     <!-- MAIN INSERTION POINT

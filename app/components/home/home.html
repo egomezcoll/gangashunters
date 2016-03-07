@@ -134,7 +134,7 @@
             <div class="col-md-9">
                   <ul class="dynamic-grid" angular-grid="pics" grid-width="200" gutter-size="10" angular-grid-id="gallery" refresh-on-img-load="true">
                         <li data-ng-repeat="pic in pics" ng-click="moreInformation(pic)" class="grid">
-                              <img src="{{getImage(pic)}}" class="grid-img" data-actual-width="{{pic.actualWidth}}" data-actual-height="{{pic.actualHeight}}" />
+                              <img ng-src="{{getImage(pic)}}" class="grid-img" data-actual-width="{{pic.actualWidth}}" data-actual-height="{{pic.actualHeight}}" />
                               <div class="img-desc-wrap">
                                 <div class="title" ng-bind-html="deliberatelyTrustDangerousSnippet(pic.name)"></div>
                                     <div class="description" ng-bind-html="deliberatelyTrustDangerousSnippet(pic.description)"></div>

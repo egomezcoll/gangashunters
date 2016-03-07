@@ -280,6 +280,8 @@ angular.module('App.Controllers')
                         templateUrl: 'components/home/detail/productDetail.html',
                         controller: 'productDetailCtrl',
                         size: 'lg',
+                        backdrop:'static',
+                        keyboard:false,
                         resolve: {
                             item: function () {
                                 return pic;
