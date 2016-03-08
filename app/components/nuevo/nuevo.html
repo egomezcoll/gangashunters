@@ -50,7 +50,7 @@
           </div>
           <div class="col-md-3">
             <label for="precio">Precio</label>
-            <input ng-model="product.amount" type="text" class="form-control" id="precio" placeholder="Precio">
+            <input ng-model="product.amount"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="text" class="form-control" id="precio" placeholder="Precio">
           </div>
           <div class="col-md-3">
             <label for="color">Color</label>

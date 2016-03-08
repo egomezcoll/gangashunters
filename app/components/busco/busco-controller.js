@@ -18,6 +18,22 @@ angular.module('App.Controllers')
                 }
             });
         };
+        this.deleteBusco = function (id) {
+            var obj = {
+                'idBusco': id,
+                'idUser': 1
+            };
+            return $http({
+                method: 'POST',
+                url: 'http://www.eduardgomez.me/gangashunter_backend/deleteBusco.php',
+                data: obj,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Allow-Methods'
+                }
+            });
+        };
 
         this.loadOptions = function () {
             return RESTFactory.readParallelMultipleBatch(['getColors', 'getTallas', 'getMarcas', 'getPrendas']);
@@ -73,6 +89,30 @@ angular.module('App.Controllers')
                         });
                 }
             });
+    };
+    $scope.deleteBusco = function (id, prenda, $index) {
+        sweetAlert({
+            title: '¡Ojo!',
+            text: 'La búsqueda automática de la prenda ' + prenda + ' será eliminada',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: '¡Sí, eliminar búsqueda!',
+            closeOnConfirm: false
+        }, function () {
+            buscoService.deleteBusco(id)
+                .then(function (response) {
+                    if (response.status === 200) {
+                        sweetAlert({
+                            title: '¡Hecho!',
+                            text: 'Hemos eliminado la búsqueda automática',
+                            type: 'success',
+                            showCancelButton: false,
+                        });
+                        $scope.buscos.splice($index, 1);
+                    }
+                });
+        });
     };
 
     buscoService.loadBusco()

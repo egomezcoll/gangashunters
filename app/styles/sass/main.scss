@@ -44,7 +44,9 @@ body {
 .pointer:hover{
   text-decoration: none;
 }
-
+.ng-dirty.ng-invalid>div.selectize-input{
+  border-color: #d0d0d0;
+}
 .customlabel{
   font-family: "Lucida Grande", Geneva, Arial, Verdana, sans-serif;
   color: #333;
@@ -58,6 +60,9 @@ body {
 
 .modal-header{
       padding-bottom: 0px;
+}
+.sweet-alert{
+  top:45% !important;
 }
 
 //login
