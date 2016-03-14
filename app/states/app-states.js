@@ -63,7 +63,7 @@ angular.module('test87App')
                   url: '/busco',
                   templateUrl: 'components/busco/busco.html',
                   controller: 'buscoController'
-              }) .state('inbox', { 
+              }) .state('inbox', {
                   url: '/inbox/:id',
                   templateUrl: 'components/inbox/inbox.html',
                   controller: 'inboxController'
@@ -71,5 +71,9 @@ angular.module('test87App')
                   url: '/favoritos',
                   templateUrl: 'components/favoritos/favoritos.html',
                   controller: 'favoritosController'
+              }) .state('myProducts', {
+                  url: '/mis-productos',
+                  templateUrl: 'components/myProducts/myProducts.html',
+                  controller: 'myProductsController'
               });
             }]);

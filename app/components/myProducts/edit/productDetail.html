@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<div class="modal-header">
+    <div class="row">
+        <div class="col-md-9">
+            <h4>{{product.name}}</h4>
+        </div>
+        <div class="col-md-3 text-right">
+            <span style="cursor:pointer"  ng-click="close()" aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+        </div>
+    </div>
+
+</div>
+<div class="modal-body">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-4">
+            <label for="name">Nombre del producto</label>
+            <input ng-model="product.name" type="text" class="form-control" id="name" placeholder="Nombre del producto">
+          </div>
+          <div class="col-md-4">
+            <label for="marca">Prenda</label>
+            <ui-select ng-model="product.prenda" theme="selectize">
+                <ui-select-match placeholder="Prenda">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="prenda in prendas | filter: $select.search">
+                    <span ng-bind-html="prenda.name | highlight: $select.search"></span>
+                </ui-select-choices>
+            </ui-select>
+          </div>
+          <div class="col-md-4">
+            <label for="marca">Marca</label>
+            <ui-select id="marca" ng-model="product.marca" reset-search-input="false"  ng-maxlength="25" theme="selectize">
+                <ui-select-match placeholder="Marca">
+                  <span>{{$select.selected.nombre || $select.search}}</span>
+                  <a class="btn btn-xs btn-link pull-right" ng-click="clear($event, $select)"><i class="glyphicon glyphicon-remove"></i></a>
+                </ui-select-match>
+                <ui-select-choices repeat="marca in (marcas | filter: $select.search | limitTo: 100) track by marca.id"  refresh="refreshResults($select)" refresh-delay="0">
+                    <span ng-bind-html="marca.nombre | highlight: $select.search"></span>
+                </ui-select-choices>
+            </ui-select>
+          </div>
+
+        </div>
+        <div class="row mt10">
+          <div class="col-md-3">
+            <label for="talla">Talla</label>
+            <ui-select ng-model="product.talla" theme="selectize">
+                <ui-select-match placeholder="Talla">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="talla in tallas | filter: $select.search">
+                    <span ng-bind-html="talla.name | highlight: $select.search"></span>
+                </ui-select-choices>
+            </ui-select>
+          </div>
+          <div class="col-md-3">
+            <label for="color">Color</label>
+            <ui-select ng-model="product.color" theme="selectize">
+                <ui-select-match placeholder="Color">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="color in colors | filter: $select.search">
+                    <span ng-bind-html="color.name | highlight: $select.search"></span>
+                </ui-select-choices>
+            </ui-select>
+          </div>
+          <div class="col-md-3">
+            <label for="marca">Género</label>
+            <ui-select ng-model="product.genero" theme="selectize">
+                <ui-select-match placeholder="Género">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="genero in generos | filter: $select.search">
+                    <span ng-bind-html="genero.name | highlight: $select.search"></span>
+                </ui-select-choices>
+            </ui-select>
+          </div>
+          <div class="col-md-3">
+            <label for="precio">Precio</label>
+            <input ng-model="product.amount"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="text" class="form-control" id="precio" placeholder="Precio">
+          </div>
+        </div>
+        <div class="row mt10">
+          <div class="col-md-12">
+            <label for="description">Descripción</label>
+            <textarea ng-model="product.description" maxlength="300" id="description" class="form-control" placeholder="Descripción" rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row mt10">
+              <div class="col-md-12">
+                  <img id="img" ng-src="{{getImage(product)}}" style="width:250px; height:250px;"/>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-offset-1 col-md-7">
+          <div class="row mt20">
+            <div class="col-md-12">
+              <ng-map class="mt20" style="height: 200px; width: 425px;" zoom="14"></ng-map>
+            </div>
+          </div>
+
+        </div>
+    </div>
+    <div class="row mt20 mb10">
+        <div class="col-md-6 text-left">
+            <button class="btn btn-primary" ng-click="delete()" type="button">Eliminar</button>
+        </div>
+        <div class="col-md-6 text-right">
+            <button class="btn btn-primary"  ng-click="update()" ng-disabled="isUnchanged()" type="button">Guardar cambios</button>
+        </div>
+    </div>
+</div>
