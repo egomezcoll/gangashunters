@@ -136,6 +136,49 @@ body {
   display: block;
 }
 
+.favoriteGlyphiconStar {
+    position: absolute;
+    top: 10px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    right: 10px;
+    font-size: 1.4em;
+    color: #CCCCCC;
+    &.isFavorite{
+      color: #FDCE38;
+    }
+}
+.favoriteGlyphiconStar:hover {
+    font-size: 1.5em;
+}
+
+.btn-fav{
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    text-transform: none;
+  .glyphicon-star{
+    color: #CCCCCC;
+    font-size: 1.2em;
+    top:2px;
+    &.isFavorite{
+      color: #FDCE38;
+    }
+  }
+}
+.btn-fav:hover{
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  .glyphicon-star{
+    color: #FDCE38;
+  }
+}
+
 .menuUser{
   width:300px;
   white-space:nowrap;

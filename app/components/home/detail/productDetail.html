@@ -30,6 +30,13 @@
         </div>
         <div class="col-md-offset-1 col-md-7">
           <div class="row">
+            <div class="col-md-12 text-right">
+              <button ng-if="!isFavorite" ng-click="addToFavorites(item.id);" type="button" class="btn btn-default btn-sm btn-fav" aria-label="Left Align">
+                <span class="glyphicon glyphicon-star" ng-class="{'isFavorite':isFavorite}" aria-hidden="true"></span> Añadir a favoritos
+              </button>
+            </div>
+          </div>
+          <div class="row mt20">
             <div class="col-md-4">
               <span class="customlabel txtNegrita">Prenda: </span>
               {{item.prendaName}}
