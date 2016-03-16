@@ -16,7 +16,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="pointer">
-                  <img ng-src="{{user.foto}}" class="userFoto mr5"> <a class="pointer">{{item.userName}}</a>
+                  <img ng-src="{{item.userFoto}}" class="userFoto mr5"> <a class="pointer">{{item.userName}}</a>
                 </div>
               </div>
             </div>
@@ -34,7 +34,7 @@
               <button ng-if="!isFollowed && item.idUser != user.id" ng-click="addToMiRed(item.idUser)" type="button" class="btn btn-default btn-xs btn-fav">
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Añadir a mi red
               </button>
-              <button ng-if="!isFavorite && item.idUser != user.id" ng-click="addToFavorites(item.id)" type="button" class="btn btn-default btn-xs btn-fav">
+              <button ng-if="!isFavorite && item.idUser != user.id" ng-click="addToFavorites(item.id);" type="button" class="btn btn-default btn-xs btn-fav">
                 <span class="glyphicon glyphicon-star" ng-class="{'isFavorite':isFavorite}" aria-hidden="true"></span> Añadir a favoritos
               </button>
             </div>

@@ -65,8 +65,10 @@ body {
   top:45% !important;
 }
 
+.btn{
+  text-transform: none !important;
+}
 //login
-
 .btn-social>:first-child {
     font-size: 1.2em;
 }
@@ -169,7 +171,7 @@ body {
       &.isInMiRed{
         color: blue;
       }
-  }    
+  }
   .glyphicon-star{
     color: #CCCCCC;
     font-size: 1.2em;
