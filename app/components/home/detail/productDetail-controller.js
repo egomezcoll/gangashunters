@@ -1,38 +1,60 @@
 'use strict';
 
 angular.module('App.Controllers')
-    .controller('productDetailCtrl', function ($scope, $modalInstance, $http, $state, NgMap, item) {
+    .controller('productDetailCtrl', function ($scope, $modalInstance, $rootScope, $http, $state, NgMap, item) {
 
         $scope.item = item;
         $scope.zoomWidth = 300;
         $scope.zoomHeight = 400;
-        $scope.isFavorite = false;
+        $scope.isFavorite = $scope.isFollowed = false;
         console.log(item);
         setTimeout(function () {
             $('.cloud-zoom, .cloud-zoom-gallery')
                 .CloudZoom();
         }, 3000);
-        $http({
-                method: 'POST',
-                url: 'http://www.eduardgomez.me/gangashunter_backend/checkIsFavorito.php',
-                data: {
-                    'idProduct': item.id,
-                    'idUser': '1'
-                },
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
-                    'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Allow-Methods'
-                }
-            })
-            .then(function (response) {
-                if (response.status === 200) {
-                    if (response.data.length > 0) {
-                        $scope.isFavorite = true;
+        if (item.id !== $rootScope.user.id) {
+            $http({
+                    method: 'POST',
+                    url: 'http://www.eduardgomez.me/gangashunter_backend/checkIsFavorito.php',
+                    data: {
+                        'idProduct': item.id,
+                        'idUser': '1'
+                    },
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+                        'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Allow-Methods'
                     }
-                }
-            });
+                })
+                .then(function (response) {
+                    if (response.status === 200) {
+                        if (response.data.length > 0) {
+                            $scope.isFavorite = true;
+                        }
+                    }
+                });
 
+            $http({
+                    method: 'POST',
+                    url: 'http://www.eduardgomez.me/gangashunter_backend/checkIsFollowed.php',
+                    data: {
+                        'idUser': '1',
+                        'idUserFollowed': item.idUser
+                    },
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+                        'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Allow-Methods'
+                    }
+                })
+                .then(function (response) {
+                    if (response.status === 200) {
+                        if (response.data.length > 0) {
+                            $scope.isFollowed = true;
+                        }
+                    }
+                });
+        }
         NgMap.getMap()
             .then(function (map) {
                 map.setCenter(new google.maps.LatLng(item.latitude, item.longitude));
@@ -79,6 +101,33 @@ angular.module('App.Controllers')
                             showCancelButton: false,
                         });
                         $scope.isFavorite = true;
+                    }
+                });
+        };
+
+        $scope.addToMiRed = function (idUserFollowed) {
+            $http({
+                    method: 'POST',
+                    url: 'http://www.eduardgomez.me/gangashunter_backend/insertNewFollowed.php',
+                    data: {
+                        'idUser': '1',
+                        'idUserFollowed': idUserFollowed
+                    },
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+                        'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Allow-Methods'
+                    }
+                })
+                .then(function (response) {
+                    if (response.status === 200) {
+                        sweetAlert({
+                            title: '¡Hecho!',
+                            text: 'Hemos añadido a ' + item.userName + ' a tu red',
+                            type: 'success',
+                            showCancelButton: false,
+                        });
+                        $scope.isFollowed = true;
                     }
                 });
         };

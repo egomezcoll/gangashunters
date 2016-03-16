@@ -50,6 +50,11 @@ angular.module('test87App')
                     templateUrl: 'components/home/home.html',
                     controller: 'homeController'
                 })
+                .state('miRed', {
+                    url: '/mi-red',
+                    templateUrl: 'components/miRed/mi-red.html',
+                    controller: 'miRedController'
+                })
                 .state('login', {
                   url: '/login',
                   templateUrl: 'components/login/login.html',

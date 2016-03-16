@@ -161,10 +161,20 @@ body {
     background-color: #fff;
     border-color: #ccc;
     text-transform: none;
+  .glyphicon-user{
+      color: #CCCCCC;
+      font-size: 1.2em;
+      top:2px;
+      left: -3px;
+      &.isInMiRed{
+        color: blue;
+      }
+  }    
   .glyphicon-star{
     color: #CCCCCC;
     font-size: 1.2em;
     top:2px;
+    left: -3px;
     &.isFavorite{
       color: #FDCE38;
     }

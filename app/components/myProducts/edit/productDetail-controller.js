@@ -9,7 +9,7 @@ angular.module('App.Controllers')
         $scope.product = {
             'id': item.id,
             'idUser': item.idUser,
-            'username': item.username,
+            'userName': item.userName,
             'imgs':item.imgs,
             'isGanga':item.isGanga,
             'latitude': item.latitude,
@@ -90,7 +90,7 @@ angular.module('App.Controllers')
                         var updated = {
                             'id': $scope.product.id,
                             'idUser':  $scope.product.idUser,
-                            'username':  $scope.product.username,
+                            'userName':  $scope.product.userNname,
                             'imgs': $scope.product.imgs,
                             'isGanga': $scope.product.isGanga,
                             'latitude':  $scope.product.latitude,
