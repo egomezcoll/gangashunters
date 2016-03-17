@@ -163,6 +163,10 @@ body {
     background-color: #fff;
     border-color: #ccc;
     text-transform: none;
+  .fa-user-plus{
+    margin-right: 3px;
+    color: #CCCCCC;
+  }
   .glyphicon-user{
       color: #CCCCCC;
       font-size: 1.2em;
@@ -186,11 +190,31 @@ body {
   color: #333;
   background-color: #fff;
   border-color: #ccc;
+  .fa-user-plus{
+    color: #00aced;
+  }
   .glyphicon-star{
     color: #FDCE38;
   }
 }
 
+.productDetailActions{
+  .fa{
+    color: #CCCCCC;
+    &.isFavorite{
+      color: #FDCE38;
+    }
+  }
+  .fa-lock:hover{
+    color: black;
+  }
+  .fa-send:hover{
+    color: #00aced;
+  }
+  .fa-star:hover{
+    color: #FDCE38;
+  }
+}
 .menuUser{
   width:300px;
   white-space:nowrap;

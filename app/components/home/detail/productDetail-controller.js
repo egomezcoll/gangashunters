@@ -8,7 +8,9 @@ angular.module('App.Controllers')
         $scope.zoomHeight = 400;
         $scope.isFavorite = $scope.isFollowed = false;
         console.log(item);
+        $scope.blockTitle = 'Solamente los usuarios premium pueden bloquear este producto 24h';
         setTimeout(function () {
+            $('[data-toggle="tooltip"]').tooltip();
             $('.cloud-zoom, .cloud-zoom-gallery')
                 .CloudZoom();
         }, 3000);

@@ -81,7 +81,7 @@
 
             var initTooltipster = function () {
                 setTimeout(function () {
-                    var offeringTooltip = "<div class='menuUser'><div class='row'><div class='col-sm-6 userOption' id='myProducts'><span class='glyphicon glyphicon-briefcase' aria-hidden='true'></span><span class='glyphicon-class'>Mis Productos</span></div><div class='col-sm-6 userOption' id='favoritos'><span class='glyphicon glyphicon-star' aria-hidden='true'></span><span class='glyphicon-class'>Favoritos</span></div></div><div class='row'><div class='col-sm-6 userOption'><span class='glyphicon glyphicon-cog' aria-hidden='true'></span><span class='glyphicon-class'>Configuración</span></div><div class='col-sm-6 userOption' id='cerrarSession'><span class='glyphicon glyphicon-off' aria-hidden='true'></span><span class='glyphicon-class'>Cerrar Sessión</span></div></div></div>";
+                    var offeringTooltip = "<div class='menuUser'><div class='row'><div class='col-sm-6 userOption' id='myProducts'><span class='glyphicon glyphicon-briefcase' aria-hidden='true'></span><span class='glyphicon-class'>Mis Productos</span></div><div class='col-sm-6 userOption' id='favoritos'><span class='glyphicon glyphicon-star' aria-hidden='true'></span><span class='glyphicon-class'>Favoritos</span></div></div><div class='row'><div class='col-sm-6 userOption' id='config'><span class='glyphicon glyphicon-cog' aria-hidden='true'></span><span class='glyphicon-class'>Configuración</span></div><div class='col-sm-6 userOption' id='cerrarSession'><span class='glyphicon glyphicon-off' aria-hidden='true'></span><span class='glyphicon-class'>Cerrar Sessión</span></div></div></div>";
                     //instantiate this tooltip with the HTML generated before
                     $('#userPanel')
                         .tooltipster({
@@ -110,6 +110,12 @@
                                       $('#userPanel')
                                           .tooltipster('hide');
                                         $state.go('myProducts');
+                                    });
+                                $('#config')
+                                    .click(function () {
+                                      $('#userPanel')
+                                          .tooltipster('hide');
+                                        $state.go('config');
                                     });
 
                             }

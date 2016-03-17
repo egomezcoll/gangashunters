@@ -32,10 +32,7 @@
           <div class="row">
             <div class="col-md-12 text-right">
               <button ng-if="!isFollowed && item.idUser != user.id" ng-click="addToMiRed(item.idUser)" type="button" class="btn btn-default btn-xs btn-fav">
-                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Añadir a mi red
-              </button>
-              <button ng-if="!isFavorite && item.idUser != user.id" ng-click="addToFavorites(item.id);" type="button" class="btn btn-default btn-xs btn-fav">
-                <span class="glyphicon glyphicon-star" ng-class="{'isFavorite':isFavorite}" aria-hidden="true"></span> Añadir a favoritos
+                <i class="fa fa-user-plus"></i> Añadir {{item.userName}} a mi red
               </button>
             </div>
           </div>
@@ -86,11 +83,15 @@
         </div>
     </div>
     <div class="row mt20 mb10">
-        <div class="col-md-6">
-            5 hunters lo quieren
+        <div class="col-md-6 text-left productDetailActions">
+            <i class="fa fa-lock fa-2x" ng-class="{'pointer':true}"  data-toggle="tooltip" data-placement="top" title="{{blockTitle}}"></i>
+            <i class="fa fa-send fa-lg pointer" style="margin-left:10px; margin-right:10px; vertical-align: 20%"></i>
+            <i class="fa fa-star fa-2x pointer" ng-if="!isFavorite && item.idUser != user.id" ng-click="addToFavorites(item.id);" data-toggle="tooltip" data-placement="top" title="Añadir a favoritos"></i>
+            <i class="fa fa-star isFavorite fa-2x" ng-if="isFavorite" data-toggle="tooltip" data-placement="top" title="Añadido en favoritos"></i>
+
+
         </div>
         <div class="col-md-6 text-right">
-            <button class="btn btn-primary" ng-disabled="true" type="button">Bloquear</button>
             <button class="btn btn-primary" ng-click="ok()" type="button">Es perfecto para mí!</button>
         </div>
     </div>

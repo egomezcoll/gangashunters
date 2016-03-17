@@ -80,5 +80,9 @@ angular.module('test87App')
                   url: '/mis-productos',
                   templateUrl: 'components/myProducts/myProducts.html',
                   controller: 'myProductsController'
+              }).state('config', {
+                  url: '/configuracion',
+                  templateUrl: 'components/config/config.html',
+                  controller: 'configController'
               });
             }]);
