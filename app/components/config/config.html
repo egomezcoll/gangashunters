@@ -3,7 +3,54 @@
       <div class="row">
             <div class="col-md-12">
               <h2>Mi red</h2>
-                  {{followedPeople}}
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th class="text-center">Usuario</th>
+                        <th class="text-center">Productos Subidos</th>
+                        <th class="text-center">Productos Comprados</th>
+                        <th class="text-center">Valoración</th>
+                        <th class="text-center">Estado</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="text-center" ng-repeat="people in followedPeople track by $index">
+                        <td>
+                          <img class="userFoto mr5" ng-src="{{people.foto}}"> {{people.name}}
+                        </td>
+                        <td>
+                          {{people.productosSubidos}}
+                        </td>
+                        <td>
+                          {{people.productosComprados}}
+                        </td>
+                        <td>
+                          <span ng-if="people.valoracion && people.valoracion >= 1" class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                          <span ng-if="people.valoracion && people.valoracion >= 2" class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                          <span ng-if="people.valoracion && people.valoracion >= 3" class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                          <span ng-if="people.valoracion && people.valoracion >= 4" class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                          <span ng-if="people.valoracion && people.valoracion == 5" class="glyphicon glyphicon-star" aria-hidden="true"></span>
+
+                          <span ng-if="!people.valoracion || people.valoracion < 1" class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                          <span ng-if="!people.valoracion || people.valoracion < 2" class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                          <span ng-if="!people.valoracion || people.valoracion < 3" class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                          <span ng-if="!people.valoracion || people.valoracion < 4" class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                          <span ng-if="!people.valoracion || people.valoracion < 5" class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+
+                        </td>
+                        <td>
+                          <div class="toggle-button">
+                              <label>
+                                  <input ng-change="addRemoveFollowed(people)" ng-model="people.isFollowed" type="checkbox">
+                                  <span class="toggle mr15"></span>
+                                  <span ng-if="people.isFollowed">Siguiendo</span>
+                                  <span ng-if="!people.isFollowed">Eliminado</span>
+                              </label>
+                          </div>
+                        </td>
+                      <tr>
+                    </tbody>
+                  </table>
             </div>
       </div>
 </div>

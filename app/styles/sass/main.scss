@@ -23,7 +23,7 @@ body {
     margin-right: 5px;
 }
 .mr15{
-  margin-right: 15px;
+  margin-right: 15px !important;
 }
 .mr50{
   margin-right: 50px;
@@ -68,6 +68,12 @@ body {
 .btn{
   text-transform: none !important;
 }
+
+//toggle config
+.toggle-button label .toggle:after{
+  left: -12px;
+}
+
 //login
 .btn-social>:first-child {
     font-size: 1.2em;
