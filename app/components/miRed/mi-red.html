@@ -128,13 +128,25 @@
 
                     </div>
 
+                    <!-- USER FILTER -->
+                    <div class="row mt20" ng-if="userFilter.id">
+                        <div class="col-md-12">
+                          <span class="txtNegrita">Hunter</span>
+                        </div>
+                    </div>
+                    <div class="row mt10 mb10" ng-if="userFilter.id">
+                        <div class="col-md-12">
+                          <button type="button" class="btn btn-default" style="cursor:default"><img ng-src="{{userFilter.foto}}" class="userFoto mr5"> <span class="mr10">{{userFilter.name| cut:true:13:'...'}}</span> <span class="glyphicon glyphicon-remove pointer" ng-click="removeFilterByUser()" style="color:#CCCCCC"aria-hidden="true"></span></button>
+
+                        </div>
+                    </div>
                 </div>
               </div>
             </div>
             <div class="col-md-9">
                   <ul class="dynamic-grid" angular-grid="pics" grid-width="200" gutter-size="10" angular-grid-id="gallery" refresh-on-img-load="true">
                         <li data-ng-repeat="pic in pics" ng-click="moreInformation(pic)" class="grid">
-                              <div class="row mt10">
+                              <div class="row" ng-click="filterByUser(pic);  $event.stopPropagation();" style="padding-top:10px; padding-bottom:10px; background-color:#CCCCCC;">
                                 <div class="col-md-offset-1 col-md-11">
                                   <div class="pointer">
                                     <img ng-src="{{pic.userFoto}}" class="userFoto mr5"> <a class="pointer">{{pic.userName}}</a>

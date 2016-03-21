@@ -23,7 +23,7 @@ angular.module('App.Controllers')
             isGanga: false
         };
         var timeoutIsTyping;
-
+        $scope.userFilter = {};
         $scope.pag = $scope.incrementPag = 10;
         $scope.colors = $scope.tallas = $scope.marcas = $scope.prendas = $scope.pics = $scope.picsOriginal = [];
         $scope.generos = [{
@@ -84,6 +84,19 @@ angular.module('App.Controllers')
             } else {
                 return distance + ' km';
             }
+        };
+
+        $scope.filterByUser = function (pic) {
+            $scope.userFilter = {
+                'id': pic.idUser,
+                'name': pic.userName,
+                'foto': pic.userFoto
+            };
+            $scope.filterProducts($scope.search.text);
+        };
+        $scope.removeFilterByUser = function (pic) {
+            $scope.userFilter = {};
+            $scope.filterProducts($scope.search.text);
         };
         $(window)
             .scroll(function () {
@@ -199,6 +212,15 @@ angular.module('App.Controllers')
                             }
                         }
 
+                        //check if user
+                        if ($scope.userFilter.id && !notValid) {
+                            if ($scope.userFilter.id === item.idUser) {
+                                filtersPassed = filtersPassed + 1;
+                            } else {
+                                notValid = true;
+                            }
+                        }
+
                         if (!notValid) {
                             validProduct.push(item);
                         }
@@ -214,8 +236,8 @@ angular.module('App.Controllers')
                         templateUrl: 'components/home/detail/productDetail.html',
                         controller: 'productDetailCtrl',
                         size: 'lg',
-                        backdrop:'static',
-                        keyboard:false,
+                        backdrop: 'static',
+                        keyboard: false,
                         resolve: {
                             item: function () {
                                 return pic;
@@ -238,4 +260,29 @@ angular.module('App.Controllers')
                 $scope.marcas = responseArray[2];
                 $scope.prendas = responseArray[3];
             });
+    })
+    .filter('cut', function () {
+        return function (value, wordwise, max, tail) {
+            if (!value) {
+                return '';
+            }
+
+            max = parseInt(max, 10);
+            if (!max) {
+                return value;
+            }
+            if (value.length <= max) {
+                return value;
+            }
+
+            value = value.substr(0, max);
+            if (wordwise) {
+                var lastspace = value.lastIndexOf(' ');
+                if (lastspace !== -1) {
+                    value = value.substr(0, lastspace);
+                }
+            }
+
+            return value + (tail || ' …');
+        };
     });
