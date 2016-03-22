@@ -49,18 +49,19 @@ angular.module('test87App')
                     url: '/home',
                     templateUrl: 'components/home/home.html',
                     controller: 'homeController'
-                })
-                .state('miRed', {
+                }) .state('miRed', {
                     url: '/mi-red',
                     templateUrl: 'components/miRed/mi-red.html',
                     controller: 'miRedController'
-                })
-                .state('login', {
+                }) .state('perfil', {
+                    url: '/perfil/:idUser',
+                    templateUrl: 'components/perfil/perfil.html',
+                    controller: 'perfilController'
+                }).state('login', {
                   url: '/login',
                   templateUrl: 'components/login/login.html',
                   controller: 'loginController'
-              })
-                .state('nuevo', {
+              }).state('nuevo', {
                   url: '/nuevo',
                   templateUrl: 'components/nuevo/nuevo.html',
                   controller: 'nuevoController'

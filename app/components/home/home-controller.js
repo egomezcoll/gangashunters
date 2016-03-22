@@ -23,7 +23,7 @@ angular.module('App.Controllers')
             return RESTFactory.readParallelMultipleBatch(['getColors', 'getTallas', 'getMarcas', 'getPrendas']);
         };
     })
-    .controller('homeController', function ($scope, RESTFactory, productsService, angularGridInstance, $timeout, $filter, $sce, $modal, ngGeodist, cfpLoadingBar, geolocation) {
+    .controller('homeController', function ($scope, $state, RESTFactory, productsService, angularGridInstance, $timeout, $filter, $sce, $modal, ngGeodist, cfpLoadingBar, geolocation) {
         $scope.search = {
             text: ''
         };
@@ -51,6 +51,12 @@ angular.module('App.Controllers')
         }];
         $scope.translate = function (value) {
             return value + '€';
+        };
+
+        $scope.goToProfile = function (idUser) {
+            $state.go('perfil', {
+                'idUser': idUser
+            });
         };
 
         //apply search and sort method
@@ -280,8 +286,8 @@ angular.module('App.Controllers')
                         templateUrl: 'components/home/detail/productDetail.html',
                         controller: 'productDetailCtrl',
                         size: 'lg',
-                        backdrop:'static',
-                        keyboard:false,
+                        backdrop: 'static',
+                        keyboard: false,
                         resolve: {
                             item: function () {
                                 return pic;
