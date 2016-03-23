@@ -1,19 +1,45 @@
 <!DOCTYPE html>
 <div class="container">
-      <div class="row">
+  <div class="row mt20 text-center" style="min-height:120px;">
+      <div class="col-md-12">
+          ¡Amplia tu red de contactos! Recuerda, cuantos más seguidores tengas ¡más fácil será para tí vender tus prendas!
+      </div>
+      <div class="col-md-12">
+          <div class="row mt20">
+            <div class="col-md-2"></div>
+            <div class="col-md-3 text-right mt10">
+              Encuentra aquí a tus amigos:
+            </div>
+            <div class="col-md-4 text-left">
+              <ui-select ng-model="users.selectedUser" on-select="filterProducts(search.text)" theme="selectize">
+                <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
+                <ui-select-choices repeat="user in users | filter: {name: $select.search}">
+                  <div ng-bind-html="user.name | highlight: $select.search"></div>
+                  <small>
+                    email: {{user.email}}
+                    age
+                  </small>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+
+      </div>
+  </div>
+      <div class="row  mt20">
             <div class="col-md-12">
                   <input type="search" ng-model="search.text" class="form-control" placeholder="Buscar...">
             </div>
       </div>
       <div class="row">
             <div class="col-md-3">
-              <div class="row" ng-if="height>=100">
+              <div class="row" ng-if="height>=205">
                 <div class="col-md-12">
-                  <input type="search" ng-model="search.text" class="form-control inputAux" placeholder="Buscar...">
+                  <input type="search" ng-model="search.text" class="form-control inputAux" style="margin-top:-180px" placeholder="Buscar...">
                 </div>
               </div>
               <div class="row mt20">
-                <div class="col-md-12 menu-column">
+                <div class="col-md-12 menu-column" ng-class="{'relative':height<=205, 'menuMiRedTop':height>=205}">
                     <!-- PRENDA FILTER -->
                     <div class="row mt20">
                         <div class="col-md-12">

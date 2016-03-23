@@ -134,7 +134,7 @@
             <div class="col-md-9">
                   <ul class="dynamic-grid" angular-grid="pics" grid-width="200" gutter-size="10" angular-grid-id="gallery" refresh-on-img-load="true">
                         <li data-ng-repeat="pic in pics" ng-click="moreInformation(pic)" class="grid">
-                            <div class="row" ng-click="goToProfile(pic.idUser); $event.stopPropagation();" style="padding-top:10px; padding-bottom:10px; background-color:#CCCCCC;">
+                            <div class="row" ng-click="goToProfile(pic.idUser); $event.stopPropagation();" style="padding-top:10px; padding-bottom:10px; background-color:#DBDBDB;">
                               <div class="col-md-offset-1 col-md-11">
                                 <div class="pointer">
                                   <img ng-src="{{pic.userFoto}}" class="userFoto mr5"> <a class="pointer">{{pic.userName}}</a>
@@ -146,19 +146,18 @@
                                 <div class="title" ng-bind-html="deliberatelyTrustDangerousSnippet(pic.name)"></div>
                                     <div class="description" ng-bind-html="deliberatelyTrustDangerousSnippet(pic.description)"></div>
                                     <div class="uploaded-date">
-                                          {{pic.uploadDate | timeAgo}}
-                                          {{pic.prendaName}}
+                                          Hace <b>{{pic.uploadDate | timeAgo}}</b> a <b>{{getDistance(pic.latitude,pic.longitude)}}</b>
+                                          <!--{{pic.prendaName}}
                                           {{pic.marcaName}}
-                                          {{pic.colorName}}
-                                          Distance: {{getDistance(pic.latitude,pic.longitude)}}
+                                          {{pic.colorName}}-->
                                     </div>
                                     <div class="likes-watch-wrap">
                                           <div class="row">
-                                                <div class="col-xs-8">
-                                                      {{pic.price}} €
+                                                <div class="col-xs-6">
+                                                      <b>{{pic.price}} €</b>
                                                 </div>
-                                                <div class="col-xs-4 text-right">
-                                                      {{pic.tallaName}}
+                                                <div class="col-xs-6 text-right">
+                                                      Talla: {{pic.tallaName}}
                                                 </div>
                                           </div>
                                     </div>

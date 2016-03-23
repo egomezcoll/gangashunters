@@ -118,8 +118,9 @@ body {
     font-weight: bold;
 }
 .img-desc-wrap .description {
-    font-size: 14px;
+    font-size: 13px;
     line-height: 22px;
+    color: #999;
 }
 .img-desc-wrap .uploaded-date {
     margin-top: 5px;
@@ -128,6 +129,8 @@ body {
 }
 .img-desc-wrap .likes-watch-wrap {
     margin-top: 10px;
+    font-size: 13px;
+    color: #999;
 }
 .img-desc-wrap .likes,
 .img-desc-wrap .watch {

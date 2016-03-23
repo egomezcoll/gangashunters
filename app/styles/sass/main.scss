@@ -18,8 +18,14 @@ body {
 .mt20{
   margin-top: 20px;
 }
+.mt15{
+  margin-top: 15px;
+}
 .mt10{
   margin-top: 10px;
+}
+.mt5{
+  margin-top: 5px;
 }
 .mb10{
   margin-bottom: 10px;
@@ -62,6 +68,17 @@ body {
   font-size: 1em;
 }
 
+.font14em{
+  font-size: 1.4em;
+  font-family: "Lucida Grande", Geneva, Arial, Verdana, sans-serif;
+  color: #333;
+}
+.font13em{
+  font-size: 1.3em;
+  font-family: "Lucida Grande", Geneva, Arial, Verdana, sans-serif;
+  color: #333;
+}
+
 .userFoto{
   width:40px;
   border-radius:50px;
@@ -76,6 +93,9 @@ body {
 
 .btn{
   text-transform: none !important;
+}
+.yellowStar{
+  color: #FDCE38;
 }
 
 //toggle config
@@ -295,12 +315,19 @@ body {
   min-width:235px;
   max-width:235px;
   min-height:600px;
+  &.relative{
+    position: relative !important;
+  }
 }
 
 .menu-column-tablet{
   background-color:white;
   border-radius:6px;
   display: none;
+}
+
+.menuMiRedTop{
+  top: 145px;
 }
 
 .inputAux{

@@ -33,8 +33,9 @@
                 apiVersion: 'v2.5'
             });
         })
-        .run(function ($log, editableOptions, Restangular, $rootScope, $http, $state) {
+        .run(function ($log, editableOptions, Restangular, $rootScope, $http, $state, timeAgo) {
             $log.debug('testAlphaApp run');
+            timeAgo.settings.overrideLang = 'es_LA';
             editableOptions.theme = 'bs3';
             Restangular.configuration.baseUrl = 'http://www.eduardgomez.me/gangashunter_backend';
             Restangular.configuration.suffix = '.php';

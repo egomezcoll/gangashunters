@@ -3,55 +3,65 @@
     <div class="row mt20">
         <div class="col-md-12" style="background-color:white; min-height:120px;">
             <div class="row">
-                <div class="col-md-3 text-center mt40">
+                <div class="col-md-4 text-center mt40 font13em">
                     <img class="userFoto mr5" ng-src="{{profileInfo.foto}}">
                     {{profileInfo.name}}
                 </div>
                 <div class="col-md-2 text-center mt20">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 font13em">
                             Subidos
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 mt10 font14em">
                             {{profileInfo.productosSubidos}}
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 text-center mt20">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 font13em">
                             Vendidos
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 mt15 font14em">
                             {{profileInfo.productosVendidos}}
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 text-center mt20">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 font13em">
                             Valoración
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
-                            {{profileInfo.valoracion}}
+                        <div class="col-md-12 mt15">
+                          <span ng-if="profileInfo.valoracion && profileInfo.valoracion >= 1" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
+                          <span ng-if="profileInfo.valoracion && profileInfo.valoracion >= 2" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
+                          <span ng-if="profileInfo.valoracion && profileInfo.valoracion >= 3" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
+                          <span ng-if="profileInfo.valoracion && profileInfo.valoracion >= 4" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
+                          <span ng-if="profileInfo.valoracion && profileInfo.valoracion == 5" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
+
+                          <span ng-if="!profileInfo.valoracion || profileInfo.valoracion < 1" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
+                          <span ng-if="!profileInfo.valoracion || profileInfo.valoracion < 2" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
+                          <span ng-if="!profileInfo.valoracion || profileInfo.valoracion < 3" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
+                          <span ng-if="!profileInfo.valoracion || profileInfo.valoracion < 4" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
+                          <span ng-if="!profileInfo.valoracion || profileInfo.valoracion < 5" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 text-center mt20">
+                <div class="col-md-2 text-center mt20">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 font13em">
                             Seguidores
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
-                            {{profileInfo.followers}}
+                        <div class="col-md-12 mt15 font14em">
+                            {{profileInfo.seguidores}}
                         </div>
                     </div>
                 </div>

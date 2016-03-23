@@ -9,6 +9,21 @@ angular.module('App.Controllers')
         this.loadFilters = function () {
             return RESTFactory.readParallelMultipleBatch(['getColors', 'getTallas', 'getMarcas', 'getPrendas']);
         };
+
+        this.searchUsers = function (searchText) {
+            return $http({
+                method: 'POST',
+                url: 'http://www.eduardgomez.me/gangashunter_backend/searchUsers.php',
+                data: {
+                    'searchText': searchText
+                },
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Allow-Methods'
+                }
+            });
+        };
     })
     .controller('miRedController', function ($scope, RESTFactory, miRedProductsService, angularGridInstance, $timeout, $filter, $sce, $modal, ngGeodist, cfpLoadingBar, geolocation) {
         $scope.search = {
@@ -25,7 +40,7 @@ angular.module('App.Controllers')
         var timeoutIsTyping;
         $scope.userFilter = {};
         $scope.pag = $scope.incrementPag = 10;
-        $scope.colors = $scope.tallas = $scope.marcas = $scope.prendas = $scope.pics = $scope.picsOriginal = [];
+        $scope.users = $scope.colors = $scope.tallas = $scope.marcas = $scope.prendas = $scope.pics = $scope.picsOriginal = [];
         $scope.generos = [{
             'id': 0,
             'name': 'Mujer'
@@ -106,6 +121,11 @@ angular.module('App.Controllers')
             });
         cfpLoadingBar.start();
 
+        miRedProductsService.searchUsers()
+          .then(function(data){
+              $scope.users = data.data;
+              console.log(data.data);
+          });
         miRedProductsService.loadProducts()
             .then(function (data) {
                 $scope.pics = data.data;
