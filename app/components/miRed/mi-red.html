@@ -11,14 +11,33 @@
               Encuentra aquí a tus amigos:
             </div>
             <div class="col-md-4 text-left">
-              <ui-select ng-model="users.selectedUser" on-select="filterProducts(search.text)" theme="selectize">
-                <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
+              <ui-select ng-model="users.selectedUser" on-select="goToProfile(users.selectedUser.id)" theme="selectize">
+                <ui-select-match placeholder="Seleccionar...">{{$select.selected.name}}</ui-select-match>
                 <ui-select-choices repeat="user in users | filter: {name: $select.search}">
-                  <div ng-bind-html="user.name | highlight: $select.search"></div>
-                  <small>
-                    email: {{user.email}}
-                    age
-                  </small>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <img ng-src="{{user.foto}}" class="userFoto ml10">
+                    </div>
+                    <div class="col-md-10 text-left">
+                      <div ng-bind-html="user.name | highlight: $select.search"></div>
+                      <small>
+                        Seguidores: {{user.seguidores}}
+                      </small>
+                      <small class="ml15">
+                         <span ng-if="user.valoracion && user.valoracion >= 1" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
+                         <span ng-if="user.valoracion && user.valoracion >= 2" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
+                         <span ng-if="user.valoracion && user.valoracion >= 3" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
+                         <span ng-if="user.valoracion && user.valoracion >= 4" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
+                         <span ng-if="user.valoracion && user.valoracion == 5" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
+
+                         <span ng-if="!user.valoracion || user.valoracion < 1" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
+                         <span ng-if="!user.valoracion || user.valoracion < 2" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
+                         <span ng-if="!user.valoracion || user.valoracion < 3" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
+                         <span ng-if="!user.valoracion || user.valoracion < 4" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
+                         <span ng-if="!user.valoracion || user.valoracion < 5" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
+                      </small>
+                    </div>
+                  </div>
                 </ui-select-choices>
               </ui-select>
             </div>
@@ -163,7 +182,6 @@
                     <div class="row mt10 mb10" ng-if="userFilter.id">
                         <div class="col-md-12">
                           <button type="button" class="btn btn-default" style="cursor:default"><img ng-src="{{userFilter.foto}}" class="userFoto mr5"> <span class="mr10">{{userFilter.name| cut:true:13:'...'}}</span> <span class="glyphicon glyphicon-remove pointer" ng-click="removeFilterByUser()" style="color:#CCCCCC"aria-hidden="true"></span></button>
-
                         </div>
                     </div>
                 </div>
@@ -184,18 +202,15 @@
                                 <div class="title" ng-bind-html="deliberatelyTrustDangerousSnippet(pic.name)"></div>
                                     <div class="description" ng-bind-html="deliberatelyTrustDangerousSnippet(pic.description)"></div>
                                     <div class="uploaded-date">
-                                          {{pic.uploadDate | timeAgo}}
-                                          {{pic.prendaName}}
-                                          {{pic.marcaName}}
-                                          Distancia: {{getDistance(pic.latitude,pic.longitude)}}
+                                          Hace <b>{{pic.uploadDate | timeAgo}}</b> a <b>{{getDistance(pic.latitude,pic.longitude)}}</b>
                                     </div>
                                     <div class="likes-watch-wrap">
                                           <div class="row">
-                                                <div class="col-xs-8">
-                                                      {{pic.price}} €
+                                                <div class="col-xs-6">
+                                                      <b>{{pic.price}} €</b>
                                                 </div>
-                                                <div class="col-xs-4 text-right">
-                                                      {{pic.tallaName}}
+                                                <div class="col-xs-6 text-right">
+                                                      Talla: {{pic.tallaName}}
                                                 </div>
                                           </div>
                                     </div>

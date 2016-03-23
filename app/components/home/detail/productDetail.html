@@ -27,6 +27,39 @@
                 </a>
               </div>
             </div>
+            <div class="row" ng-if="recomendarEnabled">
+              <div class="col-md-12">
+                <ui-select ng-model="users.selectedUser" on-select="recomendarA(users.selectedUser.id)" theme="selectize">
+                  <ui-select-match placeholder="Recomendar a...">{{$select.selected.name}}</ui-select-match>
+                  <ui-select-choices repeat="user in users | filter: {name: $select.search}">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <img ng-src="{{user.foto}}" class="userFoto ml10">
+                      </div>
+                      <div class="col-md-10 text-left">
+                        <div ng-bind-html="user.name | highlight: $select.search"></div>
+                        <small>
+                          Seguidores: {{user.seguidores}}
+                        </small>
+                        <small class="ml15">
+                           <span ng-if="user.valoracion && user.valoracion >= 1" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
+                           <span ng-if="user.valoracion && user.valoracion >= 2" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
+                           <span ng-if="user.valoracion && user.valoracion >= 3" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
+                           <span ng-if="user.valoracion && user.valoracion >= 4" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
+                           <span ng-if="user.valoracion && user.valoracion == 5" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
+
+                           <span ng-if="!user.valoracion || user.valoracion < 1" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
+                           <span ng-if="!user.valoracion || user.valoracion < 2" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
+                           <span ng-if="!user.valoracion || user.valoracion < 3" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
+                           <span ng-if="!user.valoracion || user.valoracion < 4" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
+                           <span ng-if="!user.valoracion || user.valoracion < 5" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
+                        </small>
+                      </div>
+                    </div>
+                  </ui-select-choices>
+                </ui-select>
+              </div>
+            </div>
         </div>
         <div class="col-md-offset-1 col-md-7">
           <div class="row">
@@ -82,14 +115,13 @@
 
         </div>
     </div>
+
     <div class="row mt20 mb10">
         <div class="col-md-6 text-left productDetailActions">
             <i class="fa fa-lock fa-2x" ng-class="{'pointer':true}"  data-toggle="tooltip" data-placement="top" title="{{blockTitle}}"></i>
-            <i class="fa fa-send fa-lg pointer" style="margin-left:10px; margin-right:10px; vertical-align: 20%"></i>
+            <i class="fa fa-send fa-2x pointer" ng-class="{'enabled':recomendarEnabled}" ng-click="toggleRecomendar()" style="margin-left:10px; margin-right:10px;"  data-toggle="tooltip" data-placement="top" title="Recomendar producto"></i>
             <i class="fa fa-star fa-2x pointer" ng-if="!isFavorite && item.idUser != user.id" ng-click="addToFavorites(item.id);" data-toggle="tooltip" data-placement="top" title="Añadir a favoritos"></i>
             <i class="fa fa-star isFavorite fa-2x" ng-if="isFavorite" data-toggle="tooltip" data-placement="top" title="Añadido en favoritos"></i>
-
-
         </div>
         <div class="col-md-6 text-right">
             <button class="btn btn-primary" ng-click="ok()" type="button">Es perfecto para mí!</button>

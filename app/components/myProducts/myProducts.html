@@ -9,19 +9,15 @@
                                 <div class="title" ng-bind-html="deliberatelyTrustDangerousSnippet(pic.name)"></div>
                                     <div class="description" ng-bind-html="deliberatelyTrustDangerousSnippet(pic.description)"></div>
                                     <div class="uploaded-date">
-                                          {{pic.uploadDate | timeAgo}}
-                                          {{pic.prendaName}}
-                                          {{pic.marcaName}}
-                                          {{pic.colorName}}
-                                          Distance: {{getDistance(pic.latitude,pic.longitude)}}
+                                          Hace <b>{{pic.uploadDate | timeAgo}}</b> a <b>{{getDistance(pic.latitude,pic.longitude)}}</b>
                                     </div>
                                     <div class="likes-watch-wrap">
                                           <div class="row">
-                                                <div class="col-xs-8">
-                                                      {{pic.price}} €
+                                                <div class="col-xs-6">
+                                                      <b>{{pic.price}} €</b>
                                                 </div>
-                                                <div class="col-xs-4 text-right">
-                                                      {{pic.tallaName}}
+                                                <div class="col-xs-6 text-right">
+                                                      Talla: {{pic.tallaName}}
                                                 </div>
                                           </div>
                                     </div>

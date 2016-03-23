@@ -43,6 +43,13 @@ body {
 .mr50{
   margin-right: 50px;
 }
+
+.ml10{
+    margin-left: 10px;
+}
+.ml15{
+  margin-left: 15px !important;
+}
 .txtNegrita{
   font-weight: bold;
 }
@@ -238,6 +245,9 @@ body {
     color: #CCCCCC;
     &.isFavorite{
       color: #FDCE38;
+    }
+    &.enabled{
+      color: #00aced;
     }
   }
   .fa-lock:hover{

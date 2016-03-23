@@ -15,7 +15,8 @@ angular.module('App.Controllers')
                 method: 'POST',
                 url: 'http://www.eduardgomez.me/gangashunter_backend/searchUsers.php',
                 data: {
-                    'searchText': searchText
+                    'searchText': searchText,
+                    'idUser':1
                 },
                 headers: {
                     'Access-Control-Allow-Origin': '*',
@@ -25,7 +26,7 @@ angular.module('App.Controllers')
             });
         };
     })
-    .controller('miRedController', function ($scope, RESTFactory, miRedProductsService, angularGridInstance, $timeout, $filter, $sce, $modal, ngGeodist, cfpLoadingBar, geolocation) {
+    .controller('miRedController', function ($scope, $state, RESTFactory, miRedProductsService, angularGridInstance, $timeout, $filter, $sce, $modal, ngGeodist, cfpLoadingBar, geolocation) {
         $scope.search = {
             text: ''
         };
@@ -101,6 +102,11 @@ angular.module('App.Controllers')
             }
         };
 
+        $scope.goToProfile = function (idUser) {
+            $state.go('perfil', {
+                'idUser': idUser
+            });
+        };
         $scope.filterByUser = function (pic) {
             $scope.userFilter = {
                 'id': pic.idUser,
@@ -124,7 +130,6 @@ angular.module('App.Controllers')
         miRedProductsService.searchUsers()
           .then(function(data){
               $scope.users = data.data;
-              console.log(data.data);
           });
         miRedProductsService.loadProducts()
             .then(function (data) {

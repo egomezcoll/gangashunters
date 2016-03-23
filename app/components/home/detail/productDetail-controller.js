@@ -6,14 +6,34 @@ angular.module('App.Controllers')
         $scope.item = item;
         $scope.zoomWidth = 300;
         $scope.zoomHeight = 400;
-        $scope.isFavorite = $scope.isFollowed = false;
-        console.log(item);
+        $scope.isFavorite = $scope.isFollowed = $scope.recomendarEnabled = false;
+        $scope.searchText = {
+            'text': ''
+        };
         $scope.blockTitle = 'Solamente los usuarios premium pueden bloquear este producto 24h';
         setTimeout(function () {
-            $('[data-toggle="tooltip"]').tooltip();
+            $('[data-toggle="tooltip"]')
+                .tooltip();
             $('.cloud-zoom, .cloud-zoom-gallery')
                 .CloudZoom();
         }, 3000);
+        $http({
+                method: 'POST',
+                url: 'http://www.eduardgomez.me/gangashunter_backend/searchUsers.php',
+                data: {
+                    'searchText': $scope.searchText.text,
+                    'idUser': 1
+                },
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Allow-Methods'
+                }
+            })
+            .then(function (data) {
+                $scope.users = data.data;
+            });
+
         if (item.id !== $rootScope.user.id) {
             $http({
                     method: 'POST',
@@ -72,6 +92,13 @@ angular.module('App.Controllers')
                 }
             });
 
+        $scope.recomendarA = function (id) {
+            $scope.recomendarEnabled = !$scope.recomendarEnabled;
+        };
+
+        $scope.toggleRecomendar = function () {
+            $scope.recomendarEnabled = !$scope.recomendarEnabled;
+        };
         $scope.getImage = function (product) {
             if (product.imgs.length >= 1) {
                 //return 'http://www.eduardgomez.me/gangashunter_backend/uploads/' + product.imgs.split(',')[0];
