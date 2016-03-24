@@ -5,6 +5,7 @@ angular.module('App.Controllers')
         this.loadProducts = function (pag, filters) {
             return geolocation.getLocation()
                 .then(function (data) {
+                    console.log(data.coords);
                     return $http({
                         method: 'POST',
                         url: 'http://www.eduardgomez.me/gangashunter_backend/getProducts.php?lat=' + data.coords.latitude + '&long=' + data.coords.longitude + '&pag=' + pag,
@@ -78,8 +79,8 @@ angular.module('App.Controllers')
 
         $scope.getImage = function (product) {
             if (product.imgs.length >= 1) {
-                //return 'http://www.eduardgomez.me/gangashunter_backend/uploads/' + product.imgs.split(',')[0];
-                return '../../styles/sass/theme/images/default.jpg';
+                return 'http://www.eduardgomez.me/gangashunter_backend/uploads/' + product.imgs.split(',')[0];
+                //return '../../styles/sass/theme/images/default.jpg';
             } else {
                 return '../../styles/sass/theme/images/default.jpg';
             }
@@ -310,4 +311,28 @@ angular.module('App.Controllers')
                 $scope.marcas = responseArray[2];
                 $scope.prendas = responseArray[3];
             });
+    }).filter('cut', function () {
+        return function (value, wordwise, max, tail) {
+            if (!value) {
+                return '';
+            }
+
+            max = parseInt(max, 10);
+            if (!max) {
+                return value;
+            }
+            if (value.length <= max) {
+                return value;
+            }
+
+            value = value.substr(0, max);
+            if (wordwise) {
+                var lastspace = value.lastIndexOf(' ');
+                if (lastspace !== -1) {
+                    value = value.substr(0, lastspace);
+                }
+            }
+
+            return value + (tail || ' …');
+        };
     });

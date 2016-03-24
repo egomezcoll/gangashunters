@@ -56,6 +56,9 @@ body {
 .txtItalic{
   font-style: italic;
 }
+.txtPetit{
+  font-size: 12px;
+}
 .txtMin{
   font-size: 11px;
 }
@@ -88,6 +91,10 @@ body {
 
 .userFoto{
   width:40px;
+  border-radius:50px;
+}
+.userFotoGrid{
+  width:25px;
   border-radius:50px;
 }
 

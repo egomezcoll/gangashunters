@@ -132,31 +132,28 @@
               </div>
             </div>
             <div class="col-md-9">
-                  <ul class="dynamic-grid" angular-grid="pics" grid-width="200" gutter-size="10" angular-grid-id="gallery" refresh-on-img-load="true">
-                        <li data-ng-repeat="pic in pics" ng-click="moreInformation(pic)" class="grid">
-                            <div class="row" ng-click="goToProfile(pic.idUser); $event.stopPropagation();" style="padding-top:10px; padding-bottom:10px; background-color:#DBDBDB;">
-                              <div class="col-md-offset-1 col-md-11">
-                                <div class="pointer">
-                                  <img ng-src="{{pic.userFoto}}" class="userFoto mr5"> <a class="pointer">{{pic.userName}}</a>
+                  <ul class="dynamic-grid" angular-grid="pics" ag-grid-width="gridWidth" ag-gutter-size="10" ag-id="gallery" ag-refresh-on-img-load="false">
+                        <li data-ng-repeat="pic in pics" ng-click="moreInformation(pic)" class="grid" data-ng-clock>
+                              <img ng-src="{{getImage(pic)}}" class="grid-img" data-actual-width="200" data-actual-height="250" />
+                              <div class="row text-center" ng-click="goToProfile(pic.idUser); $event.stopPropagation();" style="padding-top:10px; padding-bottom:10px;  background-color:#F7F7F7">
+                                <div class="col-md-12">
+                                  <div class="pointer">
+                                    <img ng-src="{{pic.userFoto}}" class="userFotoGrid mr5"> <a class="pointer txtPetit txtNegrita" ng-if="gridWidth==200">{{pic.userName}}</a><a class="pointer txtPetit txtNegrita" ng-if="gridWidth==100">{{pic.userName | cut:true:15:'...'}}</a>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                              <img ng-src="{{getImage(pic)}}" class="grid-img" data-actual-width="{{pic.actualWidth}}" data-actual-height="{{pic.actualHeight}}" />
                               <div class="img-desc-wrap">
                                 <div class="title" ng-bind-html="deliberatelyTrustDangerousSnippet(pic.name)"></div>
-                                    <div class="description" ng-bind-html="deliberatelyTrustDangerousSnippet(pic.description)"></div>
+                                    <!-- <div class="description"> {{pic.description | cut:true:30:'...'}}</div> -->
                                     <div class="uploaded-date">
-                                          Hace <b>{{pic.uploadDate | timeAgo}}</b> a <b>{{getDistance(pic.latitude,pic.longitude)}}</b>
-                                          <!--{{pic.prendaName}}
-                                          {{pic.marcaName}}
-                                          {{pic.colorName}}-->
+                                          Subido <b>{{pic.uploadDate | timeAgo}}</b> a <b>{{getDistance(pic.latitude,pic.longitude)}}</b>
                                     </div>
                                     <div class="likes-watch-wrap">
                                           <div class="row">
-                                                <div class="col-xs-6">
+                                                <div class="col-xs-5">
                                                       <b>{{pic.price}} €</b>
                                                 </div>
-                                                <div class="col-xs-6 text-right">
+                                                <div class="col-xs-7 text-right">
                                                       Talla: {{pic.tallaName}}
                                                 </div>
                                           </div>

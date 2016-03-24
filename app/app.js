@@ -33,9 +33,13 @@
                 apiVersion: 'v2.5'
             });
         })
-        .run(function ($log, editableOptions, Restangular, $rootScope, $http, $state, timeAgo) {
+        .run(function ($log, editableOptions, Detection, Restangular, $rootScope, $http, $state, timeAgo) {
             $log.debug('testAlphaApp run');
             timeAgo.settings.overrideLang = 'es_LA';
+            $rootScope.gridWidth = 200;
+            if (Detection.isMobileBrowser()) {
+                $rootScope.gridWidth = 100;
+            }
             editableOptions.theme = 'bs3';
             Restangular.configuration.baseUrl = 'http://www.eduardgomez.me/gangashunter_backend';
             Restangular.configuration.suffix = '.php';
@@ -102,20 +106,20 @@
                                     });
                                 $('#favoritos')
                                     .click(function () {
-                                      $('#userPanel')
-                                          .tooltipster('hide');
+                                        $('#userPanel')
+                                            .tooltipster('hide');
                                         $state.go('favoritos');
                                     });
                                 $('#myProducts')
                                     .click(function () {
-                                      $('#userPanel')
-                                          .tooltipster('hide');
+                                        $('#userPanel')
+                                            .tooltipster('hide');
                                         $state.go('myProducts');
                                     });
                                 $('#config')
                                     .click(function () {
-                                      $('#userPanel')
-                                          .tooltipster('hide');
+                                        $('#userPanel')
+                                            .tooltipster('hide');
                                         $state.go('config');
                                     });
 

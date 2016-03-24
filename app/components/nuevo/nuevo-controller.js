@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('App.Controllers')
-    .controller('nuevoController', function ($scope, RESTFactory, $http, geolocation, $state) {
+    .controller('nuevoController', function ($scope, $rootScope, RESTFactory, $http, geolocation, $state) {
         $scope.colors = $scope.tallas = $scope.marcas = $scope.prendas = $scope.images = [];
         $scope.generos = [{
             'id': 0,
@@ -14,7 +14,10 @@ angular.module('App.Controllers')
             'name': 'Unisex'
         }];
         $scope.product = {
-            isGanga: false
+            'isGanga': false,
+            'idUser': $rootScope.user.id,
+            'userName': $rootScope.user.name,
+            'userFoto': $rootScope.user.foto
         };
         $scope.file = null;
 
@@ -74,7 +77,7 @@ angular.module('App.Controllers')
                     count = count + 1;
                 }
             }
-            if (count < 10) {
+            if (count < 14) {
                 return true;
             } else {
                 if ($scope.product.name.length > 0 && $scope.product.description.length > 0 && $scope.product.amount > 0) {

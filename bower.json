@@ -10,7 +10,7 @@
     "angular-resize": "~1.0.0",
     "selectize": "~0.12.1",
     "angular-chart.js": "~0.7.2",
-    "angulargrid": "~0.3.3",
+    "angulargrid": "0.5.4",
     "ngInfiniteScroll": "~1.2.1",
     "angular-file": "~1.0.1",
     "angularjs-geolocation": "~0.1.1",
