@@ -58,6 +58,11 @@ body {
     overflow: hidden;
     border-radius: 10px;
     cursor: pointer;
+    &.blocked {
+      opacity: 0.5 !important;
+      pointer-events: none;
+    }
+
 }
 .grid.ng-leave {
     -webkit-transition: all ease 200ms;

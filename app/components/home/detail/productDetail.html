@@ -16,18 +16,18 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="pointer">
-                  <img ng-src="{{item.userFoto}}" class="userFoto mr5"> <a class="pointer">{{item.userName}}</a>
+                  <img ng-src="{{item.userFoto}}" class="userFoto mr5"> <a class="pointer txtNegrita">{{item.userName}}</a>
                 </div>
               </div>
             </div>
-            <div class="row mt10">
-              <div class="col-md-12">
+            <div class="row mt30">
+              <div class="col-md-12 ml10">
                 <a class="cloud-zoom" href="{{getImage(item)}}" rel="transparentImage: 'data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', useWrapper: false, showTitle: true, zoomWidth:'{{zoomWidth}}', zoomHeight:'{{zoomHeight}}', adjustY:-15, adjustX:20">
                   <img id="img" ng-src="{{getImage(item)}}" style="width:250px; height:250px;"/>
                 </a>
               </div>
             </div>
-            <div class="row" ng-if="recomendarEnabled">
+            <div class="row mt20" ng-if="recomendarEnabled">
               <div class="col-md-12">
                 <ui-select ng-model="users.selectedUser" on-select="recomendarA(users.selectedUser.id)" theme="selectize">
                   <ui-select-match placeholder="Recomendar a...">{{$select.selected.name}}</ui-select-match>

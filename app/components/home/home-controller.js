@@ -282,25 +282,27 @@ angular.module('App.Controllers')
                 };
 
                 $scope.moreInformation = function (pic) {
-                    var modalInstance = $modal.open({
-                        animation: false,
-                        templateUrl: 'components/home/detail/productDetail.html',
-                        controller: 'productDetailCtrl',
-                        size: 'lg',
-                        backdrop: 'static',
-                        keyboard: false,
-                        resolve: {
-                            item: function () {
-                                return pic;
+                    if (pic.isBlocked !== '1') {
+                        var modalInstance = $modal.open({
+                            animation: false,
+                            templateUrl: 'components/home/detail/productDetail.html',
+                            controller: 'productDetailCtrl',
+                            size: 'lg',
+                            backdrop: 'static',
+                            keyboard: false,
+                            resolve: {
+                                item: function () {
+                                    return pic;
+                                }
                             }
-                        }
-                    });
+                        });
 
-                    modalInstance.result.then(function (selectedItem) {
-                        $scope.selected = selectedItem;
-                    }, function () {
+                        modalInstance.result.then(function (selectedItem) {
+                            $scope.selected = selectedItem;
+                        }, function () {
 
-                    });
+                        });
+                    }
                 };
             });
 
@@ -311,7 +313,8 @@ angular.module('App.Controllers')
                 $scope.marcas = responseArray[2];
                 $scope.prendas = responseArray[3];
             });
-    }).filter('cut', function () {
+    })
+    .filter('cut', function () {
         return function (value, wordwise, max, tail) {
             if (!value) {
                 return '';
