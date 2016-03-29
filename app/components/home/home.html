@@ -1,168 +1,182 @@
 <!DOCTYPE html>
 <div class="container" infinite-scroll="myPagingFunction()">
-      <div class="row">
-            <div class="col-md-12">
-                  <input type="search" ng-model="search.text" class="form-control" placeholder="Buscar...">
-            </div>
-      </div>
-      <div class="row">
-            <div class="col-md-3">
-              <div class="row" ng-if="height>=100">
+    <div class="row">
+        <div class="col-md-12">
+            <input class="form-control" ng-model="search.text" placeholder="Buscar..." type="search">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="row" ng-if="height>=100">
                 <div class="col-md-12">
-                  <input type="search" ng-model="search.text" class="form-control inputAux" placeholder="Buscar...">
+                    <input class="form-control inputAux" ng-model="search.text" placeholder="Buscar..." type="search">
                 </div>
-              </div>
-              <div class="row mt20">
+            </div>
+            <div class="row mt20">
                 <div class="col-md-12 menu-column">
                     <!-- PRENDA FILTER -->
                     <div class="row mt20">
                         <div class="col-md-12">
-                          <span class="txtNegrita">Prendas</span>
+                            <span class="txtNegrita">Prendas</span>
                         </div>
                     </div>
                     <div class="row mt10">
                         <div class="col-md-12">
-                          <ui-select multiple ng-model="filters.selectedPrendas" on-select="filterProducts(search.text)" on-remove="filterProducts(search.text)" theme="select2" style="width: 800px;">
-                            <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
-                            <ui-select-choices repeat="prenda in prendas | filter: {name: $select.search}">
-                              <div ng-bind-html="prenda.name | highlight: $select.search"></div>
-                            </ui-select-choices>
-                          </ui-select>
+                            <ui-select multiple ng-model="filters.selectedPrendas" on-remove="filterProducts(search.text)" on-select="filterProducts(search.text)" style="width: 800px;" theme="select2">
+                                <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
+                                <ui-select-choices repeat="prenda in prendas | filter: {name: $select.search}">
+                                    <div ng-bind-html="prenda.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
                         </div>
                     </div>
 
                     <!-- BRAND FILTER -->
                     <div class="row mt20">
                         <div class="col-md-12">
-                          <span class="txtNegrita">Marcas</span>
+                            <span class="txtNegrita">Marcas</span>
                         </div>
                     </div>
                     <div class="row mt10">
                         <div class="col-md-12">
-                          <ui-select multiple ng-model="filters.selectedMarcas" on-select="filterProducts(search.text)" on-remove="filterProducts(search.text)" theme="select2" style="width: 800px;">
-                            <ui-select-match placeholder="Seleccionar...">{{$item.nombre}}</ui-select-match>
-                            <ui-select-choices repeat="marca in marcas | filter: {nombre: $select.search} | limitTo:100">
-                              <div ng-bind-html="marca.nombre | highlight: $select.search"></div>
-                            </ui-select-choices>
-                          </ui-select>
+                            <ui-select multiple ng-model="filters.selectedMarcas" on-remove="filterProducts(search.text)" on-select="filterProducts(search.text)" style="width: 800px;" theme="select2">
+                                <ui-select-match placeholder="Seleccionar...">{{$item.nombre}}</ui-select-match>
+                                <ui-select-choices repeat="marca in marcas | filter: {nombre: $select.search} | limitTo:100">
+                                    <div ng-bind-html="marca.nombre | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
                         </div>
                     </div>
 
                     <!-- SIZE FILTER -->
                     <div class="row mt20">
                         <div class="col-md-12">
-                          <span class="txtNegrita">Tallas</span>
+                            <span class="txtNegrita">Tallas</span>
                         </div>
                     </div>
                     <div class="row mt10">
                         <div class="col-md-12">
-                          <ui-select multiple ng-model="filters.selectedTallas" on-select="filterProducts(search.text)" on-remove="filterProducts(search.text)" theme="select2" style="width: 800px;">
-                            <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
-                            <ui-select-choices repeat="talla in tallas | filter: {name: $select.search}">
-                              <div ng-bind-html="talla.name | highlight: $select.search"></div>
-                            </ui-select-choices>
-                          </ui-select>
+                            <ui-select multiple ng-model="filters.selectedTallas" on-remove="filterProducts(search.text)" on-select="filterProducts(search.text)" style="width: 800px;" theme="select2">
+                                <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
+                                <ui-select-choices repeat="talla in tallas | filter: {name: $select.search}">
+                                    <div ng-bind-html="talla.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
                         </div>
                     </div>
 
                     <!-- COLOR FILTER -->
                     <div class="row mt20">
                         <div class="col-md-12">
-                          <span class="txtNegrita">Colores</span>
+                            <span class="txtNegrita">Colores</span>
                         </div>
                     </div>
                     <div class="row mt10">
                         <div class="col-md-12">
-                          <ui-select multiple ng-model="filters.selectedColors" on-select="filterProducts(search.text)" on-remove="filterProducts(search.text)" theme="select2" style="width: 800px;">
-                            <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
-                            <ui-select-choices repeat="color in colors | filter: {name: $select.search}">
-                              <div ng-bind-html="color.name | highlight: $select.search"></div>
-                            </ui-select-choices>
-                          </ui-select>
+                            <ui-select multiple ng-model="filters.selectedColors" on-remove="filterProducts(search.text)" on-select="filterProducts(search.text)" style="width: 800px;" theme="select2">
+                                <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
+                                <ui-select-choices repeat="color in colors | filter: {name: $select.search}">
+                                    <div ng-bind-html="color.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
                         </div>
                     </div>
 
                     <!-- GENERO FILTER -->
                     <div class="row mt20">
                         <div class="col-md-12">
-                          <span class="txtNegrita">Género</span>
+                            <span class="txtNegrita">Género</span>
                         </div>
                     </div>
                     <div class="row mt10">
                         <div class="col-md-12">
-                          <ui-select multiple ng-model="filters.selectedGeneros" on-select="filterProducts(search.text)" on-remove="filterProducts(search.text)" theme="select2" style="width: 800px;">
-                            <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
-                            <ui-select-choices repeat="genero in generos | filter: {name: $select.search}">
-                              <div ng-bind-html="genero.name | highlight: $select.search"></div>
-                            </ui-select-choices>
-                          </ui-select>
+                            <ui-select multiple ng-model="filters.selectedGeneros" on-remove="filterProducts(search.text)" on-select="filterProducts(search.text)" style="width: 800px;" theme="select2">
+                                <ui-select-match placeholder="Seleccionar...">{{$item.name}}</ui-select-match>
+                                <ui-select-choices repeat="genero in generos | filter: {name: $select.search}">
+                                    <div ng-bind-html="genero.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
                         </div>
                     </div>
 
                     <!-- IS GANGA -->
                     <div class="row mt20">
                         <div class="col-md-12">
-                          <span class="txtNegrita">Gangas</span>
+                            <span class="txtNegrita">Gangas</span>
                         </div>
                     </div>
                     <div class="row mt10">
                         <div class="col-md-12">
-                          <div class="checkbox">
-                            <label>
-                                <input type="checkbox" ng-model="filters.isGanga" ng-click="filterProducts(search.text)"><span class="checkbox-material"><span class="check"></span></span> <span translate>Solamente gangas</span>
-                            </label>
-                          </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input ng-click="filterProducts(search.text)" ng-model="filters.isGanga" type="checkbox">
+                                    <span class="checkbox-material">
+                                        <span class="check"></span>
+                                    </span>
+                                    <span translate>Solamente gangas</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
 
                     <!-- RANGO DE PRECIOS -->
                     <div class="row mt20">
                         <div class="col-md-12">
-                          <span class="txtNegrita">Precio</span>
+                            <span class="txtNegrita">Precio</span>
                         </div>
                     </div>
                     <div class="row mt20">
                         <div class="col-md-12">
-                          <rzslider rz-slider-on-end="filterProducts(search.text)" rz-slider-floor="0" rz-slider-translate="translate" rz-slider-ceil="2000" rz-slider-model="filters.low" rz-slider-high="filters.high" ng-init="rangeSlider={low:0}"></rzslider>
+                            <rzslider ng-init="rangeSlider={low:0}" rz-slider-ceil="2000" rz-slider-floor="0" rz-slider-high="filters.high" rz-slider-model="filters.low" rz-slider-on-end="filterProducts(search.text)" rz-slider-translate="translate"></rzslider>
                         </div>
 
                     </div>
 
                 </div>
-              </div>
             </div>
-            <div class="col-md-9">
-                  <ul class="dynamic-grid" angular-grid="pics" ag-grid-width="gridWidth" ag-gutter-size="10" ag-id="gallery" ag-refresh-on-img-load="false">
-                        <li data-ng-repeat="pic in pics" ng-click="moreInformation(pic)" class="grid" ng-class="{'blocked':pic.isBlocked=='1'}" data-ng-clock>
-                              <span class="glyphicon glyphicon-lock" aria-hidden="true" ng-if="pic.isBlocked=='1'" style="position:absolute; top:43%; left:46%; font-size: 2em; color: black;"></span>
-                              <img ng-src="{{getImage(pic)}}" class="grid-img" data-actual-width="200" data-actual-height="225" />
-                              <div class="row text-center" ng-click="goToProfile(pic.idUser); $event.stopPropagation();" style="padding-top:10px; padding-bottom:10px;  background-color:#F7F7F7">
-                                <div class="col-md-12">
-                                  <div class="pointer">
-                                    <img ng-src="{{pic.userFoto}}" class="userFotoGrid mr5"> <a class="pointer txtPetit txtNegrita" ng-if="gridWidth==200">{{pic.userName}}</a><a class="pointer txtPetit txtNegrita" ng-if="gridWidth==100">{{pic.userName | cut:true:15:'...'}}</a>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="img-desc-wrap">
-                                <div class="title" ng-bind-html="deliberatelyTrustDangerousSnippet(pic.name)"></div>
-                                    <!-- <div class="description"> {{pic.description | cut:true:30:'...'}}</div> -->
-                                    <div class="uploaded-date">
-                                          Subido <b>{{pic.uploadDate | timeAgo}}</b> a <b>{{getDistance(pic.latitude,pic.longitude)}}</b>
-                                    </div>
-                                    <div class="likes-watch-wrap">
-                                          <div class="row">
-                                                <div class="col-xs-5">
-                                                      <b>{{pic.price}} €</b>
-                                                </div>
-                                                <div class="col-xs-7 text-right">
-                                                      Talla: {{pic.tallaName}}
-                                                </div>
-                                          </div>
-                                    </div>
-                              </div>
-                        </li>
-                  </ul>
+        </div>
+        <div class="col-md-9">
+            <ul ag-grid-width="gridWidth" ag-gutter-size="10" ag-id="gallery" ag-refresh-on-img-load="false" angular-grid="pics" class="dynamic-grid">
+                <li class="grid" data-ng-clock data-ng-repeat="pic in pics" ng-class="{'noPointer':pic.isBlocked=='1'}" ng-click="moreInformation(pic)">
+                    <i class="fa fa-eur fa-lg" ng-if="pic.isGanga=='1'" style="color:#CCC; position:absolute; top:10px; right:10px;"></i>
+<span class="glyphicon glyphicon-flash" ng-if="pic.isGanga=='0' && isNew(pic.uploadDate)" aria-hidden="true" style="color:#CCC; position:absolute; top:10px; right:10px;"></span>
+                    <img class="grid-img" data-actual-height="200" data-actual-width="200" ng-class="{'blocked':pic.isBlocked=='1'}" ng-src="{{getImage(pic)}}"/>
+                    <div class="img-desc-wrap">
+                        <span aria-hidden="true" class="glyphicon glyphicon-lock mt10" ng-if="pic.isBlocked=='1'" style="font-size: 1em; color: #616161;"></span>
+                        <span class="txtPetit" ng-if="pic.isBlocked=='1'">Bloqueado por premium</span>
 
-            </div>
-      </div>
+                        <div class="title mt10" ng-bind-html="deliberatelyTrustDangerousSnippet(pic.name)" ng-if="pic.isBlocked!='1'"></div>
+                        <!-- <div class="description"> {{pic.description | cut:true:30:'...'}}</div> -->
+                        <div class="uploaded-date txtMin">
+                            Subido
+                            <b>{{pic.uploadDate | timeAgo}}</b>
+                            a
+                            <b>{{getDistance(pic.latitude,pic.longitude)}}</b>
+                        </div>
+                        <div class="likes-watch-wrap">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <b>{{pic.price}}
+                                        €</b>
+                                </div>
+                                <div class="col-xs-7 text-right">
+                                    Talla:
+                                    {{pic.tallaName}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row text-center" ng-click="goToProfile(pic.idUser); $event.stopPropagation();" style="padding-top:10px; padding-bottom:10px;  border-top:1px solid #F7F7F7">
+                        <div class="col-md-12">
+                            <div class="pointer">
+                                <img class="userFotoGrid mr5" ng-src="{{pic.userFoto}}">
+                                <a class="pointer txtMin txtNegrita" ng-if="gridWidth==200">{{pic.userName}}</a>
+                                <a class="pointer txtPetit txtNegrita" ng-if="gridWidth==100">{{pic.userName | cut:true:15:'...'}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>

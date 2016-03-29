@@ -6,7 +6,8 @@ angular.module('App.Controllers')
         $scope.item = item;
         $scope.zoomWidth = 300;
         $scope.zoomHeight = 400;
-        $scope.isFavorite = $scope.isFollowed = $scope.recomendarEnabled = false;
+        $scope.imgSelected = 0;
+        $scope.isFavorite = $scope.mainImage = $scope.isFollowed = $scope.recomendarEnabled = false;
         $scope.searchText = {
             'text': ''
         };
@@ -16,7 +17,7 @@ angular.module('App.Controllers')
                 .tooltip();
             $('.cloud-zoom, .cloud-zoom-gallery')
                 .CloudZoom();
-        }, 3000);
+        }, 2000);
         $http({
                 method: 'POST',
                 url: 'http://www.eduardgomez.me/gangashunter_backend/searchUsers.php',
@@ -101,12 +102,26 @@ angular.module('App.Controllers')
         };
         $scope.getImage = function (product) {
             if (product.imgs.length >= 1) {
-                return 'http://www.eduardgomez.me/gangashunter_backend/uploads/' + product.imgs.split(',')[0];
-              //  return '../../styles/sass/theme/images/default.jpg';
+                $scope.nextImages = product.imgs.split(',');
+                return 'http://www.eduardgomez.me/gangashunter_backend/uploads/' + $scope.nextImages[0];
+                //  return '../../styles/sass/theme/images/default.jpg';
             } else {
+                $scope.nextImages = [];
                 return '../../styles/sass/theme/images/default.jpg';
             }
         };
+        $scope.mainImage = $scope.getImage(item);
+
+        $scope.changeMainImage = function (index, nextImage) {
+            $scope.imgSelected = index;
+            $scope.mainImage = 'http://www.eduardgomez.me/gangashunter_backend/uploads/' + nextImage;
+            setTimeout(function () {
+                $('.cloud-zoom, .cloud-zoom-gallery')
+                    .CloudZoom();
+            }, 300);
+
+        };
+
         $scope.addToFavorites = function (id) {
             $http({
                     method: 'POST',

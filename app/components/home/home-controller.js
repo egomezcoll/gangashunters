@@ -77,6 +77,20 @@ angular.module('App.Controllers')
             return $sce.trustAsHtml(text);
         };
 
+        $scope.isNew = function (itemDate) {
+            var timestamp = Date.parse(itemDate) + (24 * 60 * 60 * 1000);
+            var now = Date.now();
+            if (timestamp > now) {
+                return true;
+            } else if (timestamp < now) {
+                // The selected time is more than 1 day from now
+                return false;
+            } else {
+                // -Exact- same timestamps.
+                return true;
+            }
+        };
+
         $scope.getImage = function (product) {
             if (product.imgs.length >= 1) {
                 return 'http://www.eduardgomez.me/gangashunter_backend/uploads/' + product.imgs.split(',')[0];

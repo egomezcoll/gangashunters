@@ -6,6 +6,9 @@ Make sure to include this after the core Bootstrap CSS.
 body {
     padding-top: 70px;
 }
+.mt60{
+  margin-top: 60px;
+}
 .mt50{
   margin-top: 50px;
 }
@@ -94,7 +97,7 @@ body {
   border-radius:50px;
 }
 .userFotoGrid{
-  width:25px;
+  width:20px;
   border-radius:50px;
 }
 
@@ -346,7 +349,9 @@ body {
 .menuMiRedTop{
   top: 145px;
 }
-
+.imgactive{
+  border: 2px solid #CCC;
+}
 .inputAux{
   position: fixed;
   max-width: 236px;

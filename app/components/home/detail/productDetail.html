@@ -5,7 +5,7 @@
             <h4>{{item.name}}</h4>
         </div>
         <div class="col-md-3 text-right">
-            <span style="cursor:pointer"  ng-click="close()" aria-hidden="true" class="glyphicon glyphicon-remove"></span>
+            <span aria-hidden="true" class="glyphicon glyphicon-remove" ng-click="close()" style="cursor:pointer"></span>
         </div>
     </div>
 
@@ -14,114 +14,133 @@
     <div class="row">
         <div class="col-md-4">
             <div class="row">
-              <div class="col-md-12">
-                <div class="pointer">
-                  <img ng-src="{{item.userFoto}}" class="userFoto mr5"> <a class="pointer txtNegrita">{{item.userName}}</a>
+                <div class="col-md-12">
+                    <div class="pointer">
+                        <img class="userFoto mr5" ng-src="{{item.userFoto}}">
+                        <a class="pointer txtNegrita">{{item.userName}}</a>
+                    </div>
                 </div>
-              </div>
             </div>
             <div class="row mt30">
-              <div class="col-md-12 ml10">
-                <a class="cloud-zoom" href="{{getImage(item)}}" rel="transparentImage: 'data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', useWrapper: false, showTitle: true, zoomWidth:'{{zoomWidth}}', zoomHeight:'{{zoomHeight}}', adjustY:-15, adjustX:20">
-                  <img id="img" ng-src="{{getImage(item)}}" style="width:250px; height:250px;"/>
-                </a>
-              </div>
+                <div class="col-md-12 ml10">
+                    <a class="cloud-zoom" href="{{mainImage}}" rel="transparentImage: 'data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', useWrapper: false, showTitle: true, zoomWidth:'{{zoomWidth}}', zoomHeight:'{{zoomHeight}}', adjustY:-15, adjustX:20">
+                        <img id="img" ng-src="{{mainImage}}" style="width:250px; height:250px;"/>
+                    </a>
+                </div>
             </div>
             <div class="row mt20" ng-if="recomendarEnabled">
-              <div class="col-md-12">
-                <ui-select ng-model="users.selectedUser" on-select="recomendarA(users.selectedUser.id)" theme="selectize">
-                  <ui-select-match placeholder="Recomendar a...">{{$select.selected.name}}</ui-select-match>
-                  <ui-select-choices repeat="user in users | filter: {name: $select.search}">
-                    <div class="row">
-                      <div class="col-md-2">
-                        <img ng-src="{{user.foto}}" class="userFoto ml10">
-                      </div>
-                      <div class="col-md-10 text-left">
-                        <div ng-bind-html="user.name | highlight: $select.search"></div>
-                        <small>
-                          Seguidores: {{user.seguidores}}
-                        </small>
-                        <small class="ml15">
-                           <span ng-if="user.valoracion && user.valoracion >= 1" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
-                           <span ng-if="user.valoracion && user.valoracion >= 2" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
-                           <span ng-if="user.valoracion && user.valoracion >= 3" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
-                           <span ng-if="user.valoracion && user.valoracion >= 4" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
-                           <span ng-if="user.valoracion && user.valoracion == 5" class="glyphicon glyphicon-star yellowStar" aria-hidden="true"></span>
+                <div class="col-md-12">
+                    <ui-select ng-model="users.selectedUser" on-select="recomendarA(users.selectedUser.id)" theme="selectize">
+                        <ui-select-match placeholder="Recomendar a...">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="user in users | filter: {name: $select.search}">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img class="userFoto ml10" ng-src="{{user.foto}}">
+                                </div>
+                                <div class="col-md-10 text-left">
+                                    <div ng-bind-html="user.name | highlight: $select.search"></div>
+                                    <small>
+                                        Seguidores:
+                                        {{user.seguidores}}
+                                    </small>
+                                    <small class="ml15">
+                                        <span aria-hidden="true" class="glyphicon glyphicon-star yellowStar" ng-if="user.valoracion && user.valoracion >= 1"></span>
+                                        <span aria-hidden="true" class="glyphicon glyphicon-star yellowStar" ng-if="user.valoracion && user.valoracion >= 2"></span>
+                                        <span aria-hidden="true" class="glyphicon glyphicon-star yellowStar" ng-if="user.valoracion && user.valoracion >= 3"></span>
+                                        <span aria-hidden="true" class="glyphicon glyphicon-star yellowStar" ng-if="user.valoracion && user.valoracion >= 4"></span>
+                                        <span aria-hidden="true" class="glyphicon glyphicon-star yellowStar" ng-if="user.valoracion && user.valoracion == 5"></span>
 
-                           <span ng-if="!user.valoracion || user.valoracion < 1" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
-                           <span ng-if="!user.valoracion || user.valoracion < 2" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
-                           <span ng-if="!user.valoracion || user.valoracion < 3" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
-                           <span ng-if="!user.valoracion || user.valoracion < 4" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
-                           <span ng-if="!user.valoracion || user.valoracion < 5" class="glyphicon glyphicon-star-empty yellowStar" aria-hidden="true"></span>
-                        </small>
-                      </div>
-                    </div>
-                  </ui-select-choices>
-                </ui-select>
-              </div>
+                                        <span aria-hidden="true" class="glyphicon glyphicon-star-empty yellowStar" ng-if="!user.valoracion || user.valoracion < 1"></span>
+                                        <span aria-hidden="true" class="glyphicon glyphicon-star-empty yellowStar" ng-if="!user.valoracion || user.valoracion < 2"></span>
+                                        <span aria-hidden="true" class="glyphicon glyphicon-star-empty yellowStar" ng-if="!user.valoracion || user.valoracion < 3"></span>
+                                        <span aria-hidden="true" class="glyphicon glyphicon-star-empty yellowStar" ng-if="!user.valoracion || user.valoracion < 4"></span>
+                                        <span aria-hidden="true" class="glyphicon glyphicon-star-empty yellowStar" ng-if="!user.valoracion || user.valoracion < 5"></span>
+                                    </small>
+                                </div>
+                            </div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
             </div>
         </div>
-        <div class="col-md-offset-1 col-md-7">
-          <div class="row">
-            <div class="col-md-12 text-right">
-              <button ng-if="!isFollowed && item.idUser != user.id" ng-click="addToMiRed(item.idUser)" type="button" class="btn btn-default btn-xs btn-fav">
-                <i class="fa fa-user-plus"></i> Añadir {{item.userName}} a mi red
-              </button>
+        <div class="col-md-1">
+          <div class="row mt60">
+            <div ng-repeat="nextImage in nextImages track by $index">
+                <img id="img{{$index}}" class="mt10" ng-click="changeMainImage($index, nextImage)" ng-class="{'imgactive':!imgSelected, 'imgactive':imgSelected == $index, 'pointer':imgSelected != $index}" ng-src="http://www.eduardgomez.me/gangashunter_backend/uploads/{{nextImage}}" style="width:50px; height:50px;"/>
             </div>
           </div>
-          <div class="row mt20">
-            <div class="col-md-4">
-              <span class="customlabel txtNegrita">Prenda: </span>
-              {{item.prendaName}}
+        </div>
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-default btn-xs btn-fav" ng-click="addToMiRed(item.idUser)" ng-if="!isFollowed && item.idUser != user.id" type="button">
+                        <i class="fa fa-user-plus"></i>
+                        Añadir
+                        {{item.userName}}
+                        a mi red
+                    </button>
+                </div>
             </div>
-            <div class="col-md-4">
-              <span class="customlabel txtNegrita">Marca: </span>
-              {{item.marcaName}}
+            <div class="row mt20">
+                <div class="col-md-4">
+                    <span class="customlabel txtNegrita">Prenda:
+                    </span>
+                    {{item.prendaName}}
+                </div>
+                <div class="col-md-4">
+                    <span class="customlabel txtNegrita">Marca:
+                    </span>
+                    {{item.marcaName}}
+                </div>
+                <div class="col-md-4">
+                    <span class="customlabel txtNegrita">Talla:
+                    </span>
+                    {{item.tallaName}}
+                </div>
             </div>
-            <div class="col-md-4">
-              <span class="customlabel txtNegrita">Talla: </span>
-              {{item.tallaName}}
+            <div class="row mt10">
+                <div class="col-md-4">
+                    <span class="customlabel txtNegrita">Color:
+                    </span>
+                    {{item.colorName}}
+                </div>
+                <div class="col-md-4">
+                    <span class="customlabel txtNegrita">Género:
+                    </span>
+                    {{item.generoName}}
+                </div>
+                <div class="col-md-4">
+                    <span class="customlabel txtNegrita">Precio:
+                    </span>
+                    {{item.price}}
+                    €
+                </div>
             </div>
-          </div>
-          <div class="row mt10">
-            <div class="col-md-4">
-              <span class="customlabel txtNegrita">Color: </span>
-              {{item.colorName}}
+            <div class="row mt10">
+                <div class="col-md-12">
+                    <span class="customlabel txtNegrita">Descripción:</span>
+                </div>
             </div>
-            <div class="col-md-4">
-              <span class="customlabel txtNegrita">Género: </span>
-              {{item.generoName}}
+            <div class="row">
+                <div class="col-md-12 mt10">
+                    <span>{{item.description}}</span>
+                </div>
             </div>
-            <div class="col-md-4">
-              <span class="customlabel txtNegrita">Precio: </span>
-              {{item.price}} €
+            <div class="row">
+                <div class="col-md-12">
+                    <ng-map class="mt20" style="height: 200px; width: 425px;" zoom="14"></ng-map>
+                </div>
             </div>
-          </div>
-          <div class="row mt10">
-            <div class="col-md-12">
-              <span class="customlabel txtNegrita">Descripción:</span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 mt10">
-              <span>{{item.description}}</span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <ng-map class="mt20" style="height: 200px; width: 425px;" zoom="14"></ng-map>
-            </div>
-          </div>
 
         </div>
     </div>
 
     <div class="row mt20 mb10">
         <div class="col-md-6 text-left productDetailActions">
-            <i class="fa fa-lock fa-2x" ng-class="{'pointer':true}"  data-toggle="tooltip" data-placement="top" title="{{blockTitle}}"></i>
-            <i class="fa fa-send fa-2x pointer" ng-class="{'enabled':recomendarEnabled}" ng-click="toggleRecomendar()" style="margin-left:10px; margin-right:10px;"  data-toggle="tooltip" data-placement="top" title="Recomendar producto"></i>
-            <i class="fa fa-star fa-2x pointer" ng-if="!isFavorite && item.idUser != user.id" ng-click="addToFavorites(item.id);" data-toggle="tooltip" data-placement="top" title="Añadir a favoritos"></i>
-            <i class="fa fa-star isFavorite fa-2x" ng-if="isFavorite" data-toggle="tooltip" data-placement="top" title="Añadido en favoritos"></i>
+            <i class="fa fa-lock fa-2x" data-placement="top" data-toggle="tooltip" ng-class="{'pointer':true}" title="{{blockTitle}}"></i>
+            <i class="fa fa-send fa-2x pointer" data-placement="top" data-toggle="tooltip" ng-class="{'enabled':recomendarEnabled}" ng-click="toggleRecomendar()" style="margin-left:10px; margin-right:10px;" title="Recomendar producto"></i>
+            <i class="fa fa-star fa-2x pointer" data-placement="top" data-toggle="tooltip" ng-click="addToFavorites(item.id);" ng-if="!isFavorite && item.idUser != user.id" title="Añadir a favoritos"></i>
+            <i class="fa fa-star isFavorite fa-2x" data-placement="top" data-toggle="tooltip" ng-if="isFavorite" title="Añadido en favoritos"></i>
         </div>
         <div class="col-md-6 text-right">
             <button class="btn btn-primary" ng-click="ok()" type="button">Es perfecto para mí!</button>
