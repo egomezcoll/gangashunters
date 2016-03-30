@@ -1,6 +1,6 @@
 .separator{
-  width: 100%;
-  height: 150px;
+  width: 75%;
+  height: 125px;
 }
 
 .sended{
@@ -29,7 +29,7 @@
 .bubble {
     position: relative;
     width: 350px;
-    height: 100px;
+    min-height: 50px;
     padding: 15px;
     background: #94c2ed;
     -webkit-border-radius: 12px;
@@ -60,7 +60,7 @@
 .bubble-me {
     position: relative;
     width: 350px;
-    height: 100px;
+    min-height: 50px;
     padding: 15px;
     background: #86bb71;
     -webkit-border-radius: 12px;

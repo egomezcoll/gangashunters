@@ -218,13 +218,15 @@
                               </div>
                           </div>
                       </div>
-                      <div class="row text-center" ng-click="goToProfile(pic.idUser); $event.stopPropagation();" style="padding-top:10px; padding-bottom:10px;  border-top:1px solid #F7F7F7">
-                          <div class="col-md-12">
-                              <div class="pointer">
+                      <div class="row text-center" style="padding-top:10px; padding-bottom:10px;  border-top:1px solid #F7F7F7">
+                          <div class="col-md-1 pointer">
+                                  <span class="glyphicon glyphicon-filter" style="padding-left: 10px; top:5px;" ng-click="filterByUser(pic); $event.stopPropagation();" aria-hidden="true"></span>
+                          </div>
+                          <div class="col-md-2"></div>
+                          <div class="col-md-9 pointer" ng-click="goToProfile(pic.idUser); $event.stopPropagation();">
                                   <img class="userFotoGrid mr5" ng-src="{{pic.userFoto}}">
                                   <a class="pointer txtMin txtNegrita" ng-if="gridWidth==200">{{pic.userName}}</a>
                                   <a class="pointer txtPetit txtNegrita" ng-if="gridWidth==100">{{pic.userName | cut:true:15:'...'}}</a>
-                              </div>
                           </div>
                       </div>
                   </li>

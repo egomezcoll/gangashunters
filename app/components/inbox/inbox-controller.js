@@ -4,7 +4,7 @@ angular.module('App.Controllers')
     .controller('inboxController', function ($scope, $http, $interval, $rootScope, $state) {
         $scope.messages = $scope.conversations = [];
         $scope.lastId = 0;
-        $scope.myMessage = {
+        $scope.search = $scope.myMessage = {
             'text': ''
         };
         $scope.paramsId = $state.params.id;
@@ -24,6 +24,11 @@ angular.module('App.Controllers')
                     .then(function (response) {
                         $scope.messages = response.data;
                         $scope.lastId = $scope.messages[response.data.length - 1].id;
+                        $('html, body')
+                            .animate({
+                                scrollTop: $(document)
+                                    .height()
+                            }, 'slow');
                     });
 
                 $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
@@ -54,8 +59,6 @@ angular.module('App.Controllers')
                     "text": $scope.myMessage.text
                 };
 
-                console.log(data);
-
                 $http({
                         method: 'POST',
                         url: 'http://www.eduardgomez.me/gangashunter_backend/insertNewMessage.php',
@@ -70,6 +73,11 @@ angular.module('App.Controllers')
                         console.log(response);
                         if (response.status === 200) {
                             $scope.myMessage.text = '';
+                            $('html, body')
+                                .animate({
+                                    scrollTop: $(document)
+                                        .height()
+                                }, 'slow');
                         }
                     });
             }
