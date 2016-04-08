@@ -1,7 +1,14 @@
 <!DOCTYPE html>
+
 <div class="row chat" style="margin-top: -10px">
   <div class="col-xs-4">
     <div class="menu">
+      <div style="position:absolute; left:250px;">
+        <ul style="margin: 30px auto;text-align: center;">
+          <li style="list-style: none;position: relative;display: inline-block;width: 100px;height: 100px;"><a href="#" class="round green">Lo vendo<span class="round">Se asignará este producto como vendido a este usuario.</span></a></li>
+          <li style="list-style: none;position: relative;display: inline-block;width: 100px;height: 100px;"><a href="#" class="round red">Eliminar<span class="round">Esta conversación será eliminada </span></a></li>
+        </ul>
+      </div>
       <div class="form-group" style="padding:15px">
        <input type="text"class="form-control mt10 searchInput" ng-model="search.text" placeholder="Buscar conversación...">
      </div>
@@ -17,19 +24,21 @@
        <!--<div class="col-xs-1"></div><div class="col-xs-8" style="margin-top: 15px;border-bottom: 1px solid #CCC;"></div><div class="col-xs-3"></div>
      --></div>
     </div>
+
   </div>
   <div class="col-xs-8">
     <div class="row" ng-if="paramsId != 0">
       <div class="col-md-12 mt20 getHeight" >
-        <div ng-repeat="message in messages" ng-class="{'mb30':$last}">
-          <div class="separator">
-              <div ng-class="{'bubble-top':message.idUser == 2, 'bubble-me-top':message.idUser != 2, 'text-left':message.idUser == 2, 'text-right':message.idUser != 2}">
+        <div ng-repeat="message in messages track by $index" ng-class="{'mb30':$last}">
+          <div class="separator" ng-class="{'separatorLess':(messages[$index].idUser === messages[$index-1].idUser) && isSameDay(messages[$index].date, messages[$index-1].date, 'false')}">
+              <div ng-if="(messages[$index].idUser !== messages[$index-1].idUser) || isSameDay(messages[$index].date, messages[$index-1].date, 'true')" ng-class="{'bubble-top':message.idUser == 2, 'bubble-me-top':message.idUser != 2, 'text-left':message.idUser == 2, 'text-right':message.idUser != 2}">
                 <span class="name txtNegrita txtNormal" ng-if="message.idUser == conversation.idUser">{{conversation.nameBuyer}}</span>
                 <span class="name txtNegrita txtNormal" ng-if="message.idUser == conversation.idUserOwner">{{conversation.nameOwner}}</span>
-                <span class="sended">{{message.date | timeAgo}}
+
               </div>
               <div ng-class="{'bubble':message.idUser == 2, 'bubble-me':message.idUser != 2}">
                 {{message.text}}
+                <span class="sended text-right">{{message.date | timeAgo}}</span>
               </div>
           </div>
         </div>

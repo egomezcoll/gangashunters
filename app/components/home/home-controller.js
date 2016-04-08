@@ -93,8 +93,8 @@ angular.module('App.Controllers')
 
         $scope.getImage = function (product) {
             if (product.imgs.length >= 1) {
-                return 'http://www.eduardgomez.me/gangashunter_backend/uploads/' + product.imgs.split(',')[0];
-                //return '../../styles/sass/theme/images/default.jpg';
+                //return 'http://www.eduardgomez.me/gangashunter_backend/uploads/' + product.imgs.split(',')[0];
+                return '../../styles/sass/theme/images/default.jpg';
             } else {
                 return '../../styles/sass/theme/images/default.jpg';
             }

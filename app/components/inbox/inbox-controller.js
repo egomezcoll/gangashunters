@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('App.Controllers')
-    .controller('inboxController', function ($scope, $http, $interval, $rootScope, $state) {
+    .controller('inboxController', function ($scope, $http, $interval, $rootScope, $state, $filter) {
         $scope.messages = $scope.conversations = [];
         $scope.lastId = 0;
         $scope.search = $scope.myMessage = {
@@ -51,6 +51,22 @@ angular.module('App.Controllers')
                 $interval.cancel(interval);
             });
 
+        $scope.isSameDay = function (messageDate, messageBeforeDate, invert) {
+            if (invert === 'true') {
+                if ($filter('timeAgo')(messageDate) !== $filter('timeAgo')(messageBeforeDate)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                if ($filter('timeAgo')(messageDate) === $filter('timeAgo')(messageBeforeDate)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+        };
         $scope.sendMessage = function () {
             if ($scope.myMessage.text.length > 0) {
                 var data = {
